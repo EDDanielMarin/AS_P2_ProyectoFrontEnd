@@ -1,0 +1,36 @@
+<form #formlogin="ngForm">
+    <div class="login-body">
+        <div class="login-topbar">
+            <a href="#" class="logo">
+                <img src="../../assets/layout/images/ecuador-logo.png" alt="ecuador-layout" />
+            </a>
+        </div>
+        <div class="login-image">
+            <div class="login-panel">
+                <img src="../../assets/layout/images/ecuador-orange-logo.png" alt="ecuador-layout" />
+                <div class="ui-g-12">
+                    <input type="text"  class="form-control" pInputText name="cu" [(ngModel)]="usu" autocomplete="off" required maxlength="20">
+                </div>
+                <div class="ui-g-12">
+                    <input type="password" class="form-control"  pInputText name="pp" [(ngModel)]="pass" autocomplete="off" required maxlength="50" (keyup.enter)="ejecutalogin()">
+                </div>
+                <div class="checkbox-container">
+                    <div class="remember-me">
+                        <input type="checkbox" class="ui-chkbox ui-chkbox-box">
+                        <span>Remember me</span>
+                    </div>
+                    <button type="button" (click)="ejecutalogin()" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                        <span class="ui-button-text ui-c">Login</span>
+                    </button>
+                </div>
+
+                <div class="separator"></div>
+
+                <a href="#" class="subinfo">
+                    <span>Forgot your password?</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</form>

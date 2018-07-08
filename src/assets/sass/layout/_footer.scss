@@ -1,0 +1,105 @@
+.layout-wrapper {
+    .layout-main {
+        @include transition(margin-left $transitionDuration);
+
+        .layout-footer {
+            background-color: $footerBgColor;
+            padding: 16px 38px;
+            color: $footerTextColor;
+            bottom: 0;
+            position: relative;
+
+            .logo-container {
+                text-decoration: none;
+
+                img {
+                    height: 26px;
+                    vertical-align: middle;
+                }
+
+                .app-name {
+                    font-weight: 400;
+                    font-size: 14px;
+                    display: block;
+                    margin-top: 15px;
+                    color: $footerTextColor;
+                }
+            }
+
+            #footer-menu {
+                .footer-box {
+                    text-align: left;
+
+                    span {
+                        font-size: 15px;
+                        font-weight: 500;
+                        text-align: left;
+                        color: #8A8A8A;
+                        display: block;
+                    }
+
+                    a {
+                        text-decoration: none;
+                        margin-top: 8px;
+                        font-size: 13px;
+                        font-weight: 400;
+                        display: block;
+                        color: #666666;
+
+                        >a {
+                            opacity: 0.9;
+                            font-size: 13px;
+                            text-align: left;
+                            color: #666666;
+                        }
+
+                        &:hover {
+                            color: #1F1F1F;
+                        }
+                    }
+
+                    .icon-link {
+                        display: inline-block;
+                        margin-top: 30px;
+
+                        .icon {
+                            color: #666666;
+                            font-size: 22px;
+                            margin-right: 16px;
+                            margin-left: 16px;
+
+                            &:hover {
+                                color: #1F1F1F;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1025px) {
+    .layout-wrapper {
+        .layout-main {
+            .layout-footer {
+                .logo-container-outer {
+                    text-align: center;
+                }
+
+                #footer-menu {
+                    text-align: center;
+
+                    .footer-box {
+                        text-align: center;
+                        margin-bottom: 30px;
+
+                        span {
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,689 @@
+.layout-wrapper {
+    .layout-sidebar {
+        position: fixed;
+        width: 224px;
+        height: 100%;
+        top: 60px;
+        left: 0;
+        z-index: 999;
+        background-color: $darkMenuBgColor;
+        @include shadow(1px 3px 3px rgba(0, 0, 0, 0.12));
+        @include transition(left $transitionDuration);
+
+        .layout-menu-title {
+            color: $darkMenuTitleTextColor;
+            letter-spacing: 0.5px;
+            padding: 25px 0 10px 0;
+            font-size: 12px;
+            border-bottom: 1px solid $darkMenuTitleBorderBottomColor;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+
+        .layout-menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0 10px;
+
+            .layout-menu-tooltip {
+                display: none;
+            }
+
+            > li {
+                &.active-menuitem {
+                    > a {
+                        background-color: $primaryColor;
+                        @include border-radius-bottom(0);
+
+                        span {
+                            color: $primaryTextColor;
+                        }
+
+                        i {
+                            color: $primaryTextColor;
+                        }
+
+                        i.layout-menuitem-toggler {
+                            @include rotate(-180deg);
+                        }
+
+                        &.active-menuitem-routerlink {
+                            span {
+                                color: $primaryTextColor;
+                            }
+
+                            i {
+                                color: $primaryTextColor;
+                            }
+                        }
+                    }
+                }
+
+                > a {
+                    &.active-menuitem-routerlink {
+                        span {
+                            color: $sidebarMenuItemActiveRouteTextColor;
+                        }
+
+                        i {
+                            color: $sidebarMenuItemActiveRouteIconColor;
+                        }
+                    }
+                }
+
+                > ul:last-child {
+                    > li:first-child {
+                        padding-top: 10px;
+                    }
+
+                    > li:last-child {
+                        padding-bottom: 10px;
+                    }
+                }
+            }
+
+            li {
+                a {
+                    padding: 10px 20px;
+                    color: $darkMenuItemTextColor;
+                    position: relative;
+                    display: block;
+                    text-decoration: none;
+                    border: 1px solid transparent;
+                    @include border-radius(3px);
+
+                    .menuitem-badge {
+                        margin-right: 14px;
+                        margin-top: -2px;
+                        float: right;
+                        color: $badgeTextColor;
+                        background-color: $badgeBgColor;
+                        width: 20px;
+                        height: 20px;
+                        text-align: center;
+                        margin-left: 0;
+                        border-radius: 50px;
+                        line-height: 1.5;
+                    }
+
+                    span {
+                        vertical-align: middle;
+                        line-height: 1;
+                    }
+
+                    i {
+                        color: $darkMenuItemIconColor;
+                        vertical-align: middle;
+                        margin-right: 16px;
+                    }
+
+                    .layout-menuitem-toggler {
+                        position: absolute;
+                        margin-top: -7px;
+                        top: 50%;
+                        right: 16px;
+                        font-size: 14px;
+                        left: auto;
+                        margin-right: 0;
+                        @include transition(transform $transitionDuration);
+                    }
+
+                    &:hover {
+                        border-color: $primaryColor;
+                    }
+                }
+
+                ul {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    overflow: hidden;
+                    background-color: $darkMenuSubmenuBgColor;
+
+                    li {
+                        a {
+                            padding-left: 35px;
+
+                            &.active-menuitem-routerlink {
+                                span {
+                                    color: $sidebarMenuItemActiveRouteTextColor;
+                                }
+
+                                i {
+                                    color: $sidebarMenuItemActiveRouteIconColor;
+                                }
+                            }
+                        }
+
+                        &.active-menuitem {
+                            > a {
+                                span {
+                                    color: $activeSubMenuItemTextColor;
+                                }
+
+                                i {
+                                    color: $activeSubMenuItemTextColor;
+                                }
+
+                                i.layout-menuitem-toggler {
+                                    @include rotate(-180deg);
+                                }
+                            }
+                        }
+
+                        ul {
+                            li {
+                                a {
+                                    padding-left: 50px;
+                                }
+                            }
+
+                            ul {
+                                li {
+                                    a {
+                                        padding-left: 65px;
+                                    }
+                                }
+
+                                ul {
+                                    li {
+                                        a {
+                                            padding-left: 80px;
+                                        }
+                                    }
+
+                                    ul {
+                                        li {
+                                            a {
+                                                padding-left: 95px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .ui-scrollpanel {
+            background-color: transparent;
+            border-radius: 0;
+            border: none;
+
+            .ui-scrollpanel-bar {
+                background-color: #aaaaaa;
+                opacity: 0.3;
+                filter: alpha(opacity=30);
+            }
+
+            .ui-scrollpanel-hidden {
+                display: block;
+                visibility: hidden;
+            }
+
+            .menu-scroll-content {
+                width: 242px;
+                padding-right: 18px;
+                padding-bottom: 170px;
+            }
+        }
+    }
+
+    &.layout-menu-light {
+        .layout-sidebar {
+            background-color: $lightMenuBgColor;
+
+            .layout-menu-title {
+                color: $lightMenuTitleTextColor;
+                border-bottom: 1px solid $lightMenuTitleBorderBottomColor;
+            }
+
+            .layout-menu {        
+                > li {
+                    &.active-menuitem {
+                        > a {
+                            background-color: $primaryColor;
+    
+                            span {
+                                color: $primaryTextColor;
+                            }
+    
+                            i {
+                                color: $primaryTextColor;
+                            }
+    
+                            &.active-menuitem-routerlink {
+                                span {
+                                    color: $primaryTextColor;
+                                }
+    
+                                i {
+                                    color: $primaryTextColor;
+                                }
+                            }
+                        }
+                    }
+    
+                    > a {
+                        &.active-menuitem-routerlink {
+                            span {
+                                color: $sidebarMenuItemActiveRouteTextColor;
+                            }
+    
+                            i {
+                                color: $sidebarMenuItemActiveRouteIconColor;
+                            }
+                        }
+                    }
+                }
+    
+                li {
+                    a {
+                        color: $lightMenuItemTextColor;
+    
+                        i {
+                            color: $lightMenuItemIconColor;
+                        }
+                    }
+    
+                    ul {
+                        background-color: $lightMenuSubmenuBgColor;
+    
+                        li {
+                            a {    
+                                &.active-menuitem-routerlink {
+                                    span {
+                                        color: $sidebarMenuItemActiveRouteTextColor;
+                                    }
+    
+                                    i {
+                                        color: $sidebarMenuItemActiveRouteIconColor;
+                                    }
+                                }
+                            }
+    
+                            &.active-menuitem {
+                                > a {
+                                    span {
+                                        color: $activeSubMenuItemTextColor;
+                                    }
+    
+                                    i {
+                                        color: $activeSubMenuItemTextColor;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1025px) {
+    .layout-wrapper {
+        &.layout-menu-static {
+            .layout-main {
+                @include transition(margin-left .3s);
+                margin-left: 224px;
+            }
+
+            .layout-sidebar {
+                left: 0;
+            }
+
+            &.layout-menu-static-inactive {
+                .layout-sidebar {
+                    left: -224px;
+                }
+
+                .layout-main {
+                    margin-left: 0;
+                }
+            }
+        }
+
+        &.layout-menu-overlay {
+            .layout-sidebar {
+                left: -224px;
+            }
+
+            .layout-main {
+                margin-left: 0;
+            }
+
+            &.layout-menu-overlay-active {
+                .layout-sidebar {
+                    left: 0;
+                }
+            }
+        }
+
+        &.layout-menu-horizontal {
+            .layout-sidebar {
+                width: 100%;
+                height: auto;
+                top: 60px;
+                left: 0;
+                z-index: 99;
+                position: fixed;
+                padding: 10px 12px;
+
+                .layout-menu-title {
+                    display: none;
+                }
+
+                .layout-menu {
+                    margin: 0;
+                    padding: 0;
+
+                    > li {
+                        display: inline-block;
+                        width: auto;
+                        padding: 0;
+                        height: 40px;
+                        position: relative;
+
+                        > a {
+                            height: 40px;
+                            padding: 10px;
+
+                            i {
+                                position: static;
+                                vertical-align: middle;
+
+                                &:first-child {
+                                    margin-right: 8px;
+                                }
+
+                                &.layout-menuitem-toggler {
+                                    margin-left: 8px;
+                                    margin-right: 0;
+                                    margin-top: 0;
+                                }
+                            }
+                        }
+
+                        &.active-menuitem {
+                            >ul {
+                                padding: 0 10px;
+                                border-top: 4px solid $primaryColor;
+                            }
+                            > a {
+                                @include border-radius-bottom(0);
+                            }
+                        }
+
+                        > ul {
+                            top: 110px;
+                            left: auto;
+                            min-width: 250px;
+                            position: fixed;
+                            margin: 0;
+                            overflow: auto;
+                            max-height: 450px;
+                            @include border-radius-bottom(3px);
+                            @include shadow(0 2px 4px 0 rgba(0, 0, 0, 0.10));
+
+                            li {
+                                a {
+                                    padding: 10px 20px;
+
+                                    i {
+                                        margin-right: 8px;
+                                        float: none;
+                                        position: static;
+                                        vertical-align: middle;
+                                        margin-top: 0;
+                                        top: auto;
+                                        right: auto;
+
+                                        &:last-child {
+                                            display: inline-block;
+                                            float: right;
+                                            margin-top: 2px;
+                                            margin-left: 8px;
+                                            margin-right: 0;
+                                        }
+                                    }
+                                }
+
+                                ul {
+                                    li {
+                                        a {
+                                            padding-left: 35px;
+                                        }
+
+                                        ul {
+                                            li {
+                                                a {
+                                                    padding-left: 50px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+
+                    .layout-menu-tooltip {
+                        display: none;
+                    }
+                }
+            }
+
+            .layout-main {
+                padding-top: 120px;
+
+                .route-bar {
+                    padding-left: 10px;
+                }
+            }
+        }
+
+        &.layout-menu-slim {
+            .layout-sidebar {
+                width: 60px;
+                left:0;
+
+                .layout-menu-title {
+                    display: none;
+                }
+
+                .layout-menu {
+                    margin-top: 5px;
+
+                    > li {
+                        position: relative;
+
+                        > a {
+                            width: 100%;
+                            padding: 12px 0;
+                            overflow: hidden;
+                            text-align: center;
+
+                            span {
+                                display: none;
+                            }
+
+                            &:hover + .layout-menu-tooltip {
+                                display: block;
+                            }
+
+                            i {
+                                font-size: 14px;
+                                margin-right: 0;
+
+                                &:first-child {
+                                    font-size: 14px;
+                                    width: auto;
+                                }
+
+                                &.layout-menuitem-toggler {
+                                    display: none;
+                                }
+                            }
+                        }
+
+                        > ul {
+                            position: absolute;
+                            top: -1px;
+                            left: 50px;
+                            overflow: auto;
+                            max-height: 450px;
+                            min-width: 250px;
+                            border-left: 4px solid $primaryColor;
+                            @include shadow(0 2px 4px 0 rgba(0, 0, 0, 0.10));
+
+                            > li {
+                                padding: 0 10px;
+                                > a {
+                                    padding-left: 20px;
+                                }
+
+                                ul {
+                                    li {
+                                        a {
+                                            padding-left: 35px;
+                                        }
+
+                                        li {
+                                            a {
+                                                padding-left: 50px;
+                                            }
+
+                                            li {
+                                                a {
+                                                    padding-left: 65px;
+                                                }
+
+                                                li {
+                                                    a {
+                                                        padding-left: 80px;
+                                                    }
+
+                                                    li {
+                                                        a {
+                                                            padding-left: 95px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &.active-menuitem {
+                            > a {
+                                border-bottom-right-radius: 3px;
+                                border-bottom-left-radius: 3px;
+
+                                &:hover + .layout-menu-tooltip {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+
+                    .layout-menu-tooltip {
+                        display: none;
+                        padding: 0 5px;
+                        position: absolute;
+                        left: 50px;
+                        top: 10px;
+                        line-height: 1;
+
+                        .layout-menu-tooltip-text {
+                            padding: 6px 8px;
+                            font-weight: 700;
+                            font-size: 13px;
+                            background-color: $slimMenuTooltipBgColor;
+                            color: $slimMenuTooltipTextColor;
+                            min-width: 75px;
+                            white-space: nowrap;
+                            text-align: center;
+                        }
+
+                        .layout-menu-tooltip-arrow {
+                            position: absolute;
+                            width: 0;
+                            height: 0;
+                            border-color: transparent;
+                            border-style: solid;
+                            top: 50%;
+                            left: 0;
+                            margin-top: -5px;
+                            border-width: 5px 5px 5px 0;
+                            border-right-color: $slimMenuTooltipBgColor;
+                        }
+                    }
+                }
+            }
+
+            .layout-main {
+                margin-left: 60px;
+            }
+        }
+
+        &.layout-menu-horizontal, &.layout-menu-slim {
+            .layout-sidebar {
+                .ui-scrollpanel {
+                    .ui-scrollpanel-wrapper {
+                        overflow: visible;
+                        .ui-scrollpanel-content {
+                            overflow: visible;
+                        }
+                    }
+                    .menu-scroll-content {
+                        width: 100%;
+                        padding-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .layout-wrapper {
+       .layout-sidebar {
+           display: none;
+
+            @-webkit-keyframes showNav {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            @keyframes showNav {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            }
+        }
+
+       &.layout-menu-mobile-active {
+            .layout-sidebar {
+                display: block;
+                top: 120px;
+                width: 100%;
+                animation: showNav 250ms ease-in-out both;
+                .ui-scrollpanel {
+                    .menu-scroll-content {
+                        width: 100%;
+                        padding-bottom: 230px;
+                    }
+                    .ui-scrollpanel-bar-x {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

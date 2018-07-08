@@ -1,0 +1,114 @@
+.exception-body {
+    .exception-topbar {
+        height: 60px;
+        width: 100%;
+        @include background-gradient-left2right($topbarBgLeftColor, $topbarBgRightColor);
+        text-align: center;
+        position: fixed;
+
+        .logo {
+            height: 60px;
+            top: 20px;
+            position: relative;
+    
+            img {
+                height: 14px;
+                width: auto;
+                vertical-align: middle;
+                border: 0 none;
+            }
+        }
+    }
+
+    .exception-panel {
+        padding: 150px 30px;
+        position: relative;
+        top: 60px;
+        text-align: center;
+
+        .top {
+            text-align: center;
+
+            .left {
+                height: 108px;
+                width: auto;
+                vertical-align: middle;
+            }
+
+            .main {
+                height: 247px;
+                width: auto;
+                vertical-align: middle;
+                margin: 30px;
+            }
+
+            .right {
+                height: 108px;
+                width: auto;
+                vertical-align: middle;
+            }
+
+            span {
+                display: block;
+                color: #DDD5D0;
+                font-size: 30px;
+                font-family: 400;
+            }
+
+            .seperator {
+                height: 1px;
+                width: 600px;
+                margin: 30px auto;
+                background-color: #E2E2E2;
+            }
+        }
+
+        .bottom {
+            text-align: center;
+            color: #787878;
+
+            .exception-panel-header {
+                display: block;
+                font-size: 18px;
+
+            }
+
+            .exception-panel-subheader {
+                display: block;
+                font-size: 14px;
+                margin: 10px 0 20px 0;
+
+            }
+        }
+    }
+}
+@media (max-width: 960px) {
+    .exception-body {
+        .exception-panel {
+            padding: 150px 0;
+
+            .top {
+                .main {
+                    height: 160px;
+                    margin: 0;
+                }
+
+                .left {
+                    display: none;
+                }
+
+                .right {
+                    display: none;
+                }
+
+                span {
+                    padding-top: 20px;
+                }
+
+                .seperator {
+                    width: 300px;
+                }
+            }
+        }
+    }
+}

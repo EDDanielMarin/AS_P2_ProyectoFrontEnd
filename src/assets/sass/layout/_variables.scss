@@ -1,0 +1,44 @@
+@import '../_variables';
+
+//main
+$bodyBgColor:#fdfdfd;
+
+//menu
+$darkMenuTitleTextColor:#656565;
+$darkMenuTitleBorderBottomColor:#383838;
+$darkMenuBgColor:#050505;
+$darkMenuItemTextColor:#BBBBBB;
+$darkMenuItemIconColor:#BBBBBB;
+$darkMenuSubmenuBgColor:#1d1d1d;
+
+$lightMenuTitleTextColor:#828282;
+$lightMenuTitleBorderBottomColor:#9b9b9b;
+$lightMenuBgColor:#ffffff;
+$lightMenuItemTextColor:#333333;
+$lightMenuItemIconColor:#828282;
+$lightMenuSubmenuBgColor:#efefef;
+
+$badgeTextColor:$primaryTextColor;
+$badgeBgColor:$primaryColor;
+
+//route bar
+$routeBarBgColor:#EFEFEF;
+$routeBarMenuItemTextColor:#828282;
+$routeBarMenuItemIconColor:#828282;
+
+//slim menu tooltip
+$slimMenuTooltipBgColor:#1B1B1B;
+$slimMenuTooltipTextColor:#BBBBBB;
+
+//footer
+$footerBgColor:#F3F3F3;
+$footerTextColor:#1F1F1F;
+
+//right panel
+$rightPanelButtonBgColor:#050505;
+$rightPanelButtonIconColor:#BBBBBB;
+$rightPanelBgColor:#050505;
+$rightPanelHeaderBgColor:#323232;
+$rightPanelHeaderTextColor:#ffffff;
+$rightPanelContentBgColor:#323232;
+$rightPanelContentTextColor:#ffffff;

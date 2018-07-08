@@ -1,0 +1,50 @@
+<div class="ui-g ui-fluid">
+
+
+  <div class="ui-g-12 ui-lg-6">
+
+    <div class="card card-w-title">
+      <h1>Tipo de ubicación</h1>
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-4">
+          <p-radioButton name="rg" value="1" label="Campus" [(ngModel)]="radioValue"></p-radioButton>
+        </div>
+        <div class="ui-g-12 ui-md-4">
+          <p-radioButton name="rg" value="2" label="Bloque" [(ngModel)]="radioValue"></p-radioButton>
+        </div>
+        <div class="ui-g-12 ui-md-4">
+          <p-radioButton name="rg" value="3" label="Aula" [(ngModel)]="radioValue"></p-radioButton>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-w-title" *ngIf="radioValue>1">
+      <h1>Campus</h1>
+      <p-dropdown [options]="campus" optionLabel="descripcion" (onChange)="filtrarCampus($event)" [(ngModel)]="campusSeleccionado"
+        [autoWidth]="false"></p-dropdown>
+    </div>
+
+    <div class="card card-w-title" *ngIf="radioValue==3">
+      <h1>Bloque</h1>
+      <p-dropdown [options]="bloques" optionLabel="descripcion" [(ngModel)]="bloqueSeleccionado" [autoWidth]="false"></p-dropdown>
+    </div>
+    <div class="card card-w-title">
+      <div class="ui-g form-group">
+        <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-12 ui-md-10">
+          <h1>Descripción</h1>
+          <input type="text" pInputText placeholder="Descripción" [(ngModel)]="data.descripcion">
+        </div>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+          <button pButton type="button" label="Guardar"  class="ui-button-info ui-button-rounded ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" (click)="guardarRegistro()"></button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+</div>

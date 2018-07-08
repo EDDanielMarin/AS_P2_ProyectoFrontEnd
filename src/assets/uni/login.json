@@ -1,0 +1,29 @@
+{
+	"CodigoRetorno":"OK",
+	"MensajeRetorno":"Proceso OK",
+	"Respuesta":
+	{
+        "jwt":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.fV9jtSide-U1s-wHh8Gv8Wt9Sus4wgbmDYTPnwNPyqg",
+        "usuario": {
+			"COD_USUARIO": "USU001",
+			"CORREO_ELECTRONICO": "yop_dm@hotmail.com",
+			"nombre": "Daniel Marin",
+			"CLAVE": "***",
+			"i_e": "0",
+			"perfiles": [{
+				"cod": "P001",
+				"nombre": "ADMINISTRADOR"
+			},
+			{
+				"cod": "P002",
+				"nombre": "DOCENTE"
+			},
+			{
+				"cod": "P003",
+				"nombre": "ESTUDIANTE"
+			}]
+		}
+	
+		
+	}
+}

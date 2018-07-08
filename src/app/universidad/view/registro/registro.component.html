@@ -1,0 +1,28 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-lg-6">
+    <!-- Left Side -->
+    <div class="card card-w-title">
+      <h1>Registro de usuario</h1>
+      <div class="ui-g form-group">
+        <div class="ui-g-12 ui-md-12">
+          <p-dropdown [options]="roles" [(ngModel)]="rolSeleccionado" [autoWidth]="false"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+          <input type="text" [(ngModel)]="data.cod_usuario" pInputText placeholder="Nombre de usuario" required>
+        </div>
+
+        <div class="ui-g-12 ui-md-12">
+          <label for="">Password</label>
+          <input pPassword [(ngModel)]="data.clave" type="password" required/>
+        </div>
+        <div class="card card-w-title ui-g-12 ui-md-12">
+          <h1>Activo</h1>
+          <p-inputSwitch [(ngModel)]="isActivo"></p-inputSwitch>
+        </div>
+        <div class="ui-g-12 ui-md-4">
+          <button pButton type="button" label="Guardar" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarUsuario()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

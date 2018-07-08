@@ -1,0 +1,14 @@
+$primaryColor:#AB44BC;
+$primaryTextColor:#ffffff;
+
+$topbarBgLeftColor:#B721FF;
+$topbarBgRightColor:#21D4FD;
+$topbarSidebarButtonColor:#ffffff;
+$topbarIconHoverBgColor:#891CBD;
+$topbarMenuHoverBgColor:#2892B0;
+$topbarProfileTextColor:#ffffff;
+$activeSubMenuItemTextColor:$primaryColor;
+$sidebarMenuItemActiveRouteTextColor:$primaryColor;
+$sidebarMenuItemActiveRouteIconColor:$primaryColor;
+
+@import '../../sass/layout/_layout';

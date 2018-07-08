@@ -1,0 +1,51 @@
+{
+    "CodigoRetorno":"OK",
+	"MensajeRetorno":"Proceso OK",
+	"Respuesta":{
+		"Perfil": "admin",
+		"modulos": [{
+			"Nombre": "personas",
+			"funcionalidades": [{
+				"Nombre": "Administrar",
+				"url": "admin/personas/crud**"
+			},
+			{
+				"Nombre": "Ver",
+				"url": "admin/personas/ver**"
+			}]
+		},
+		{
+			"Nombre": "seguridades",
+			"funcionalidades": [{
+				"Nombre": "Modulos",
+				"url": "admin/seguridad/crud**"
+			},
+			{
+				"Nombre": "Roles",
+				"url": "admin/seguridad/ver**"
+			}]
+		},
+		{
+			"Nombre": "matricula",
+			"funcionalidades": [{
+				"Nombre": "crear",
+				"url": "admin/seguridad/crud**"
+			},
+			{
+				"Nombre": "eliminar",
+				"url": "admin/seguridad/ver**"
+			}]
+		},
+		{
+			"Nombre": "facturacion",
+			"funcionalidades": [{
+				"Nombre": "pagar",
+				"url": "admin/seguridad/crud**"
+			},
+			{
+				"Nombre": "Roles",
+				"url": "admin/seguridad/ver**"
+			}]
+		}]
+	}
+}

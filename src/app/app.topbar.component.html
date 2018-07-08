@@ -1,0 +1,139 @@
+<div class="layout-topbar">
+    <a href="#" id="topbar-menu-button" (click)="app.onMenuButtonClick($event)">
+        <i class="fa fa-angle-left arrow"></i>
+        <i class="fa fa-angle-up mobile"></i>
+    </a>
+
+    <div class="search-input">
+        <i class="fa fa-search icon-search"></i>
+        <input type="text" />
+    </div>
+
+    <a href="/" class="logo-container">
+        <img src="assets/layout/images/ecuador-logo.png" alt="ecuador-layout" />
+    </a>
+
+    <a id="topbar-profile-menu-button" href="#" (click)="app.onTopbarMenuButtonClick($event)">
+        <span>{{app.login.usuario.nombre}}</span>
+        <img src="assets/layout/images/avatar.png" alt="ecuador-layout" class="topbar-profile" />
+        <i class="fa fa-sort-desc"></i>
+    </a>
+
+    <ul id="topbar-usermenu" class="fadeInDown animated" [ngClass]="{'usermenu-active': app.topbarMenuActive}">
+        
+        <li #settings [ngClass]="{'menuitem-active':app.activeTopbarItem === settings}">
+            <a href="#" (click)="app.onTopbarItemClick($event, settings)">
+                <i class="fa fa-fw fa-cog"></i>
+                <span class="topbar-item-name">Settings</span>
+                <span class="topbar-submenuitem-badge">2</span>
+            </a>
+            <ul>
+                <li role="menuitem">
+                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                        <i class="fa fa-fw fa-paint-brush"></i>
+                        <span>Change</span>
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                        <i class="fa fa-fw fa-star-o"></i>
+                        <span>Favorites</span>
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                        <i class="fa fa-fw fa-lock"></i>
+                        <span>Lock Screen</span>
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                        <i class="fa fa-fw fa-picture-o"></i>
+                        <span>Wallpaper</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li #messages [ngClass]="{'menuitem-active':app.activeTopbarItem === messages}">
+            <a href="#" (click)="app.onTopbarItemClick($event, messages)">
+                <i class="fa fa-fw fa-envelope-o"></i>
+                <span class="topbar-item-name">Messages</span>
+            </a>
+            <ul>
+                <li role="menuitem">
+                    <a href="#" class="topbar-message" (click)="app.onTopbarSubItemClick($event)">
+                        <img src="assets/layout/images/avatar-brooke.png" alt="ecuador-layout" width="25" />
+                        <span>Give me a call</span>
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="#" class="topbar-message" (click)="app.onTopbarSubItemClick($event)">
+                        <img src="assets/layout/images/avatar-tom.png" alt="ecuador-layout" width="25" />
+                        <span>Reports attached</span>
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="#" class="topbar-message" (click)="app.onTopbarSubItemClick($event)">
+                        <img src="assets/layout/images/avatar-maggie.png" alt="ecuador-layout" width="25" />
+                        <span>About your invoice</span>
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="#" class="topbar-message" (click)="app.onTopbarSubItemClick($event)">
+                        <img src="assets/layout/images/avatar-lucas.png" alt="ecuador-layout" width="25" />
+                        <span>Meeting today</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li #notifications [ngClass]="{'menuitem-active':app.activeTopbarItem === notifications}">
+            <a href="#" (click)="app.onTopbarItemClick($event, notifications)">
+                <i class="fa fa-fw fa-bell-o"></i>
+                <span class="topbar-item-name">Notifications</span>
+            </a>
+            <ul>
+                <li role="menuitem">
+                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                        <i class="fa fa-fw fa-tasks"></i>
+                        <span>Pending tasks</span>
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                        <i class="fa fa-fw fa-calendar-check-o"></i>
+                        <span>Meeting today</span>
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                        <i class="fa fa-fw fa-download"></i>
+                        <span>Download</span>
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                        <i class="fa fa-fw fa-plane"></i>
+                        <span>Book flight</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li #logout [ngClass]="{'menuitem-active':app.activeTopbarItem === notifications}">
+            <a href="#" (click)="app.login.logout()">
+                <i class="fa fa-fw fa-bell-o"></i>
+                <span class="topbar-item-name">Cerrar Session</span>
+            </a>
+        </li>
+
+
+
+    </ul>
+
+    <a href="#" id="right-panel-button" [ngClass]="{'menu-button-rotate': app.rightPanelActive}" (click)="app.onRightPanelButtonClick($event)">
+        <i class="fa fa-angle-double-left"></i>
+    </a>
+
+</div>

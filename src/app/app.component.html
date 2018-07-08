@@ -1,0 +1,38 @@
+<div class="layout-wrapper" [ngClass]="{'layout-menu-horizontal': menuMode === 'horizontal',
+                                        'layout-menu-overlay': menuMode === 'overlay',
+                                        'layout-menu-static': menuMode === 'static',
+                                        'layout-menu-slim': menuMode === 'slim',
+                                        'layout-menu-light': lightMenu === true,
+                                        'layout-menu-overlay-active': overlayMenuActive,
+                                        'layout-menu-mobile-active': staticMenuMobileActive,
+                                        'layout-menu-static-inactive': staticMenuDesktopInactive}" (click)="onLayoutClick()">
+    <div [hidden]="!login.isLogin">
+        <app-topbar></app-topbar>
+        
+
+        <app-rightpanel></app-rightpanel>
+
+        <app-menu [reset]="resetMenu"></app-menu>
+
+        <div class="layout-main">
+            <app-breadcrumb></app-breadcrumb>
+            
+            
+            <div class="layout-content">
+                <router-outlet></router-outlet>
+            </div>
+
+            <app-footer></app-footer>
+        </div>
+        <div>
+                <span *ngFor="let perfil of login.perfiles"> {{ perfil.nombre }}</span>
+    
+        </div>
+    </div>
+    
+    <div>
+        <app-login [hidden]="login.isLogin">
+
+        </app-login>
+    </div>
+</div>

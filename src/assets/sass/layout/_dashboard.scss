@@ -1,0 +1,795 @@
+.layout-content {
+    .layout-dashboard {
+        padding: 8px;
+
+        .ui-panel {
+            @include shadow(0 1px 3px rgba(0, 0, 0, 0.12));
+        }
+
+        .overview-box {
+            padding-top: 18px;
+            color: #ffffff;
+            @include shadow(0 1px 3px rgba(0, 0, 0, 0.12));
+
+            > img {
+                width: 80px;
+                height: auto;
+                float: right;
+                margin-right: 20px;
+                vertical-align: middle;
+
+                &.image-icon {
+                    width: auto;
+                    height: 50px;
+                }
+            }
+
+            .overview-title {
+                margin-left: 12px;
+                margin-bottom: 8px;
+                font-size: 13px;
+            }
+
+            .overview-numbers {
+                margin-left: 12px;
+                margin-bottom: 20px;
+                font-size: 20px;
+            }
+
+            .overview-subinfo {
+                background-color: #E9E9E9;
+                height: 38px;
+                font-size: 13px;
+                border: 1px solid #dedede;
+
+                i {
+                    color: #44BE2D;
+                    font-size: 13px;
+                    margin-right: 8px;
+                }
+
+                .progressbar {
+                    height: 10px;
+                    background-color: #B3B0B0;
+                    border-radius: 5px;
+                    padding: 0;
+                    margin: 14px 0 14px 12px;
+
+                    .progress {
+                        width: 45%;
+                        height: 10px;
+                        border-radius: 5px;
+
+                        &.sale {
+                            width: 75%;
+                            @include background-gradient-left2right(#F39611, #EE4F10);
+                        }
+
+                        &.view {
+                            @include background-gradient-left2right(#326DDF, #214B9C);
+                        }
+                    }
+                }
+
+                span {
+                    color: #585858;
+                    width: auto;
+                    line-height: 26px;
+                }
+
+                &.user {
+                    height: 38px;
+                    padding: 8px 12px;
+                }
+
+                &.checkin {
+                    height: 38px;
+                    padding: 8px 12px;
+                }
+            }
+
+            &.sales {
+                @include background-gradient-left2right(#F39611, #EE4F10);
+            }
+
+            &.views {
+                @include background-gradient-left2right(#326DDF, #214B9C);
+            }
+
+            &.users {
+                @include background-gradient-left2right(#E02364, #A22650);
+            }
+
+            &.checkins {
+                @include background-gradient-left2right(#7DC931, #14A143);
+            }
+        }
+
+        .contacts {
+            .ui-panel-content {
+                padding: 14px;
+                min-height: 236px;
+
+                ul {
+                    padding: 0;
+                    margin: 0;
+
+                    li {
+                        list-style: none;
+                        padding-bottom: 12px;
+
+                        img {
+                            width: 55px;
+                            height: 55px;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+
+                        .separator {
+                            width: 1px;
+                            height: 50px;
+                            margin: 0 8px 0 4px;
+                            background-color: $primaryColor;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+
+                        .team-box {
+                            display: inline-block;
+                            font-size: 13px;
+                            vertical-align: middle;
+                            width: 69%;
+
+                            .team-member {
+                                color: #323232;
+                                font-weight: 500;
+                                display: block;
+                            }
+
+                            .team-member-mail {
+                                color: #888888;
+                                display: inline-block;
+                                font-weight: 400;
+                            }
+
+                            .team-member-address {
+                                color: #888888;
+                                display: inline-block;
+                                font-weight: 400;
+                                margin-left: 6px;
+                            }
+
+                            i {
+                                display: inline-block;
+                                margin-right: 9px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .tasks {
+            .ui-panel-content {
+                padding: 14px;
+                min-height: 236px;
+
+                ul {
+                    padding: 0;
+                    margin: 0;
+
+                    li {
+                        list-style: none;
+                        padding-bottom: 14px;
+                        color: #323232;
+
+                        .ui-chkbox {
+                            margin-right: 10px;
+                            vertical-align: middle;
+                        }
+
+                        span {
+                            vertical-align: middle;
+                        }
+
+                        .time-badge {
+                            background-color: $primaryColor;
+                            border-radius: 12px;
+                            padding: 3px 8px;
+                            min-width: 50px;
+                            text-align: center;
+                            float: right;
+
+                            span {
+                                font-size: 10px;
+                                font-weight: 500;
+                                color: $primaryTextColor;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .resolution-center {
+            .ui-panel-content {
+                padding: 14px;
+                min-height: 236px;
+
+                .ui-inputtext {
+                    width: 100%;
+                }
+
+                .ui-dropdown {
+                    width: 100%;
+                }
+
+                .ui-button {
+                    width: 100%;
+                }
+            }
+        }
+
+        .statistics {
+            width: 100%;                
+
+            .ui-panel-content {
+                padding: 0;
+                min-height: 383px;
+
+                .stats-left {
+                    padding: 50px;
+                    text-align: center;
+
+                    i {
+                        color: #ABABAB;
+                        font-size: 18px;
+                        margin-right: 4px;
+                    }
+
+                    span {
+                        margin-right: 20px;
+                    }
+
+                    .knob-container {
+                        text-align: center;
+                        margin-bottom: 15px;
+
+                        .knob {
+                            width: 150px;
+                            height: 150px;
+                            line-height: 150px;
+                            margin-top: 20px;
+                            font-size: 50px;
+                            color: #6a6a7d;
+                            @include border-radius(50%);
+                            display: inline-block;
+                            text-align: center;
+                            border: 5px solid $primaryColor;
+                            border-left-color: lighten($primaryColor, 30%);
+                        }
+                    }
+
+                    .details {
+                        font-size: 14px;
+                        color: #ABABAB;
+
+                        span {
+                            margin-right: 6px;
+                        }
+
+                        i {
+                            font-size: 14px;
+                        }
+                    }
+                }
+
+                .stats-right {
+                    padding: 53px 100px 53px 20px;
+                    float: right;
+
+                    i {
+                        color: #ABABAB;
+                        display: inline-block;
+                        font-size: 18px;
+                        margin-right: 4px;
+                    }
+
+                    .icon-label {
+                        color: #ABABAB;
+                        font-size: 14px;
+                        display: inline-block;
+                    }
+
+                    span {
+                        color: #353535;
+                        font-weight: 500;
+                        font-size: 24px;
+                        display: block;
+                    }
+
+                    .statsbar {
+                        display: block;
+                        width: 80%;
+                        background-color: #f4f4f4;
+                        margin-top: 12px;
+                        margin-bottom: 24px;
+
+                        .statsbar-value {
+                            background-color: $primaryColor;
+                            height: 4px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .global-sales {
+            .ui-panel-content {
+                padding: 12px 0;
+                padding-left: 5px;
+
+                table {
+                    width: 100%;
+
+                    thead {
+                        tr {
+                            th {
+                                color: #ABABAB;
+                                font-weight: 600;
+                                font-size: 13px;
+
+                                &.country {
+                                    text-align: left;
+                                }
+                            }
+                        }
+                    }
+
+                    tbody {
+                        tr {
+                            padding: 9px 18px;
+                            line-height: 50px;
+
+                            td {
+                                color: #353535;
+                                font-size: 13px;
+                                font-weight: 400;
+                                text-align: center;
+
+                                img {
+                                    width: 32px;
+                                    height: 32px;
+                                    vertical-align: middle;
+                                    margin-right: 10px;
+                                }
+
+                                span {
+                                    vertical-align: middle;
+                                }
+
+                                i {
+                                    font-size: 20px;
+
+                                    &.up {
+                                        color: #44BE2D;
+                                    }
+
+                                    &.down {
+                                        color: #D83A19;
+                                    }
+                                }
+
+                                &.country {
+                                    text-align: left;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .profile {
+            margin-bottom: 16px;
+            .ui-panel-titlebar {
+                display: none;
+            }
+
+            .ui-panel-content {
+                padding: 0;
+
+                .bg-image {
+                    background: url("../../layout/images/bg-image-profile.png") no-repeat;
+                    height: 190px;
+                    width: 100%;
+                    background-size: cover;
+                }
+
+                .profile-info {
+                    text-align: center;
+                    padding-bottom:25px;
+                    margin-top: -60px;
+
+                    .profile-image {
+                        height: 120px;
+                        width: 120px;
+                    }
+
+                    .name {
+                        display: block;
+                        font-size: 14px;
+                        font-weight: 600;
+                        color: #353535;
+                    }
+
+                    i {
+                        font-size: 13px;
+                        color: #ABABAB;
+                        margin-right: 5px;
+                    }
+
+                    span {
+                        font-size: 13px;
+                        color: #696969;
+                        font-weight: 500;
+                    }
+
+                    .profile-numbers {
+                        display: inline-block;
+                        text-align: center;
+                        margin: 15px;
+
+                        .header {
+                            display: block;
+                            color: #ABABAB;
+                            font-size: 13px;
+                            font-weight: 500;
+                            margin-top: 16px;
+                        }
+
+                        .number {
+                            display: block;
+                            color: #353535;
+                            font-size: 20px;
+                            font-weight: 400;
+                        }
+                    }
+                }
+            }
+        }
+
+        .inbox {
+            margin-bottom: 16px; 
+                
+            .ui-panel-content {
+                padding: 0;
+
+                ul {
+                    padding: 0;
+                    margin: 0;
+
+                    li {
+                        list-style: none;
+                        padding: 18px 20px;
+                        position: relative;
+
+                        .image-container {
+                            padding-right: 4px;
+                            display: inline-block;
+
+                            img {
+                                width: 55px;
+                                height: 55px;
+                                display: inline-block;
+                                vertical-align: middle;
+                            }
+                        }
+
+                        .separator {
+                            width: 1px;
+                            height: 50px;
+                            background-color: $primaryColor;
+                            display: inline-block;
+                            vertical-align: middle;
+                            margin: 0 8px 0 4px;
+                        }
+
+                        .message-box {
+                            display: inline-block;
+                            font-size: 13px;
+                            vertical-align: middle;
+                            width: 73%;
+
+                            .messager {
+                                color: #323232;
+                                font-weight: 600;
+                                display: inline-block;
+                            }
+
+                            .time {
+                                display: inline-block;
+                                color: #ABABAB;
+                            }
+
+                            .message {
+                                display: block;
+                            }
+                        }
+
+                        .message-status {
+                            position: absolute;
+                            text-align: right;
+                            vertical-align: middle;
+                            right: 20px;
+                            top: 20px;
+
+                            i {
+                                font-size: 18px;
+                                color: $primaryColor;
+                                display: block;
+
+                                &.unread {
+                                    color: #ABABAB;
+                                }
+                            }
+
+                            span {
+                                font-size: 13px;
+                                color: #ABABAB;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .timeline {
+            .ui-panel-content {
+                padding: 0;
+                font-size: 13px;
+
+                ul {
+                    padding: 0;
+                    margin: 0;
+
+                    li {
+                        list-style: none;
+                        padding: 22px 0px;
+                        position: relative;
+
+                        .date-indicator {
+                            display: inline-block;
+                            vertical-align: middle;
+                            text-align: center;
+                            width: 60px;
+
+                            .date {
+                                display: block;
+                            }
+
+                            .time {
+                            }
+                        }
+
+                        .activity-link {
+                            width: 1px;
+                            height: 100%;
+                            position: absolute;
+                            left: 72px;
+                            top: 0;
+                            background-color: #dedede;
+                            display: inline-block;
+                        }
+
+                        i {
+                            display: inline-block;
+                            vertical-align: middle;
+                            position: absolute;
+                            top: 36px;
+                            font-size: 20px;
+
+                            &.device {
+                                float: right;
+                                vertical-align: middle;
+                                position: absolute;
+                                right: 14px;
+                            }
+
+                            &.success {
+                                color: #44BE2D;
+                            }
+
+                            &.error {
+                                color: #FF7458;
+                            }
+
+                            &.code {
+                                color: #2162B0;
+                            }
+                        }
+
+                        .timeline-subject {
+                            display: inline-block;
+                            vertical-align: middle;
+                            margin-left: 22px;
+
+                            .timeline-header {
+                                display: block;
+                                font-weight: 500;
+                            }
+
+                            .timeline-subheader {
+                                color: #ABABAB;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .projects {
+            margin-bottom: 16px;
+
+            .ui-panel-content {
+                padding: 0;
+
+                ul {
+                    margin: 0;
+                    padding: 20px 0;
+                    background: url("../../layout/images/bg-projects.png") no-repeat;
+                    width: 100%;
+                    background-size: cover;
+                    position: relative;
+
+                    li {
+                        list-style: none;
+                        margin: 8px 0;
+                        background-color: rgba(255, 255, 255, .10);
+                        padding: 20px 24px;
+
+                        .project-info {
+                            vertical-align: middle;
+                            text-align: left;
+                            display: inline-block;
+                            width: 25%;
+
+                            .project-name {
+                                font-size: 14px;
+                                font-weight: 500;
+                                color: #ffffff;
+                                display: block;
+                            }
+
+                            .project-firm {
+                                font-size: 13px;
+                                color: #b0b0ae;
+                                display: block;
+                            }
+                        }
+
+                        .person-container {
+                            width: 45%;
+                            text-align: center;
+                            display: inline-block;
+                            vertical-align: middle;
+
+                            .persons {
+                                vertical-align: middle;
+                                text-align: center;
+                                display: inline-block;
+
+                                img {
+                                    height: 42px;
+                                    vertical-align: middle;
+                                }
+                            }
+
+                            span {
+                                vertical-align: middle;
+                                text-align: center;
+                                display: inline-block;
+                                color: #ffffff;
+                                font-size: 13px;
+                                margin-left: 21px;
+                            }
+                        }
+
+                        .button {
+                            display: inline-block;
+                            vertical-align: middle;
+                            float: right;
+                        }
+                    }
+                }
+            }
+        }
+
+        .inventory {
+            .ui-panel-titlebar {
+                border-bottom: 0 none;
+            }
+
+            .ui-panel-content {
+                padding: 0;
+                border: 0 none;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .layout-content {
+        .layout-dashboard {
+            .inbox {
+                .ui-panel-content {
+                    ul {
+                        li {
+                            .image-container {
+                                display: block;
+                                padding-right: 27px;
+                                text-align: center;
+                            }
+
+                            .separator {
+                                display: none;
+                            }
+
+                            .message-box {
+                                width: 91%;
+                                padding: 0;
+                                text-align: center;
+
+                                .messager {
+                                    display: block;
+                                }
+
+                                .time {
+                                    display: block;
+                                }
+
+                                .message {
+                                    display: block;
+                                    text-align: left;
+                                }
+                            }
+
+                            .message-status {
+                                width: 5%;
+                                display: inline-block;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .projects {
+                .ui-panel-content {
+                    ul {
+                        li {
+                            text-align: center;
+
+                            .project-info {
+                                width: 100%;
+                                margin-bottom: 10px;
+                                text-align: center;
+                            }
+
+                            .person-container {
+                                width: 100%;
+                                display: block;
+                                margin-bottom: 15px;
+                            }
+
+                            .button {
+                                float: none;
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

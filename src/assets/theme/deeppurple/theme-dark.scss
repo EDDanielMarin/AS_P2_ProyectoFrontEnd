@@ -1,0 +1,27 @@
+$primaryColor:#722CEE;
+$primaryDarkerColor:#5922B9;
+$primaryDarkestColor:#462187;
+$primaryTextColor:#ffffff;
+
+$containerHeaderBgColor:#050505;
+$containerHeaderBorder:1px solid #050505;
+$containerHeaderTextColor:#ffffff;
+$containerHeaderIconColor:#d6d6d6;
+$containerHeaderIconHoverColor:#ffffff;
+
+$containerHeaderHoverBgColor:#020202;
+$containerHeaderHoverBorder:1px solid #020202;
+$containerHeaderHoverTextColor:#ffffff;
+$containerHeaderHoverIconColor:#ffffff;
+
+$containerHeaderActiveBgColor:$primaryColor;
+$containerHeaderActiveBorder:1px solid $primaryColor;
+$containerHeaderActiveTextColor:$primaryTextColor;
+$containerHeaderActiveIconColor:$primaryTextColor;
+
+$containerHeaderActiveHoverBgColor:$primaryDarkerColor;
+$containerHeaderActiveHoverHoverBorder:1px solid $primaryDarkerColor;
+$containerHeaderActiveHoverrTextColor:$primaryTextColor;
+$containerHeaderActiveHoverIconColor:$primaryTextColor;
+
+@import '../../sass/theme/_theme';

@@ -1,0 +1,94 @@
+.login-body {
+    margin: 0 auto;
+    position: relative;
+    height: 100vh;
+
+    .login-image {
+        height: 100%;
+        background: url("../../layout/images/bg-image-login.jpg") no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .login-topbar {
+        height: 60px;
+        width: 100%;
+        @include background-gradient-left2right($topbarBgLeftColor, $topbarBgRightColor);
+        text-align: center;
+        position: fixed;
+
+        .logo {
+            height: 60px;
+            top: 20px;
+            position: relative;
+
+            img {
+                height: 14px;
+                width: auto;
+                vertical-align: middle;
+                border: 0 none;
+            }
+        }
+    }
+
+    .login-panel {
+        padding: 70px 36px;
+        position: relative;
+        margin: 0 auto;
+        width: 350px;
+        height: 400px;
+        text-align: center;
+        background-color: white;
+        top: 30%;
+
+        img {
+            height: 28px;
+            width: auto;
+            margin-bottom: 54px;
+        }
+
+        .ui-inputtext {
+            width: 100%;
+            margin: 6px 0;
+        }
+
+        .checkbox-container {
+            padding: 6px 0 20px 0;
+
+            .remember-me {
+                float: left;
+
+                span {
+                    font-size: 12px;
+                    color: #8a8a8a;
+                    vertical-align: middle;
+
+                    &.ui-icon-check {
+                        color: #ffffff;
+                    }
+                }
+            }
+
+            .ui-button {
+                float: right;
+            }
+        }
+
+        .separator {
+            height: 1px;
+            width: 100%;
+            background-color: #E2E2E2;
+            display: inline-block;
+            margin: 25px 0;
+        }
+
+        .subinfo {
+            text-decoration: none;
+            color: $primaryColor;
+
+            span {
+                font-size: 14px;
+            }
+        }
+    }
+}

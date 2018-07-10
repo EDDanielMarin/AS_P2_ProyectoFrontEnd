@@ -46,6 +46,7 @@ export class DtoService {
     });
     return this._http.delete(url,{headers:_headers, params: data});
   }
+  
 
   obtenerUrl(_modulo:String):Observable<any>
   {

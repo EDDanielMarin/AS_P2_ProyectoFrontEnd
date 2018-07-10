@@ -28,5 +28,11 @@ export class UbicacionService {
   {
     return  this.dto.ejecutaPut(this.url.concat("ubicacion"),data);
   }
+  modificar(data)
+  {
+    console.log(data);
+    return this.dto.ejecutaPost(this.url.concat("ubicacion"),data);
+
+  }
 
 }

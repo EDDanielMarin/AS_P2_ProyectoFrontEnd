@@ -11,7 +11,7 @@
                   {{col.header}}
                   <p-sortIcon [field]="col.field"></p-sortIcon>
               </th>
-              <th style="width:3em"></th>
+              <th></th>
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -21,8 +21,9 @@
                   {{rowData[col.field]}}
               </td>
               <td>
-                <button pButton icon="fa-search" (click)="editarRegistro(rowData)"></button>
-                <button pButton icon="fa-search" (click)="eliminarRegistro(rowData)"></button>
+                <button pButton icon="fa-edit" (click)="editarRegistro(rowData)"></button>
+                &nbsp;&nbsp;
+                <button pButton icon="fa-trash" (click)="eliminarRegistro(rowData)"></button>
             </td>
           </tr>
       </ng-template>

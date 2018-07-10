@@ -21,7 +21,8 @@ import { FacturaComponent } from './universidad/view/facturacion/factura/factura
 import { ClienteComponent } from './universidad/view/facturacion/cliente/cliente.component';
 
 export const routes: Routes = [
-    { path: '', component: DashboardDemoComponent },
+    {
+        path: '', component: DashboardDemoComponent  },
     { path: 'sample', component: SampleDemoComponent },
     { path: 'forms', component: FormsDemoComponent },
     { path: 'data', component: DataDemoComponent },
@@ -34,15 +35,19 @@ export const routes: Routes = [
     { path: 'charts', component: ChartsDemoComponent },
     { path: 'file', component: FileDemoComponent },
     { path: 'documentation', component: DocumentationComponent },
-    {path:'horario', component:HorarioComponent},
-    {path:'franja', component:FranjaComponent},
-    {path:'ubicacion', component:UbicacionComponent},
-    {path:'registro', component:RegistroComponent},
-    {path:'factura', component:FacturaComponent},
-    {path:'cliente', component:ClienteComponent},
-    
-    
-    
+    { path: 'horario', component: HorarioComponent },
+    { path: 'franja', component: FranjaComponent },
+    { path: 'ubicacion', component: UbicacionComponent },
+    { path: 'registro', component: RegistroComponent },
+    { path: 'factura', component: FacturaComponent },
+    { path: 'cliente', component: ClienteComponent },
+    {
+        path: 'virtual',
+        loadChildren: './virtual/virtual.module#VirtualModule'
+    },
+
+
+
 ];
 
 export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(routes);

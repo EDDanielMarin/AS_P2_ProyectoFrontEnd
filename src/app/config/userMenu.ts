@@ -31,6 +31,16 @@ const  menu = [
                     { label: 'Facturas', icon: 'fa fa-fw fa-bars',  routerLink: ['/factura'] },
                     { label: 'Cliente', icon: 'fa fa-fw fa-bars',  routerLink: ['/cliente'] }
                 ]
+            },
+            {
+                label: 'Aula Virtual', icon: 'fa fa-fw fa-cog',
+                items: [
+                    { label: 'Foros', icon: 'fa fa-fw fa-bars',  routerLink: ['/virtual/foro'] },
+                    { label: 'Wikis', icon: 'fa fa-fw fa-bars',  routerLink: ['/virtual/wiki'] },
+                    { label: 'Anuncios', icon: 'fa fa-fw fa-bars',  routerLink: ['/virtual/anuncio'] },
+                    { label: 'Tareas', icon: 'fa fa-fw fa-bars',  routerLink: ['/virtual/tarea'] }
+
+                ]
             }
     
     ]

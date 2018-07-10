@@ -101,6 +101,8 @@ import { FranjaComponent } from './universidad/view/espaciosfisicos/franja/franj
 import { UbicacionComponent } from './universidad/view/espaciosfisicos/ubicacion/ubicacion.component';
 import { FacturaComponent } from './universidad/view/facturacion/factura/factura.component';
 import { ClienteComponent } from './universidad/view/facturacion/cliente/cliente.component';
+import { VirtualModule } from './virtual/virtual.module';
+
 
 @NgModule({
     imports: [
@@ -170,7 +172,9 @@ import { ClienteComponent } from './universidad/view/facturacion/cliente/cliente
         ToolbarModule,
         TooltipModule,
         TreeModule,
-        TreeTableModule
+        TreeTableModule,
+        VirtualModule
+        
     ],
     declarations: [
         AppComponent,
@@ -201,6 +205,11 @@ import { ClienteComponent } from './universidad/view/facturacion/cliente/cliente
         UbicacionComponent,
         FacturaComponent,
         ClienteComponent,
+        /*ForoComponent,
+        TareaComponent,
+        WikiComponent,
+        AnuncioComponent*/
+        
         
     ],
     providers: [

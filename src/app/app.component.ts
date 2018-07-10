@@ -12,7 +12,13 @@ export class AppComponent implements OnInit {
             this.login.isLogin=false;
         }
         else
+        {
+            var usd:any=sessionStorage.getItem("usuario");
+            var mnud:any=sessionStorage.getItem("menu");
+            this.login.modelMenu=JSON.parse(mnud);
+            this.login.usuario=JSON.parse(usd);
             this.login.isLogin=true;
+        }
     }
     @ViewChild(LoginComponent) login: LoginComponent;
 

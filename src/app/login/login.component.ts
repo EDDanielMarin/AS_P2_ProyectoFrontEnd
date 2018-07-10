@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
          else {
           this.msgs.push({ severity: 'error', summary: 'Error ', detail: "Datos incorrectos" });
         // this.dto.mostrarMensaje(this.msgs);
-          alert("NO acccess");
          }
       },
       (error: any) => {
@@ -61,6 +60,8 @@ export class LoginComponent implements OnInit {
      this.servicio.buscaMenu(rol).subscribe(
         res=>{
           this.modelMenu=res.model;
+          sessionStorage.setItem("menu",JSON.stringify(this.modelMenu))
+
         },
         error=>
         {
@@ -74,6 +75,7 @@ export class LoginComponent implements OnInit {
   }
   logout() {
     sessionStorage.removeItem('usuario');
+    sessionStorage.removeItem('menu');
     sessionStorage.clear();
     this.usu="";
     this.pass="";

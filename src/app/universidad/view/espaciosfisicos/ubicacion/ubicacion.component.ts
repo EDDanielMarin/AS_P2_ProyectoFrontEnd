@@ -16,7 +16,7 @@ export class UbicacionComponent implements OnInit {
   private cols: any[];
   private edit: boolean = false;
   msgs: Message[] = [];
-
+  private new:boolean=false;s
   ubicacionTree: TreeNode[];
   bloquesCompleto: any[];
   aulasPorBloque: any[];
@@ -33,7 +33,7 @@ export class UbicacionComponent implements OnInit {
     this.servicio.obtenerCampus("c").subscribe(
       (resp: any) => {
         this.campus = resp;
-        setTimeout(this.llenarTree(), 20);
+        this.llenarTree();
 
       }
     );
@@ -166,7 +166,6 @@ export class UbicacionComponent implements OnInit {
   }
 
   editarRegistro(event) {
-    console.log(event);
   
     this.data.descripcion = event.descripcion;
     this.data.codUbicacion = event.cod;
@@ -178,6 +177,18 @@ export class UbicacionComponent implements OnInit {
 
   onRowUnselect(event) {
     this.msgs = [{ severity: 'info', summary: 'Car Unselected', detail: 'Vin: ' + event.descripcion }];
+  }
+
+  nuevoRegistro()
+  {
+    this.data = {
+      descripcion: '',
+      codUbicacion: '',
+      codUbicacionPadre: ''
+    }
+    this.new=true;
+    this.edit = false;
+
   }
 
 

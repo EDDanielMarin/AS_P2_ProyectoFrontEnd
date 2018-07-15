@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { RegistroService } from '../../service/registro.service';
+import { PersonasService } from '../../service/personas.service';
 
 @Component({
   selector: 'app-registro',
@@ -12,51 +13,179 @@ export class RegistroComponent implements OnInit {
   roles: SelectItem[];
   rolSeleccionado: any;
   isActivo: boolean;
+  crud: boolean = false;
+  persona =
+    {
+      CEDULA: "",
+      NOMBRE: "",
+      APELLIDO: "",
+      DIRECCION: "",
+      TELEFONO: "",
+      FEC_NAC: new Date(),
+      GENERO: "",
+      ESTADO: "ACT",
+      CORREO: ""
+    }
   data = {
-    cod_persona: 'eldepersona',
+    cod_persona: this.persona.CEDULA,
     cod_usuario: '',
     perfil: '',
-    correo: 'eldepersona',
-    nombre: 'eldepersona',
+    correo: this.persona.CORREO,
+    nombre: this.persona.NOMBRE + " " + this.persona.APELLIDO,
     clave: '',
     estado: ''
   }
+  private personaSeleccionada: any = {};
+  private personas: any[];
+  private cols: any[];
+
+  private generos: any[];
+  private genero: string;
 
 
 
-
-  constructor(private servicio: RegistroService) { }
+  constructor(private servicio: RegistroService, private servicioPersona: PersonasService) { }
 
   ngOnInit() {
 
+    setTimeout(this.servicio.obtenerURL(), this.servicioPersona.obtenerURL(), 10);
     this.roles = [];
-    this.roles.push({ label: 'Seleccione un rol', value: 0 });
-    this.roles.push({ label: 'Estudiante', value: { id: 1, name: 'Estudiante', code: 'EST' } });
-    this.roles.push({ label: 'Docente', value: { id: 2, name: 'Docente', code: 'DOC' } });
-    this.roles.push({ label: 'Administrador', value: { id: 3, name: 'Administrador', code: 'ADM' } });
-    this.roles.push({ label: 'Director', value: { id: 3, name: 'Director', code: 'DIR' } });
+    this.servicio.obtenerPerfiles().subscribe(
+      (resp: any) => {
+        this.roles = resp;
+      }
+    )
+    this.cargar();
+    this.cols = [
+
+      { field: 'CEDULA', header: 'Documento' },
+      { field: 'NOMBRE', header: 'Nombre' },
+      { field: 'APELLIDO', header: 'Apellido' },
+      { field: 'DIRECCION', header: 'Direccion' },
+      { field: 'TELEFONO', header: 'Telefono' },
+      { field: 'CORREO', header: 'Correo' }
+    ];
+    this.generos = [
+      { label: 'Masculino', value: 'Masculino', icon: 'fa fa-male' },
+      { label: 'Femenino', value: 'Femenino', icon: 'fa fa-female' }
+    ];
 
   }
+  cargar() {
+    this.servicioPersona.obtenerPersonas().subscribe
+      (
+      (resp: any) => {
+        this.personas = resp;
+        this.crud = false;
+      }
+      )
+  }
 
+  onRowSelect(e) {
+    console.log(e.data);
+    this.persona['_id'] = e.data._id;
 
-  guardarUsuario() {
-    console.log(this.rolSeleccionado);
-    if (this.rolSeleccionado != 0) {
-      this.data.perfil = this.rolSeleccionado.code
-      this.data.estado = this.isActivo ? "ACT" : "INA";
+    this.servicio.obtenerUsuarioPersona(this.persona.CEDULA).subscribe(
+      (resp: any) => {
+        this.data = resp;
+        this.rolSeleccionado = resp.perfil;
+        this.isActivo = this.data.estado == "ACT";
+        this.crud = true;
+      },
+      err => {
+        this.data = {
+          cod_persona: this.persona.CEDULA,
+          cod_usuario: '',
+          perfil: '',
+          correo: this.persona.CORREO,
+          nombre: this.persona.NOMBRE + " " + this.persona.APELLIDO,
+          clave: '',
+          estado: ''
 
-      console.log(this.data);
-      this.servicio.guardarUsuario(this.data).subscribe(
-        (resp: any) => {
-
-          console.log("guardado");
-
-
-        },
-        (error) => {
-          console.log("Error");
         }
-      );
+        this.crud = true;
+
+      }
+    )
+  }
+  nuevo() {
+    this.persona = {
+      CEDULA: "",
+      NOMBRE: "",
+      APELLIDO: "",
+      DIRECCION: "",
+      TELEFONO: "",
+      FEC_NAC: new Date(),
+      GENERO: "",
+      ESTADO: "ACT",
+      CORREO: ""
+    };
+
+    this.data = {
+      cod_persona: this.persona.CEDULA,
+      cod_usuario: '',
+      perfil: '',
+      correo: this.persona.CORREO,
+      nombre: this.persona.NOMBRE + " " + this.persona.APELLIDO,
+      clave: '',
+      estado: ''
+    }
+    this.crud = true;
+  }
+  eliminar() {
+    this.crud = false;
+  }
+  guardarUsuario() {
+    if (this.rolSeleccionado != 0) {
+      console.log(this.rolSeleccionado);
+      if (!this.persona['_id']) {
+        this.data.perfil = this.rolSeleccionado.codigo
+        this.data.estado = this.isActivo ? "ACT" : "INA";
+        this.data.correo = this.persona.CORREO;
+        this.data.nombre = this.persona.NOMBRE + " " + this.persona.APELLIDO;
+        this.data.cod_persona = this.persona.CEDULA;
+        this.servicioPersona.guardar(this.persona).subscribe(
+          (resp: any) => {
+            console.log("Guardado persona")
+            this.servicio.guardarUsuario(this.data).subscribe(
+              (resp1: any) => {
+
+                console.log("guardado usuario");
+
+
+              },
+              (error) => {
+                console.log("Error");
+              }
+            );
+          }
+        )
+      }
+      else {
+        this.servicioPersona.modificar(this.persona).subscribe(
+          (resp: any) => {
+            console.log(resp);
+            var temp = {
+              cod_persona: this.data.cod_persona,
+              cod_usuario: this.data.cod_usuario,
+              perfil: this.rolSeleccionado.codigo,
+              correo: this.data.correo,
+              nombre: this.data.nombre,
+              clave: this.data.clave,
+              estado: this.data.estado
+            }
+            this.servicio.modificar(temp).subscribe(
+              (respu: any) => {
+                console.log("usuario");
+
+              }
+            )
+
+          }
+        )
+
+      }
+      this.cargar();
     }
   }
 

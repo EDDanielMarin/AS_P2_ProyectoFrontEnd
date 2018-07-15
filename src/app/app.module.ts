@@ -103,7 +103,6 @@ import { UbicacionComponent } from './universidad/view/espaciosfisicos/ubicacion
 import { FacturaComponent } from './universidad/view/facturacion/factura/factura.component';
 import { ClienteComponent } from './universidad/view/facturacion/cliente/cliente.component';
 import { VirtualModule } from './virtual/virtual.module';
-import { PersonasComponent } from './universidad/view/personas/personas.component';
 
 
 @NgModule({
@@ -207,7 +206,6 @@ import { PersonasComponent } from './universidad/view/personas/personas.componen
         UbicacionComponent,
         FacturaComponent,
         ClienteComponent,
-        PersonasComponent,
         /*ForoComponent,
         TareaComponent,
         WikiComponent,

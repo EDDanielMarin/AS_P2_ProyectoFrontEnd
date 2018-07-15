@@ -47,6 +47,14 @@ export class DtoService {
     return this._http.delete(url,{headers:_headers, params: data});
   }
   
+  ejecutaDeleteId(url):Observable<any>
+  {
+    var _headers= new HttpHeaders({
+      'Content-Type':  'application/json'
+    });
+    return this._http.delete(url,this.httpOptions);
+  }
+  
 
   obtenerUrl(_modulo:String):Observable<any>
   {
@@ -66,9 +74,7 @@ export class DtoService {
       // The response body may contain clues as to what went wrong,
       resp={estado:"Error del Backend ",mensaje:error.error,codigo: error.status}
 
-     /* console.error(
-        `Error del Backend ${error.status}, ` +
-        `detalle: ${error.error}`);*/
+    
     }
     // return an observable with a user-facing error message
     return throwError(resp);

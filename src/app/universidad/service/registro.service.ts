@@ -6,20 +6,46 @@ import { DtoService } from "../../config/global/dto.service"
 export class RegistroService {
 
   constructor(private dto:DtoService) { }
-  private url:string="http://130.211.138.144/modulo-seguridades-web/webresources/SegUsuario/nuevo";
+  private url: String;
+  
+  obtenerURL() {
+    this.dto.obtenerUrl("seguridades").subscribe(
+      (resp: any) => {
+        //console.log(resp)
+        this.url = resp.url;
+    }
+    );
+  }
+
+
 
   guardarUsuario(data)
   {
-    return this.dto.ejecutaPost(this.url,data);
+    return this.dto.ejecutaPut(this.url.concat("SegUsuario/nuevo"),data);
 
   }
   obtenerPerfiles()
   {
-   // return this.dto.e
+    return this.dto.ejecutaGet(this.url.concat("SegPerfil/buscar/todos"));
   }
   obtenerUsuarios()
   {
-    return this.dto.ejecutaGet("http://130.211.138.144/modulo-seguridades-web/webresources/SegPerfil/buscar/todos");
+    return this.dto.ejecutaGet(this.url.concat("SegUsuario/buscar/todos"));
+  }
+  obtenerUsuarioPersona(param)
+  {
+    return this.dto.ejecutaGet(this.url.concat("SegUsuario/buscar/codpersona/",param))
+  }
+
+  modificar(data)
+  {
+
+    return this.dto.ejecutaPost(this.url.concat("SegUsuario/actualizar"),data);
+
+  }
+  eliminar(param)
+  {
+    return this.dto.ejecutaDeleteId(this.url.concat("SegUsuario/eliminar/",param))
   }
 
 }

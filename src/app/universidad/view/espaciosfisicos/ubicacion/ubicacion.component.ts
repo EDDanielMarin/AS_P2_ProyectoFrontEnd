@@ -30,6 +30,13 @@ export class UbicacionComponent implements OnInit {
   private radioValue = 1;
   ngOnInit() {
     setTimeout(this.servicio.obtenerURL(), 10);
+    this.obtenerCampus();
+    this.cols = [
+      { field: 'descripcion', header: 'descripcion' }
+    ];
+  }
+  obtenerCampus()
+  {
     this.servicio.obtenerCampus("c").subscribe(
       (resp: any) => {
         this.campus = resp;
@@ -37,16 +44,9 @@ export class UbicacionComponent implements OnInit {
 
       }
     );
-    this.cols = [
-      { field: 'descripcion', header: 'descripcion' }
-    ];
   }
   llenarTree() {
     var asd = { data: [] };
-
-
-
-
     this.campus.forEach(x => {
       var temp_C = {
         data: { cod: '', parent: '', descripcion: "" },
@@ -134,6 +134,7 @@ export class UbicacionComponent implements OnInit {
     );
   }
   guardarRegistro() {
+    console.log(this.data)
     if (this.radioValue == 1) {
       this.data.codUbicacionPadre = null;
     }
@@ -143,20 +144,24 @@ export class UbicacionComponent implements OnInit {
     else {
       this.data.codUbicacionPadre = this.bloqueSeleccionado.codUbicacion;
     }
-    if (this.data.codUbicacion == '')
-      this.servicio.guardar(this.data).subscribe(
+    if (this.data.codUbicacion != '')
+      this.servicio.modificar(this.data).subscribe(
         (resp: any) => {
-          console.log("guardado");
+          this.edit=false;
+          this.new=false;
+          this.obtenerCampus();
         },
         error => {
           console.log("error");
         }
       );
       else
-      this.servicio.modificar(this.data).subscribe(
+      this.servicio.guardar(this.data).subscribe(
         (resp:any)=>
         {
-          console.log("Actualizado")
+          this.edit=false;
+          this.new=false;
+          this.obtenerCampus();
         },
         err=>
         {
@@ -169,6 +174,17 @@ export class UbicacionComponent implements OnInit {
 
   }
 
+  eliminarRegistro()
+  {
+    this.servicio.eliminar(this.data.codUbicacion.trim()).subscribe(
+      (resp:any)=>{
+        this.edit=false;
+          this.new=false;
+          this.obtenerCampus();
+
+      }
+    )
+  }
   editarRegistro(event) {
   
     this.data.descripcion = event.descripcion;

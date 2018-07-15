@@ -24,4 +24,14 @@ export class PersonasService {
   {
     return this.dto.ejecutaGet(this.url.concat(cedula));
   }
+
+  guardar(data)
+  {
+    return this.dto.ejecutaPut(this.url, data)
+  }
+  modificar(data)
+  {
+    return this.dto.ejecutaPost(this.url, data)
+
+  }
 }

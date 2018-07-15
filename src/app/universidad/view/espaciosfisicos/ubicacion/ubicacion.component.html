@@ -4,7 +4,7 @@
       <div class="ui-g form-group">
         <div class="card card-w-title">
           <h1>Administración de Espacios Físicos</h1>
-          <p-treeTable [value]="ubicacionTree" selectionMode="single" dataKey="descripcion" (onRowSelect)="editarRegistro($event)"> 
+          <p-treeTable [value]="ubicacionTree" selectionMode="single" dataKey="descripcion" (onRowSelect)="editarRegistro($event)">
             <ng-template pTemplate="header">
               <tr>
                 <th>Campus Disponibles</th>
@@ -36,62 +36,61 @@
       </div>
     </div>
   </div>
-  <p-dialog header="Car Details" [(visible)]="new || edit" [responsive]="true" showEffect="fade" [modal]="true" [width]="300">
-    <div class="ui-g ui-fluid" *ngIf="car">
-        <div class="ui-g-12">
-            <div class="ui-g-12 ui-lg-12" *ngIf='new || edit'>
-        
-              <div class="card card-w-title" [hidden]='edit'>
-                <h1>Tipo de ubicación</h1>
-                <div class="ui-g">
-                  <div class="ui-g-12 ui-md-4">
-                    <p-radioButton name="rg" value="1" label="Campus" [(ngModel)]="radioValue"></p-radioButton>
-                  </div>
-                  <div class="ui-g-12 ui-md-4">
-                    <p-radioButton name="rg" value="2" label="Bloque" [(ngModel)]="radioValue"></p-radioButton>
-                  </div>
-                  <div class="ui-g-12 ui-md-4">
-                    <p-radioButton name="rg" value="3" label="Aula" [(ngModel)]="radioValue"></p-radioButton>
-                  </div>
-                </div>
+  <p-dialog header="Detalles de ubicacion" [(visible)]="new || edit" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12">
+        <div class="ui-g-12 ui-lg-12" *ngIf='new || edit'>
+          <div class="card card-w-title" [hidden]='edit'>
+            <h1>Tipo de ubicación</h1>
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-4">
+                <p-radioButton name="rg" value="1" label="Campus" [(ngModel)]="radioValue"></p-radioButton>
               </div>
-        
-              <div class="card card-w-title" *ngIf="radioValue>1">
-                <h1>Campus</h1>
-                <p-dropdown [options]="campus" optionLabel="descripcion" (onChange)="filtrarCampus($event)" [(ngModel)]="campusSeleccionado"
-                  [autoWidth]="false"></p-dropdown>
+              <div class="ui-g-12 ui-md-4">
+                <p-radioButton name="rg" value="2" label="Bloque" [(ngModel)]="radioValue"></p-radioButton>
               </div>
-        
-              <div class="card card-w-title" *ngIf="radioValue==3">
-                <h1>Bloque</h1>
-                <p-dropdown [options]="bloques" optionLabel="descripcion" [(ngModel)]="bloqueSeleccionado" [autoWidth]="false"></p-dropdown>
+              <div class="ui-g-12 ui-md-4">
+                <p-radioButton name="rg" value="3" label="Aula" [(ngModel)]="radioValue"></p-radioButton>
               </div>
-              <div class="card card-w-title">
-                <div class="ui-g form-group">
-                  <div class="ui-g-12 ui-md-12">
-                    <div class="ui-g-12 ui-md-12">
-                      <h1>Espacio Físico</h1>
-                      <input type="text" pInputText placeholder="Descripción" [(ngModel)]="data.descripcion">
-                    </div>
-                  </div>
-                  
-                </div>
-        
-              </div>
-        
             </div>
           </div>
+
+          <div class="card card-w-title">
+            <div class="ui-g form-group">
+              <div class="ui-g-12 ui-md-12">
+                <div class="ui-g-12 ui-md-12" *ngIf="radioValue>1">
+                  <h1>Campus</h1>
+                  <p-dropdown [options]="campus" optionLabel="descripcion" (onChange)="filtrarCampus($event)" [(ngModel)]="campusSeleccionado"
+                    [autoWidth]="false"></p-dropdown>
+                </div>
+
+                <div class="ui-g-12 ui-md-12" *ngIf="radioValue==3">
+                  <h1>Bloque</h1>
+                  <p-dropdown [options]="bloques" optionLabel="descripcion" [(ngModel)]="bloqueSeleccionado" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                  <h1>Espacio Físico</h1>
+                  <input type="text" pInputText placeholder="Descripción" [(ngModel)]="data.descripcion">
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
     </div>
     <p-footer>
       <div class="ui-dialog-buttonpane ui-helper-clearfix">
-          <button pButton type="button" label="Guardar" class="ui-button-success ui-button-rounded ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-          (click)="guardarRegistro()"></button>     
-          <button *ngIf='!new' pButton type="button" label="Eliminar" class="ui-button-warning ui-button-rounded ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+        <button pButton type="button" label="Guardar" class="ui-button-success ui-button-rounded ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+          (click)="guardarRegistro()"></button>
+        <button *ngIf='!new' pButton type="button" label="Eliminar" class="ui-button-warning ui-button-rounded ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
           (click)="eliminarRegistro()"></button>
       </div>
     </p-footer>
   </p-dialog>
 
-  
+
 
 </div>

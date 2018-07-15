@@ -46,6 +46,13 @@ export class DtoService {
     });
     return this._http.delete(url,{headers:_headers, params: data});
   }
+  ejecutaDelete2(url):Observable<any>
+  {
+    var _headers= new HttpHeaders({
+      'Content-Type':  'multipart/form-data'
+    });
+    return this._http.delete(url);
+  }
   
 
   obtenerUrl(_modulo:String):Observable<any>

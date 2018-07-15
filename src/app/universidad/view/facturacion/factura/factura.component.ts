@@ -41,14 +41,13 @@ export class FacturaComponent implements OnInit {
     this.facturaServicio.obtenerNumeroFactura().subscribe(
       (resp:any)=>
       {
-        this.data.numeroFactura=resp.numerofactura;
+        this.data.numeroFactura=++resp.numerofactura;
       }
     );
   }
   filtrarCliente(event) {
     const query = event.query;
     this.clientesFiltrados = this.buscarClientes(query, this.clientes)
-    console.log(this.clientesFiltrados);
   }
   buscarClientes(query, clientes: any[]): any[] {
     // in a real application, make a request to a remote url with the query and return filtered results,
@@ -72,7 +71,6 @@ export class FacturaComponent implements OnInit {
   guardarFactura()
   {
     this.data.idCliente=this.cliente._id;
-    console.log(this.data);
     this.facturaServicio.guardarResgistro(this.data).subscribe(
       (resp:any)=>{
         console.log(resp);

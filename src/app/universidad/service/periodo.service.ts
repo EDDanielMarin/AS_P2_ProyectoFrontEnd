@@ -32,8 +32,12 @@ export class PeriodoService {
   }
   generarNrc(data:any)
   {
-    return this.dto.ejecutaPut(this.url.concat("nrc/generarNr"),data);
+    return this.dto.ejecutaPut(this.url.concat("nrc/generarNrc"),data);
 
+  }
+  asignarDocente(data:any)
+  {
+    return this.dto.ejecutaPost(this.url.concat("nrc/asignarDocenteNrc"),data);
   }
   
 }

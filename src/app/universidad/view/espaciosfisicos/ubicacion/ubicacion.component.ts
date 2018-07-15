@@ -118,7 +118,11 @@ export class UbicacionComponent implements OnInit {
 
   }
 
-
+  onRowSelect(e)
+  {
+    this.new=true;
+    this.edit = false;
+  }
   filtrarCampus(e: any) {
     this.servicio.obtenerCampus(this.campusSeleccionado.codUbicacion).subscribe(
       (resp: any) => {

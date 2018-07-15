@@ -4,12 +4,11 @@ import { DtoService } from '../../config/global/dto.service';
 @Injectable({
   providedIn: 'root'
 })
-export class HorarioService {
+export class PersonasService {
   private url: String;
   obtenerURL() {
-    this.dto.obtenerUrl("espacios").subscribe(
+    this.dto.obtenerUrl("persona").subscribe(
       (resp: any) => {
-        //console.log(resp)
         this.url = resp.url;
     }
     );
@@ -17,12 +16,12 @@ export class HorarioService {
   constructor(private dto: DtoService) { }
 
 
-  obtenerhorarioNrc(nrc: string)
+  obtenerPersonas()
   {
-    return this.dto.ejecutaGet((this.url.concat("horario/",nrc)))
+    return this.dto.ejecutaGet(this.url)
   }
-  guardarHorarioNrc(data:any[])
+  obtenerPersonaCedula(cedula)
   {
-    return this.dto.ejecutaPut(this.url.concat("horario/"),data);
+    return this.dto.ejecutaGet(this.url.concat(cedula));
   }
 }

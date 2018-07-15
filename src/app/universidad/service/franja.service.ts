@@ -7,10 +7,29 @@ import { DtoService } from '../../config/global/dto.service';
 export class FranjaService {
 
   constructor(private dto:DtoService) { }
-  
+  private url: String;
+  obtenerURL() {
+    this.dto.obtenerUrl("espacios").subscribe(
+      (resp: any) => {
+        //console.log(resp)
+        this.url = resp.url;
+    }
+    );
+  }
+
   obtenerFranjas()
   {
-    return this.dto.ejecutaGet("http://localhost:8084/EspaciosFisicos-web/servicios/franja");
+    return this.dto.ejecutaGet(this.url.concat("franja"));
+  }
+
+  obtenerPorHorario(data)
+  {
+    return this.dto.ejecutaPost(this.url.concat("franja"),data);
+  }
+  obtenerFranjasDia(dia)
+  {
+    return this.dto.ejecutaGet(this.url.concat("franja/dia/",dia));
+
   }
 
 }

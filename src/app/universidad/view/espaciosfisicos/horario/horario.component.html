@@ -7,8 +7,8 @@
           <p-dropdown [options]="periodos" optionLabel="codigo" (onChange)="obtenerNRC($event)" [(ngModel)]="periodoSeleccionado" [autoWidth]="false"></p-dropdown>
         </div>
       </div>
-      <p-table [columns]="cols" [value]="nrcs" selectionMode="single" dataKey="codNrc" [style]="{'margin-bottom':'20px'}" [(selection)]="nrcSeleccionado"
-        [responsive]="true">
+      <p-table [columns]="cols" [value]="nrcs" selectionMode="single" dataKey="codNrc" [(selection)]="nrcSeleccionado" [responsive]="true"
+        [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="both"  (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)">
         <ng-template pTemplate="caption">
           NRC por periodo
         </ng-template>
@@ -30,5 +30,172 @@
         </ng-template>
       </p-table>
     </div>
+    <div class="ui-g-12">
+      <div class="card card-w-title">
+        <h1>Información</h1>
+        <p-tabView>
+          <p-tabPanel header="Asignatura" leftIcon="far fa-info">
+            <div class="card card-w-title">
+              <div class="card card-w-title">
+
+                <span>METODOS NUMERICOS</span>
+                <div class="ui-g">
+                  <div class="ui-g-3 ui-md-3">
+                    <span>
+                      <i class="fa fa-hashtag"></i>
+                      <strong>Numero de creditos: </strong>
+                    </span>
+                  </div>
+                  <div class="ui-g-9 ui-md-9">
+                    <span>
+                      5
+                    </span>
+                  </div>
+
+                  <div class="ui-g-3 ui-md-3">
+                    <span>
+                      <i class="fa fa-building"></i>
+                      <strong>Departamento: </strong>
+                    </span>
+                  </div>
+                  <div class="ui-g-9 ui-md-9">
+                    <span>
+                      Ciencias Exactas
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+          </p-tabPanel>
+          <p-tabPanel header="Docente" leftIcon="fa-user-o">
+            <div class="card card-w-title">
+              <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-6">
+                  <p-autoComplete [(ngModel)]="docente" [suggestions]="docentesFiltrados" (completeMethod)="filtrarDocente($event)" field="CEDULA"
+                    placeholder="Identificacion" [minLength]="1"></p-autoComplete>
+                </div>
+
+                <div class="ui-g-12 ui-md-6">
+                  <span>
+                    <strong>Nombres:</strong> {{docente.NOMBRE}} &nbsp; {{docente.APELLIDO}} </span>
+                </div>
+
+                <div class="ui-g-12 ui-md-6">
+                  <span>
+                    <strong>Direccion:</strong> {{docente.TELEFONO}}</span>
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                  <span>
+                    <strong>Correo:</strong> {{docente.CORREO}}</span>
+                </div>
+                <div class="ui-g-6 ui-md-4">
+                  <button pButton type="button" label="Asignar Docente" style="margin-bottom:10px" class="ui-button-raised" (click)="asignarDocente()"></button>
+                </div>
+              </div>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel header="Horario" leftIcon="fa-calendar">
+            <p-dialog [(visible)]="display" [contentStyle]="{'overflow':'visible'}">
+              <p-header>
+                Seleccione un aula
+              </p-header>
+              <div class="card card-w-title">
+                <div class="ui-g form-group">
+                  <div class="ui-g-10 ui-md-10">
+                    <label for="">Seleccione un Campus: </label>
+                    <p-dropdown [options]="campus" optionLabel="descripcion" (onChange)="obtenerEdificios($event)" [autoWidth]="false"></p-dropdown>
+                    <label for="">Seleccione un Edificio: </label>
+                    <p-dropdown [options]="edificios" optionLabel="descripcion" (onChange)="obtenerBloques($event)" [autoWidth]="false"></p-dropdown>
+                    <label for="">Seleccione un Bloque: </label>
+                    <p-dropdown [options]="bloques" optionLabel="descripcion" (onChange)="obtenerAulas($event)" [autoWidth]="false"></p-dropdown>
+                    <label for="">Seleccione un Aula: </label>
+                    <p-dropdown [options]="aulas" optionLabel="descripcion" [(ngModel)]="aula" [autoWidth]="false"></p-dropdown>
+
+                  </div>
+                </div>
+              </div>
+              <p-footer>
+                <button type="text" (click)="cerrarDialog()" pButton icon="pi pi-info-circle" label="Aceptar"></button>
+
+              </p-footer>
+            </p-dialog>
+            <div class="card card-w-title">
+              <div class="ui-g form-group">
+
+                <div class="ui-g-4 ui-md-4">
+                  <button pButton type="button" (click)="showDialog()" icon="fa fa-check" label="Seleccionar Aula"></button>
+                </div>
+                <div class="ui-g-4 ui-md-4">
+                  <span>{{aula.descripcion}}</span>
+                </div>
+                <div class="ui-g-4 ui-md-4"></div>
+                <div class="ui-g-12 ui-md-12">
+                  <p-selectButton [options]="dias" (onOptionClick)="filtrarFranjas($event)" [(ngModel)]="diaSeleccionado" optionLabel="label"></p-selectButton>
+                </div>
+                <div class="ui-g-12 ui-md-12">
+
+                  <p-table [value]="franjas" [(selection)]="franjasSeleccionadas" dataKey="codFranjaHoraria">
+                    <ng-template pTemplate="header" let-columns>
+                      <tr>
+                        <th style="width: 3em">
+                          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th>
+                          Hora Inicio
+                        </th>
+                        <th>
+                          Hora Fin
+                        </th>
+                        <th>
+                          Dia
+                        </th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                      <tr [pSelectableRow]="rowData">
+                        <td>
+                          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                        </td>
+                        <td>
+                          {{rowData.inicioHora | date:'hh:mma'}}
+                        </td>
+                        <td>
+
+                          {{rowData.finHora | date:'hh:mma'}}
+                        </td>
+                        <td>
+                          {{rowData.dia}}
+                        </td>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                      <div class="ui-g">
+                        <div class="ui-g ui-g-12 ui-md-12">
+                          <ul>
+                            <li *ngFor="let franja of franjasSeleccionadas" style="text-align: left">
+                              {{franja.dia + '-' + (franja.inicioHora | date:'hh:mma') + ' - ' + (franja.finHora | date:'hh:mma')}}
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="ui-g ui-g-4 ui-md-4">
+                          <button pButton type="button" (click)="guardarHorario()" icon="fa fa-save" label="Guardar Horario"></button>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </p-table>
+                </div>
+              </div>
+            </div>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+
+    </div>
+
+
   </div>
+
 </div>

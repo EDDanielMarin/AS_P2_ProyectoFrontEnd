@@ -21,8 +21,7 @@ import { FacturaComponent } from './universidad/view/facturacion/factura/factura
 import { ClienteComponent } from './universidad/view/facturacion/cliente/cliente.component';
 
 export const routes: Routes = [
-    {
-        path: '', component: DashboardDemoComponent  },
+    { path: '', component: DashboardDemoComponent  },
     { path: 'sample', component: SampleDemoComponent },
     { path: 'forms', component: FormsDemoComponent },
     { path: 'data', component: DataDemoComponent },

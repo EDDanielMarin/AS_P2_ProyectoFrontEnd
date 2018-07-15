@@ -15,6 +15,7 @@ export class FranjaComponent implements OnInit {
   cols: any[];
 
   ngOnInit() {
+    setTimeout(this.servicio.obtenerURL(),10)
     this.cols = [
       { field: 'codFranjaHoraria', header: 'Codigo' },
       { field: 'inicioHora', header: 'Hora Inicio' },

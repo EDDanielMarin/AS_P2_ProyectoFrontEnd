@@ -14,9 +14,7 @@ export class UbicacionService {
       (resp: any) => {
         //console.log(resp)
         this.url = resp.url;
-      }
-
-
+    }
     );
   }
 

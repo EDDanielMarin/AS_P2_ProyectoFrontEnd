@@ -45,7 +45,7 @@ const routes: Routes = [
         }
       }
     ]
-  },
+  },/*
 
   {
     path: 'anuncio',
@@ -53,7 +53,7 @@ const routes: Routes = [
     data: {
       title: 'Anuncio'
     }
-  }
+  }*/
 ];
 
 

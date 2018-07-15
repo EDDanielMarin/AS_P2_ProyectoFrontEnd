@@ -88,9 +88,10 @@ import { EmptyDemoComponent } from './demo/view/emptydemo.component';
 import { ChartsDemoComponent } from './demo/view/chartsdemo.component';
 import { FileDemoComponent } from './demo/view/filedemo.component';
 import { DocumentationComponent } from './demo/view/documentation.component';
-
 import { CarService } from './demo/service/carservice';
 import { CountryService } from './demo/service/countryservice';
+
+
 import { EventService } from './demo/service/eventservice';
 import { NodeService } from './demo/service/nodeservice';
 import { BreadcrumbService } from './breadcrumb.service';
@@ -102,6 +103,7 @@ import { UbicacionComponent } from './universidad/view/espaciosfisicos/ubicacion
 import { FacturaComponent } from './universidad/view/facturacion/factura/factura.component';
 import { ClienteComponent } from './universidad/view/facturacion/cliente/cliente.component';
 import { VirtualModule } from './virtual/virtual.module';
+import { PersonasComponent } from './universidad/view/personas/personas.component';
 
 
 @NgModule({
@@ -205,6 +207,7 @@ import { VirtualModule } from './virtual/virtual.module';
         UbicacionComponent,
         FacturaComponent,
         ClienteComponent,
+        PersonasComponent,
         /*ForoComponent,
         TareaComponent,
         WikiComponent,

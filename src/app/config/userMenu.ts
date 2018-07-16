@@ -35,12 +35,12 @@ const  menu = [
             {
                 label: 'Matriculas', icon: 'fa fa-fw fa-cog',
                 items: [
-                    { label: 'Ver matriculas', icon: 'fa fa-fw fa-bars',  routerLink: ['/factura'] },
+                    { label: 'Clases', icon: 'fa fa-fw fa-bars',  routerLink: ['/clases'] },
                     { label: 'Matricularse', icon: 'fa fa-fw fa-bars',  routerLink: ['/cliente'] }
                 ]
             },
             {
-                label: 'Gestion del Syllabus', icon: 'fa fa-fw fa-cog',
+                label: 'Syllabus', icon: 'fa fa-fw fa-cog',
                 items: [
                     { label: 'Syllabus', icon: 'fa fa-fw fa-bars',  routerLink: ['/silabus'] },
                     { label: 'Temas',  icon: 'fa fa-fw fa-bars',  routerLink: ['/temas'] }

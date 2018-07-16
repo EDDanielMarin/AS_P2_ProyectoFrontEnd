@@ -108,6 +108,9 @@ import { TemaComponent } from './universidad/view/gestionsilabus/tema/tema.compo
 import { SubtemaComponent } from './universidad/view/gestionsilabus/subtema/subtema.component';
 import { TareasComponent } from './universidad/view/gestionsilabus/tareas/tareas.component';
 import { SeguimientoComponent } from './universidad/view/gestionsilabus/seguimiento/seguimiento.component';
+import { NrcComponent } from './universidad/view/periodoLectivo/nrc/nrc.component';
+import { MatriculaComponent } from './universidad/view/periodoLectivo/matricula/matricula.component';
+import { CursoComponent } from './universidad/view/periodoLectivo/curso/curso.component';
 
 
 @NgModule({
@@ -216,6 +219,9 @@ import { SeguimientoComponent } from './universidad/view/gestionsilabus/seguimie
         SubtemaComponent,
         TareasComponent,
         SeguimientoComponent,
+        NrcComponent,
+        MatriculaComponent,
+        CursoComponent,
         /*ForoComponent,
         TareaComponent,
         WikiComponent,

@@ -21,6 +21,9 @@ import { FacturaComponent } from './universidad/view/facturacion/factura/factura
 import { ClienteComponent } from './universidad/view/facturacion/cliente/cliente.component';
 import { SilabusComponent } from './universidad/view/gestionsilabus/silabus/silabus.component';
 import { TemaComponent } from './universidad/view/gestionsilabus/tema/tema.component';
+import { NrcComponent } from './universidad/view/periodoLectivo/nrc/nrc.component';
+import { MatriculaComponent } from './universidad/view/periodoLectivo/matricula/matricula.component';
+import { CursoComponent } from './universidad/view/periodoLectivo/curso/curso.component';
 
 export const routes: Routes = [
     { path: '', component: DashboardDemoComponent  },
@@ -48,6 +51,8 @@ export const routes: Routes = [
     },
     { path: 'silabus', component: SilabusComponent },
     { path: 'temas', component: TemaComponent },
+    { path: 'nrc', component: NrcComponent },
+    { path: 'clases', component: CursoComponent }
 
 
 ];

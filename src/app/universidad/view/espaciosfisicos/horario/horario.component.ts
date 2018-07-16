@@ -9,38 +9,41 @@ import { FranjaService } from '../../../service/franja.service';
 @Component({
   selector: 'app-horario',
   templateUrl: './horario.component.html',
-  styleUrls: ['./horario.component.css']
+  styleUrls: ['./horario.component.css'],
+
 })
 export class HorarioComponent implements OnInit {
 
-  constructor(private servicioPersona: PersonasService, 
+  constructor(private servicioPersona: PersonasService,
     private servicioHorario: HorarioService,
-    private servicioUbicacion: UbicacionService, 
+    private servicioUbicacion: UbicacionService,
     private servicioPeriodo: PeriodoService,
     private servicioFranja: FranjaService
   ) { }
 
-   data = {
+  data = {
     codNrc: '',
     codPeriodo: '',
     codUbicacion: '',
     codFranjaMatricula: ''
   }
 
-  private horarios:any[];
-  private listaHorarias:any[];
+  private horarios: any[];
+  private listaHorarias: any[];
   docente: any = {};
   docentes: any = [];
   docentesFiltrados: any[];
 
   display: boolean = false;
 
+  diag: boolean = false;
+  
 
   private aulas: any[];
   private campus: any[];
   private bloques: any[];
   private edificios: any[];
-  private aula:any = {};
+  private aula: any = {};
 
   private franjas: any[];
   private nrcs: any[];
@@ -52,14 +55,14 @@ export class HorarioComponent implements OnInit {
   private dias: any[];
   private fds: any[];
 
-  private periodoSeleccionado: any;
+  private periodoSeleccionado: any = {};
   private diaSeleccionado: any;
-  private franjasSeleccionadas:any[];
+  private franjasSeleccionadas: any[];
   ngOnInit() {
     //setTimeout(this.servicioPeriodo.obtenerURL(), 10);
-    setTimeout(this.servicioPersona.obtenerURL(), this.servicioPeriodo.obtenerURL(), 
-    this.servicioUbicacion.obtenerURL(),
-    this.servicioFranja.obtenerURL(), this.servicioHorario.obtenerURL(),10);
+    setTimeout(this.servicioPersona.obtenerURL(), this.servicioPeriodo.obtenerURL(),
+      this.servicioUbicacion.obtenerURL(),
+      this.servicioFranja.obtenerURL(), this.servicioHorario.obtenerURL(), 10);
 
     this.servicioPeriodo.obtenerPeriodos().subscribe(
       (resp: any) => {
@@ -96,18 +99,17 @@ export class HorarioComponent implements OnInit {
       { label: 'Domingo', value: 'DO' }]
 
 
-   
+
   }
   filtrarDocente(event) {
     const query = event.query;
     this.docentesFiltrados = this.buscarDocentes(query)
     console.log(this.docentesFiltrados);
   }
-  filtrarFranjas(e)
-  {
+  filtrarFranjas(e) {
     console.log(e.option.value.value);
-    this.servicioFranja.obtenerFranjasDia(e.option.value.value).subscribe((resp:any)=>{
-      this.franjas=resp;
+    this.servicioFranja.obtenerFranjasDia(e.option.value.value).subscribe((resp: any) => {
+      this.franjas = resp;
     })
 
   }
@@ -123,7 +125,7 @@ export class HorarioComponent implements OnInit {
     });
     return filtered;
   }
-  obtenerNRC(event) {
+  obtenerNRC(event?) {
     this.servicioPeriodo.obtenerNrcPorPeriodo({ codPeriodo: this.periodoSeleccionado.codigo }).subscribe(
       (resp: any) => {
         this.nrcs = resp;
@@ -154,36 +156,34 @@ export class HorarioComponent implements OnInit {
   }
   asignarDocente() {
     if (this.docente.CEDULA && this.nrcSeleccionado) {
-       this.servicioPeriodo.asignarDocente({codNrc:this.nrcSeleccionado.codNrc,codPersona:this.docente.CEDULA}).subscribe(
-         ((resp:any)=>{
-            console.log(resp)
-         })
-       );
+      this.servicioPeriodo.asignarDocente({ codNrc: this.nrcSeleccionado.codNrc, codPersona: this.docente.CEDULA }).subscribe(
+        ((resp: any) => {
+          console.log(resp)
+        })
+      );
     }
     else {
       console.log("A que NRC?")
     }
   }
-  guardarHorario()
-  {
-    if(this.aula.codUbicacion && this.franjasSeleccionadas && this.nrcSeleccionado.codNrc && this.periodoSeleccionado.codigo)
-    {
-      this.horarios=[];
+  guardarHorario() {
+    if (this.aula.codUbicacion && this.franjasSeleccionadas && this.nrcSeleccionado.codNrc && this.periodoSeleccionado.codigo) {
+      this.horarios = [];
       console.log(this.nrcSeleccionado);
       console.log(this.franjasSeleccionadas);
-      this.franjasSeleccionadas.forEach(x=>{
-        
-        var temp:any={}
-        temp.codFranjaMatricula=x.codFranjaHoraria;        ;
-        temp.codNrc=this.nrcSeleccionado.codNrc;
-        temp.codPeriodo=this.periodoSeleccionado.codigo;
-        temp.codUbicacion=this.aula.codUbicacion;
+      this.franjasSeleccionadas.forEach(x => {
+
+        var temp: any = {}
+        temp.codFranjaMatricula = x.codFranjaHoraria;;
+        temp.codNrc = this.nrcSeleccionado.codNrc;
+        temp.codPeriodo = this.periodoSeleccionado.codigo;
+        temp.codUbicacion = this.aula.codUbicacion;
         this.horarios.push(temp);
-      
+
       })
       console.log(this.horarios);
       this.servicioHorario.guardarHorarioNrc(this.horarios).subscribe(
-        (resp:any)=>{
+        (resp: any) => {
           console.log(resp);
         }
       )
@@ -198,38 +198,51 @@ export class HorarioComponent implements OnInit {
     this.display = false;
   }
   onRowSelect(event) {
-     //obtener horario por nrc2
-     //obtener docente por cedula
+    //obtener horario por nrc2
+    //obtener docente por cedula
 
-     this.servicioHorario.obtenerhorarioNrc(this.nrcSeleccionado.codNrc).subscribe(
-       (resp:any)=>
-       {
-         if(resp)
-         {
-           this.servicioFranja.obtenerPorHorario(resp).subscribe(
-             (resp1:any)=>{
-               // console.log(resp1);
-                this.franjasSeleccionadas=resp1;
-             }
+    this.servicioHorario.obtenerhorarioNrc(this.nrcSeleccionado.codNrc).subscribe(
+      (resp: any) => {
+        if (resp) {
+          this.servicioFranja.obtenerPorHorario(resp).subscribe(
+            (resp1: any) => {
+              // console.log(resp1);
+              this.franjasSeleccionadas = resp1;
+            }
 
-           )
-           this.servicioPersona.obtenerPersonaCedula(this.nrcSeleccionado.codPersona).subscribe(
-             (resp:any)=>
-             {
-               if(resp[0])
-               {
-                 this.docente=resp[0];
+          )
+          this.servicioPersona.obtenerPersonaCedula(this.nrcSeleccionado.codPersona).subscribe(
+            (resp: any) => {
+              if (resp[0]) {
+                this.docente = resp[0];
                 // console.log(this.docente)
 
-               }
-             }
-           )
-         }
-       }
-     ) 
+              }
+            }
+          )
+        }
+      }
+    )
   }
 
-onRowUnselect(event) {
-  //  this.msgs = [{severity:'info', summary:'Car Unselected', detail:'Vin: ' + event.data.vin}];
-}
+  onRowUnselect(event) {
+    //  this.msgs = [{severity:'info', summary:'Car Unselected', detail:'Vin: ' + event.data.vin}];
+  }
+  confirmacionGenera($event){
+    
+    this.diag=$event;
+    this.obtenerNRC($event);
+    
+  }
+  cancelarGenera()
+  {
+    this.diag=false;
+  }
+  generaDialog()
+  {
+    if(this.periodoSeleccionado.codigo)
+    {
+      this.diag=true;
+    }
+  }
 }

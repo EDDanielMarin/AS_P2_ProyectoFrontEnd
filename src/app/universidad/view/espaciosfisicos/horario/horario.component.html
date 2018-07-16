@@ -2,13 +2,20 @@
   <div class="ui-g">
     <div class="card card-w-title">
       <div class="ui-g">
-        <div class="ui-g-12 ui-md-6">
+        <div class="ui-g-6 ui-md-5">
           <h1>Seleccione un Periodo</h1>
           <p-dropdown [options]="periodos" optionLabel="codigo" (onChange)="obtenerNRC($event)" [(ngModel)]="periodoSeleccionado" [autoWidth]="false"></p-dropdown>
         </div>
+        <div class="ui-md-1"></div>
+        <div class="ui-g-6 ui-md-2">
+            <br>
+            <br>
+            <br>
+            <button type="button" pButton icon="fa fa-check" (click)="generaDialog()" label="Generar NRC"></button>
+        </div>
       </div>
       <p-table [columns]="cols" [value]="nrcs" selectionMode="single" dataKey="codNrc" [(selection)]="nrcSeleccionado" [responsive]="true"
-        [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="both"  (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)">
+        [paginator]="true" [rows]="5" [responsive]="true" paginatorPosition="both">
         <ng-template pTemplate="caption">
           NRC por periodo
         </ng-template>
@@ -35,40 +42,33 @@
         <h1>Información</h1>
         <p-tabView>
           <p-tabPanel header="Asignatura" leftIcon="far fa-info">
-            <div class="card card-w-title">
-              <div class="card card-w-title">
-
-                <span>METODOS NUMERICOS</span>
-                <div class="ui-g">
-                  <div class="ui-g-3 ui-md-3">
-                    <span>
-                      <i class="fa fa-hashtag"></i>
-                      <strong>Numero de creditos: </strong>
-                    </span>
-                  </div>
-                  <div class="ui-g-9 ui-md-9">
-                    <span>
-                      5
-                    </span>
-                  </div>
-
-                  <div class="ui-g-3 ui-md-3">
-                    <span>
-                      <i class="fa fa-building"></i>
-                      <strong>Departamento: </strong>
-                    </span>
-                  </div>
-                  <div class="ui-g-9 ui-md-9">
-                    <span>
-                      Ciencias Exactas
-                    </span>
-                  </div>
-
-                </div>
+            <span>METODOS NUMERICOS</span>
+            <div class="ui-g">
+              <div class="ui-g-3 ui-md-3">
+                <span>
+                  <i class="fa fa-hashtag"></i>
+                  <strong>Numero de creditos: </strong>
+                </span>
+              </div>
+              <div class="ui-g-9 ui-md-9">
+                <span>
+                  5
+                </span>
+              </div>
+              
+              <div class="ui-g-3 ui-md-3">
+                <span>
+                  <i class="fa fa-building"></i>
+                  <strong>Departamento: </strong>
+                </span>
+              </div>
+              <div class="ui-g-9 ui-md-9">
+                <span>
+                  Ciencias Exactas
+                </span>
               </div>
 
             </div>
-
           </p-tabPanel>
           <p-tabPanel header="Docente" leftIcon="fa-user-o">
             <div class="card card-w-title">
@@ -107,10 +107,8 @@
                   <div class="ui-g-10 ui-md-10">
                     <label for="">Seleccione un Campus: </label>
                     <p-dropdown [options]="campus" optionLabel="descripcion" (onChange)="obtenerEdificios($event)" [autoWidth]="false"></p-dropdown>
-                    <label for="">Seleccione un Edificio: </label>
-                    <p-dropdown [options]="edificios" optionLabel="descripcion" (onChange)="obtenerBloques($event)" [autoWidth]="false"></p-dropdown>
                     <label for="">Seleccione un Bloque: </label>
-                    <p-dropdown [options]="bloques" optionLabel="descripcion" (onChange)="obtenerAulas($event)" [autoWidth]="false"></p-dropdown>
+                    <p-dropdown [options]="edificios" optionLabel="descripcion" (onChange)="obtenerAulas($event)" [autoWidth]="false"></p-dropdown>
                     <label for="">Seleccione un Aula: </label>
                     <p-dropdown [options]="aulas" optionLabel="descripcion" [(ngModel)]="aula" [autoWidth]="false"></p-dropdown>
 
@@ -199,3 +197,11 @@
   </div>
 
 </div>
+<p-dialog header="Detalles" [(visible)]="diag" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
+  <app-nrc (submitEvent)='confirmacionGenera($event)' [periodo]=periodoSeleccionado></app-nrc>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa fa-close" (click)="cancelarGenera()" label="Cancelar"></button>
+    </div>
+  </p-footer>
+</p-dialog>

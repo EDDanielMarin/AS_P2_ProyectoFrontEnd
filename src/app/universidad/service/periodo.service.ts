@@ -39,5 +39,13 @@ export class PeriodoService {
   {
     return this.dto.ejecutaPost(this.url.concat("nrc/asignarDocenteNrc"),data);
   }
+  obtenerNrcAlumno(data:any)
+  {
+    return this.dto.ejecutaPost(this.url.concat("matricula/listarNrcEstudiante"),data);
+  }
+  guardarMaticula(data:any)
+  {
+    return this.dto.ejecutaPut(this.url.concat("matricula/matriculacion"),data);
+  }
   
 }

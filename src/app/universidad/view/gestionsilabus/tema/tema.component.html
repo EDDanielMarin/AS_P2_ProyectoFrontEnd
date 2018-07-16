@@ -25,7 +25,8 @@
 
   <p-tabView>
       <p-tabPanel [header]="item.NOMBRE" *ngFor="let item of temas; let i = index" [selected]="i == 0" orientation="left"  (onChange)="handleChange($event)" > 
-          <div class="ui-g form-group">
+          <ng-template pTemplate="content">  
+        <div class="ui-g form-group">
              <button pButton type="button" label="Temas" style="margin-bottom:10px" class="ui-button-raised" (click)="verSubtemas(item)"></button>
               <p-table [columns]="colsub" [value]="subTemas" selectionMode="single" dataKey="_id" [style]="{'margin-bottom':'20px'}" [(selection)]="data"
                 [responsive]="true" (onRowSelect)="editarRegistro($event)" [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="top">
@@ -54,11 +55,12 @@
                 <button pButton type="button" label="Nuevo" style="margin-bottom:10px" class="ui-button-raised" (click)="nuevoRegistro(item)"></button>
               </div>
             </div>
+            </ng-template>
       </p-tabPanel>
   </p-tabView>
   
 
-  <p-dialog header="Registro de Subtema" [(visible)]="crud" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
+ <p-dialog header="Registro de Subtema" [(visible)]="crud" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
       <div class="ui-g ui-fluid" *ngIf="data">          
           <div class="ui-g ui-g-12">
             <input type="text" [(ngModel)]="data.DESCRIPCION" pInputText placeholder="Descripcion" required>
@@ -70,7 +72,7 @@
           <button type="button" pButton icon="fa fa-check" (click)="guardarRegistro()" label="Guardar"></button>
         </div>
       </p-footer>
-    </p-dialog>
+  </p-dialog>
     
     
 

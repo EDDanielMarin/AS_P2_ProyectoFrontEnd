@@ -1,0 +1,46 @@
+<div class="card card-w-title">
+    <div class="ui-g">
+      <div class="ui-g-6 ui-md-5">
+        <h1>Seleccione un Periodo</h1>
+        <p-dropdown [options]="periodos" optionLabel="codigo" (onChange)="obtenerMatricula($event)" [(ngModel)]="periodoSeleccionado" [autoWidth]="false"></p-dropdown>
+      </div>
+      <div class="ui-md-1"></div>
+      <div class="ui-g-6 ui-md-2">
+          <br>
+          <br>
+          <br>
+          <button type="button" pButton icon="fa fa-check" (click)="matriculaDiag()" label="Agregar Materias"></button>
+      </div>
+    </div>
+    <p-table [columns]="cols" [value]="matricula.detalleMatricula" selectionMode="single" dataKey="codNrc" [(selection)]="nrcSeleccionado" [responsive]="true"
+      [paginator]="true" [rows]="5" [responsive]="true" paginatorPosition="bottom">
+      <ng-template pTemplate="caption">
+       NRC Matriculados
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+            {{col.header}}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+          <td *ngFor="let col of columns">
+            <span class="ui-column-title">{{col.header}}</span>
+            {{rowData[col.field]}}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <p-dialog header="Matricula Estudiante" [(visible)]="diag" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
+      <app-matricula (submitEvent)='confirmaMatricula($event)' [periodo]=periodoSeleccionado [nrcs]=nrcs ></app-matricula>
+      <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button type="button" pButton icon="fa fa-close" (click)="cancelarMatricula()" label="Cancelar"></button>
+        </div>
+      </p-footer>
+    </p-dialog>

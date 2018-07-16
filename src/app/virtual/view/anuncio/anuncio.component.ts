@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnuncioService } from '../../service/anuncio.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-anuncio',
@@ -65,17 +66,19 @@ export class AnuncioComponent implements OnInit {
         }
       );
     }
+    location.reload();
   }
   editarAnuncio(reg: any) {
     this.anuncio = reg;
   }
   eliminarAnuncio(reg: any) {
     var _data = { anuncio: parseInt(reg.codigo) };
-    alert(reg.codigo);
+    //alert(reg.codigo);
     this.servicio.eliminarAnuncio(reg.codigo).subscribe(
      (resp:any)=>
      {
        console.log(resp);
+       location.reload();
      }
     ) ;
   }

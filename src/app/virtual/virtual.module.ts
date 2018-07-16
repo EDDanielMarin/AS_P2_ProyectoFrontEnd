@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { VirtualRoutingModule } from './virtual-routing.module';
 import { ForoComponent } from './view/foro/foro.component';
+import { ForoAlumnoComponent } from './view/foroAlumno/foroAlumno.component';
 import { AnuncioComponent } from './view/anuncio/anuncio.component';
 import { TareaComponent } from './view/tarea/tarea.component';
 import { WikiComponent } from './view/wiki/wiki.component';
@@ -20,6 +21,6 @@ import { ButtonModule } from 'primeng/button';
     FormsModule,
     ButtonModule
   ],
-  declarations: [ForoComponent, AnuncioComponent, TareaComponent, WikiComponent]
+  declarations: [ForoComponent, AnuncioComponent, TareaComponent, WikiComponent, ForoAlumnoComponent]
 })
 export class VirtualModule { }

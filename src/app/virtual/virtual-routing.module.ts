@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ForoComponent } from './view/foro/foro.component';
+import { ForoAlumnoComponent } from './view/foroAlumno/foroAlumno.component';
 import { TareaComponent } from './view/tarea/tarea.component';
 import { AnuncioComponent } from './view/anuncio/anuncio.component';
 import { WikiComponent } from './view/wiki/wiki.component';
@@ -21,6 +22,13 @@ const routes: Routes = [
         component: ForoComponent,
         data: {
           title: 'Foros'
+        }
+      },
+      {
+        path: 'foroAlumno',
+        component: ForoAlumnoComponent,
+        data: {
+          title: 'Participaciones de foros'
         }
       },
       {

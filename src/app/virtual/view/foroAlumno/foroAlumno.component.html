@@ -3,23 +3,13 @@
     <div class="ui-g-12 ui-lg-12">
       <!-- Left Side -->
       <div class="card card-w-title">
-        <h1>Publicar foro</h1>
+        <h1>Participar en el foro</h1>
         <div class="ui-g form-group">
-  
           <div class="ui-g-12 ui-md-6">
-            <input type="text" [(ngModel)]="foro.tema" pInputText placeholder="Tema" required>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <textarea rows="4" cols="50" [(ngModel)]="foro.descripcion" placeholder="Ingrese la descripción del Foro"  required>  </textarea>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <input type="date" [(ngModel)]="foro.fechaInicio" pInputText placeholder="Fecha de inicio" required>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <input type="date" [(ngModel)]="foro.fechaFin" pInputText placeholder="Fecha final" required>
+            <textarea rows="4" cols="50" [(ngModel)]="foro.texto" placeholder="Ingrese la descripción del Foro"  required>  </textarea>
           </div>
           <div class="ui-g-6 ui-md-4">
-            <button pButton type="button" label="Publicar Foro" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarForo()"></button>
+            <button pButton type="button" label="Publicar Participacion" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarForo()"></button>
           </div>
         </div>
       </div>
@@ -27,7 +17,7 @@
   </div>
 </div> 
 <div class="card card-w-title">
-  <h1>Foros</h1>
+  <h1>Participaciones</h1>
   <p-table [columns]="cols" [value]="foros" selectionMode="single" dataKey="codigo" [style]="{'margin-bottom':'20px'}" [(selection)]="anuncioSeleccionado"
       [responsive]="true" [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="both">
       <ng-template pTemplate="caption">
@@ -47,19 +37,16 @@
                   {{rowData.codigo}}
               </td>
               <td>
-                  {{rowData.curso }}
+                  {{rowData.foro}}
               </td>
               <td>
-                  {{rowData.tema}}
+                  {{rowData.nombrePersona}}
               </td>
               <td>  
-                  {{rowData.descripcion }}
+                  {{rowData.texto}}
               </td>
               <td>
-                {{rowData.fechaInicio}}
-              </td>
-              <td>
-                {{rowData.fechaFin}}
+                {{rowData.fecha}}
               </td>
             <div *ngIf="selectUsuario()">
               <td>

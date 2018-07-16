@@ -16,7 +16,7 @@ export class ClienteComponent implements OnInit {
     telefono: ''
   };
   private clienteSeleccionado: any;
-
+  private crud: boolean = false;
   constructor(private servicio: ClienteService) { }
   private clientes: any[];
   ngOnInit() {
@@ -27,6 +27,10 @@ export class ClienteComponent implements OnInit {
       { field: 'correo', header: 'Correo' },
       { field: 'telefono', header: 'Telefono' }
     ];
+    this.cargar();
+
+  }
+  cargar() {
     this.servicio.obtenerclientes().subscribe(
       (resp: any) => {
         this.clientes = resp;
@@ -35,43 +39,63 @@ export class ClienteComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  onRowSelect(reg) {
+    this.crud = true;
+    // this.data = reg;
+    console.log(reg)
+    this.data['_id'] = reg.data._id;
 
   }
-
   guardarCliente() {
     console.log(this.data);
     if (this.data['_id']) {
       this.servicio.actualizar(this.data).subscribe(
         (resp: any) => {
-          console.log(resp);
-          // this.clientes.push(this.data);
+          this.cargar();
+          this.crud = false;
         }
-
       )
 
     }
     else {
       this.servicio.guardar(this.data).subscribe(
         (resp: any) => {
-          console.log(resp);
-          // this.clientes.push(this.data);
-        }
+          this.cargar();
+          this.crud = false;
+
+        }   // this.clientes.push(this.data);
       );
     }
 
+
+  }
+  nuevoRegistro() {
+    this.crud = true;
+    this.data = {
+      razon_social: '',
+      num_documento: '',
+      direccion: '',
+      correo: '',
+      telefono: ''
+    };
   }
   editarRegistro(reg: any) {
     this.data = reg;
     this.data['_id'] = reg._id;
   }
-  eliminarRegistro(reg: any) {
-    var _data = { _id: reg._id };
-    this.servicio.eliminar(_data).subscribe(
-     (resp:any)=>
-     {
-       console.log(resp);
-     }
-    ) ;
+  eliminarRegistro() {
+
+    var _data = { _id: this.data['_id'] };
+    console.log(_data);
+    if (this.data['_id']) {
+      this.servicio.eliminar(_data).subscribe(
+        (resp: any) => {
+          console.log(resp);
+        }
+      );
+    }
+
   }
 
 

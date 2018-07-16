@@ -19,6 +19,8 @@ import { FranjaComponent } from './universidad/view/espaciosfisicos/franja/franj
 import { UbicacionComponent } from './universidad/view/espaciosfisicos/ubicacion/ubicacion.component';
 import { FacturaComponent } from './universidad/view/facturacion/factura/factura.component';
 import { ClienteComponent } from './universidad/view/facturacion/cliente/cliente.component';
+import { SilabusComponent } from './universidad/view/gestionsilabus/silabus/silabus.component';
+import { TemaComponent } from './universidad/view/gestionsilabus/tema/tema.component';
 
 export const routes: Routes = [
     { path: '', component: DashboardDemoComponent  },
@@ -44,7 +46,8 @@ export const routes: Routes = [
         path: 'virtual',
         loadChildren: './virtual/virtual.module#VirtualModule'
     },
-
+    { path: 'silabus', component: SilabusComponent },
+    { path: 'temas', component: TemaComponent },
 
 
 ];

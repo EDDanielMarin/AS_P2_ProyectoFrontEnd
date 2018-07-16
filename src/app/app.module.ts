@@ -103,6 +103,11 @@ import { UbicacionComponent } from './universidad/view/espaciosfisicos/ubicacion
 import { FacturaComponent } from './universidad/view/facturacion/factura/factura.component';
 import { ClienteComponent } from './universidad/view/facturacion/cliente/cliente.component';
 import { VirtualModule } from './virtual/virtual.module';
+import { SilabusComponent } from './universidad/view/gestionsilabus/silabus/silabus.component';
+import { TemaComponent } from './universidad/view/gestionsilabus/tema/tema.component';
+import { SubtemaComponent } from './universidad/view/gestionsilabus/subtema/subtema.component';
+import { TareasComponent } from './universidad/view/gestionsilabus/tareas/tareas.component';
+import { SeguimientoComponent } from './universidad/view/gestionsilabus/seguimiento/seguimiento.component';
 
 
 @NgModule({
@@ -206,6 +211,11 @@ import { VirtualModule } from './virtual/virtual.module';
         UbicacionComponent,
         FacturaComponent,
         ClienteComponent,
+        SilabusComponent,
+        TemaComponent,
+        SubtemaComponent,
+        TareasComponent,
+        SeguimientoComponent,
         /*ForoComponent,
         TareaComponent,
         WikiComponent,

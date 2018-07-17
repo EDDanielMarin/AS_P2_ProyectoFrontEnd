@@ -19,4 +19,6 @@ export class EvaluacionDocenteService {
   {
     return this.dto.ejecutaGet(this.url.concat("pregunta/",param))
   }
+
+  
 }

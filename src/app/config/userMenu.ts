@@ -55,6 +55,15 @@ const  menu = [
                     
                 ]
             },
+
+            {
+                label: 'Notificaciones', icon: 'fa fa-fw fa-cog',
+                items: [
+                    { label: 'Plantillas', icon: 'fa fa-fw fa-bars',  routerLink: ['/plantillas'] },
+                    { label: 'Notificaciones',  icon: 'fa fa-fw fa-bars',  routerLink: ['/notificaciones'] }
+                    
+                ]
+            },
             {
                 label: 'Aula Virtual', icon: 'fa fa-fw fa-cog',
                 items: [

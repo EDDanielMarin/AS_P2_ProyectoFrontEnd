@@ -1,0 +1,20 @@
+<p-panel header="Cuestionario: {{cuestionario}}">
+    <p-table [value]="preguntas" autoLayout="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Enunciado</th>
+                <th>Valor</th>
+                
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pregunta>
+            <tr>
+                <td>{{pregunta.codPregunta}}</td>
+                <td>{{pregunta.enunciado}}</td>
+                <td><p-rating [(ngModel)]="val"></p-rating></td>
+                
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>

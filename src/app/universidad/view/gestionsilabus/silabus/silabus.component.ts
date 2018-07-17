@@ -129,9 +129,14 @@ export class SilabusComponent implements OnInit {
   eliminarRegistro() {
     if (this.data['_id']) {
       this.servicio.eliminar(this.data['_id'], "syllabus").subscribe(
-        (resp: any) => {
-          console.log(resp);
-          this.crud = false;
+        (resp:any)=>
+        {
+          this.crud=false;
+          this.cargarSilabus();
+        },
+        err=>
+        {
+          this.crud=false;
           this.cargarSilabus();
         }
       );

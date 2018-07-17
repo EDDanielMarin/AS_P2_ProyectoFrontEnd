@@ -14,6 +14,7 @@ export class AppRightPanelComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         setTimeout(() => {this.rightPanelMenuScrollerViewChild.moveBar(); }, 100);
+        console.log(sessionStorage.getItem("usuario"))
     }
 
     onTabChange(event) {

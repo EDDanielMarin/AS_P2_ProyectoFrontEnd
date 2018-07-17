@@ -189,6 +189,10 @@ export class TemaComponent implements OnInit {
     this.servicio.obtener(e._id,"subtema").subscribe(
       (resp: any) => {
         this.subTemas = resp;
+      },
+      err=>
+      {
+        
       }
     )
   }

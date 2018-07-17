@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AulavirtualComponent } from './aulavirtual.component';
+import { NrcComponent } from './nrc.component';
 
-describe('AulavirtualComponent', () => {
-  let component: AulavirtualComponent;
-  let fixture: ComponentFixture<AulavirtualComponent>;
+describe('NrcComponent', () => {
+  let component: NrcComponent;
+  let fixture: ComponentFixture<NrcComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AulavirtualComponent ]
+      declarations: [ NrcComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AulavirtualComponent);
+    fixture = TestBed.createComponent(NrcComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,83 +1,88 @@
 
-const  menu = [
+const menu = [
     {
-        rol: "EST",
+        rol: "Admin",
         model: [
-            
-            
-            { label: 'Estudiante', icon: 'fa fa-fw fa-home', routerLink: ['/'] },
+
+
+            { label: 'Administrador', icon: 'fa fa-fw fa-home', routerLink: ['/'] },
             {
                 label: 'Usuarios', icon: 'fa fa-fw fa-cog',
                 items: [
-                    { label: 'Crear', icon: 'fa fa-fw fa-bars',  routerLink: ['/registro'] }
-                    
+                    { label: 'Crear', icon: 'fa fa-fw fa-bars', routerLink: ['/registro'] }
+
                 ]
             },
-    
+
             {
                 label: 'Espacios Físicos', icon: 'fa fa-fw fa-cog',
                 items: [
-                    { label: 'Horarios', icon: 'fa fa-fw fa-bars',  routerLink: ['/horario'] },
-                    { label: 'Franjas Horarias', icon: 'fa fa-fw fa-bars',  routerLink: ['/franja'] },
-                    { label: 'Ubicaciones', icon: 'fa fa-fw fa-bars',  routerLink: ['/ubicacion'] }
+                    { label: 'Horarios', icon: 'fa fa-fw fa-bars', routerLink: ['/horario'] },
+                    { label: 'Franjas Horarias', icon: 'fa fa-fw fa-bars', routerLink: ['/franja'] },
+                    { label: 'Ubicaciones', icon: 'fa fa-fw fa-bars', routerLink: ['/ubicacion'] }
 
 
-                    
+
                 ]
             },
             {
                 label: 'Facturación', icon: 'fa fa-fw fa-cog',
                 items: [
-                    { label: 'Facturas', icon: 'fa fa-fw fa-bars',  routerLink: ['/factura'] },
-                    { label: 'Cliente', icon: 'fa fa-fw fa-bars',  routerLink: ['/cliente'] }
+                    { label: 'Facturas', icon: 'fa fa-fw fa-bars', routerLink: ['/factura'] },
+                    { label: 'Cliente', icon: 'fa fa-fw fa-bars', routerLink: ['/cliente'] }
                 ]
             },
-            {
-                label: 'Matriculas', icon: 'fa fa-fw fa-cog',
-                items: [
-                    { label: 'Clases', icon: 'fa fa-fw fa-bars',  routerLink: ['/clases'] },
-                    { label: 'Matricularse', icon: 'fa fa-fw fa-bars',  routerLink: ['/cliente'] }
-                ]
-            },
+
             {
                 label: 'Syllabus', icon: 'fa fa-fw fa-cog',
                 items: [
-                    { label: 'Syllabus', icon: 'fa fa-fw fa-bars',  routerLink: ['/silabus'] },
-                    { label: 'Temas',  icon: 'fa fa-fw fa-bars',  routerLink: ['/temas'] }
-                    
+                    { label: 'Syllabus', icon: 'fa fa-fw fa-bars', routerLink: ['/silabus'] },
+                    { label: 'Temas', icon: 'fa fa-fw fa-bars', routerLink: ['/temas'] }
+
                 ]
             },
             {
                 label: 'Evaluacion Docente', icon: 'fa fa-fw fa-cog',
                 items: [
-                    { label: 'Cuestionario', icon: 'fa fa-fw fa-bars',  routerLink: ['/cuestionario'] },
-                    { label: 'CRUD',  icon: 'fa fa-fw fa-bars',  routerLink: ['/temas'] }
-                    
-                ]
-            },
-            {
-                label: 'Aula Virtual', icon: 'fa fa-fw fa-cog',
-                items: [
-                    { label: 'Foros', icon: 'fa fa-fw fa-bars',  routerLink: ['/virtual/foro'] },
-                    { label: 'Wikis', icon: 'fa fa-fw fa-bars',  routerLink: ['/virtual/wiki'] },
-                    { label: 'Anuncios', icon: 'fa fa-fw fa-bars',  routerLink: ['/virtual/anuncio'] },
-                    { label: 'Tareas', icon: 'fa fa-fw fa-bars',  routerLink: ['/virtual/tarea'] }
+                    { label: 'Cuestionario', icon: 'fa fa-fw fa-bars', routerLink: ['/cuestionario'] },
+                    { label: 'CRUD', icon: 'fa fa-fw fa-bars', routerLink: ['/temas'] }
 
                 ]
-            }
-    
-    ]
+            },
+           
+
+        ]
     },
     {
         rol: "DOC",
         model: [{ label: 'Docente', icon: 'fa fa-fw fa-home', routerLink: ['/'] }]
     },
     {
-        rol: "ADMIN",
-        model: [{ label: 'Administrador', icon: 'fa fa-fw fa-home', routerLink: ['/'] }]
+        rol: "EST",
+        model: [
+            { label: 'Estudiante', icon: 'fa fa-fw fa-home', routerLink: ['/'] },
+            {
+                label: 'Matriculas', icon: 'fa fa-fw fa-cog',
+                items: [
+                    { label: 'Clases', icon: 'fa fa-fw fa-bars', routerLink: ['/clases'] },
+                    { label: 'Matricularse', icon: 'fa fa-fw fa-bars', routerLink: ['/cliente'] }
+                ]
+            },
+            {
+                label: 'Aula Virtual', icon: 'fa fa-fw fa-cog',
+                items: [
+                    { label: 'Foros', icon: 'fa fa-fw fa-bars', routerLink: ['/virtual/foro'] },
+                    { label: 'Wikis', icon: 'fa fa-fw fa-bars', routerLink: ['/virtual/wiki'] },
+                    { label: 'Anuncios', icon: 'fa fa-fw fa-bars', routerLink: ['/virtual/anuncio'] },
+                    { label: 'Tareas', icon: 'fa fa-fw fa-bars', routerLink: ['/virtual/tarea'] }
+
+                ]
+            }
+
+        ]
     }
 ];
-export var userMenu=
+export var userMenu =
     menu
 
 

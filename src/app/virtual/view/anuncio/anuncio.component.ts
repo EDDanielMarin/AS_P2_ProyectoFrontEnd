@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./anuncio.component.css']
 })
 export class AnuncioComponent implements OnInit {
-
+  
   constructor(private servicio:AnuncioService) { }
 
   anuncios:any=[];

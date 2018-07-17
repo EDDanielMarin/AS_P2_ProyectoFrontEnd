@@ -112,6 +112,7 @@ import { NrcComponent } from './universidad/view/periodoLectivo/nrc/nrc.componen
 import { MatriculaComponent } from './universidad/view/periodoLectivo/matricula/matricula.component';
 import { CursoComponent } from './universidad/view/periodoLectivo/curso/curso.component';
 import { PreguntaComponent } from './universidad/view/evaluacionDocente/pregunta/pregunta.component';
+import { PlantillasComponent } from './universidad/view/notificaciones/plantillas/plantillas.component';
 
 
 @NgModule({
@@ -224,6 +225,7 @@ import { PreguntaComponent } from './universidad/view/evaluacionDocente/pregunta
         MatriculaComponent,
         CursoComponent,
         PreguntaComponent,
+        PlantillasComponent,
         /*ForoComponent,
         TareaComponent,
         WikiComponent,

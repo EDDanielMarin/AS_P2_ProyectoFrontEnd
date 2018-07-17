@@ -25,4 +25,22 @@ export class TareaService {
   {
     return this.dto.ejecutaDelete2("http://35.197.102.72/aula-virtual-web/webresources/Tarea/"+data);
   }
+
+  obtenerEntregaTareaCurso(curso, tarea)
+  {
+    return this.dto.ejecutaGet("http://35.197.102.72/aula-virtual-web/webresources/EntregaTarea/"+curso+"/"+tarea);
+  }
+  guardarEntregaTarea(data:any)
+  {
+    return this.dto.ejecutaPut("http://35.197.102.72/aula-virtual-web/webresources/EntregaTarea/",data)
+  }
+  actualizarEntregaTarea(data)
+  {
+    console.log("Post");
+    return this.dto.ejecutaPost("http://35.197.102.72/aula-virtual-web/webresources/EntregaTarea/",data);
+  }
+  eliminarEntregaTarea(data)
+  {
+    return this.dto.ejecutaDelete2("http://35.197.102.72/aula-virtual-web/webresources/EntregaTarea/"+data);
+  }
 }

@@ -3,7 +3,9 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Message, PasswordModule, Draggable } from 'primeng/primeng';
 import { LoginService } from './service/login.service';
-
+import { AccesoService } from './service/accesos.service';
+import { GetIpCliente } from './service/client-ip.service';
+import {Md5} from "md5-typescript";
 
 
 @Component({
@@ -23,24 +25,64 @@ export class LoginComponent implements OnInit {
   pass:any="";
   public usuario:any={};
 
+  ipCliente: "";
+  data = {
+    tipoAcceso: '',
+    codigoUsuario: '',
+    perfil: '',
+    ip: '',
+    funcionalidad: '',
+    resultado: ''
+  }
+
   msgs: Message[] = [];
   modelMenu: any[]=[];
-  constructor(private servicio: LoginService) { }
-
+  constructor(private servicio: LoginService, private servicioRegistroAcceso: AccesoService, private servicioIpCliente: GetIpCliente) { }
+  
   ngOnInit() {
+
+    setTimeout(this.servicioRegistroAcceso.obtenerURL(), 10);
+
+    this.servicioIpCliente.getIpAddress().subscribe(
+      (resp: any) => {
+        this.ipCliente = resp.ip;
+      }
+    )
 
   }
 
   /**Invoca al core para realizar login de la aplicacion. */
   ejecutalogin() {
     
-    this.servicio.inicioSesion(this.usu, this.pass).subscribe(
+    this.servicio.inicioSesion(this.usu, Md5.init(this.pass)).subscribe(
       (resp: any) => {
         if (resp) {
           this.usuario=(resp);
           sessionStorage.setItem('usuario', JSON.stringify(resp));
           this.cargarMenu(resp.perfil);
           this.isLogin = true;  
+
+          /*
+              REGISTRO DE ACCESO CONCEDIDO
+          */
+         this.data= {
+          tipoAcceso: "Seguridades-Login",
+          codigoUsuario: resp.cod_usuario,
+          perfil: resp.perfil,
+          ip: this.ipCliente,
+          funcionalidad: "login",
+          resultado: "200 Ok"
+        }
+        //console.log(JSON.stringify(this.data));
+        this.servicioRegistroAcceso.guardarAcceso(this.data).subscribe(
+          (resp1: any) => {  
+            console.log("Acceso Guardado!");  
+          },
+          (error) => {
+            console.log("Error");
+          }
+        );
+
         }
          else {
           this.msgs.push({ severity: 'error', summary: 'Error ', detail: "Datos incorrectos" });
@@ -52,6 +94,27 @@ export class LoginComponent implements OnInit {
         console.log(error.codigo);
         this.msgs.push({ severity: 'error', summary: 'Error ', detail: error.estado });
         //this.dto.mostrarMensaje(this.msgs);
+
+        /*
+              REGISTRO DE ACCESO DENEGADO
+          */         
+         this.data= {
+          tipoAcceso: "Seguridades-Login",
+          codigoUsuario: this.usu,
+          perfil: "",
+          ip: this.ipCliente,
+          funcionalidad: "login",
+          resultado: "403 Forbidden"
+          }
+          this.servicioRegistroAcceso.guardarAcceso(this.data).subscribe(
+            (resp1: any) => {  
+              console.log("Acceso Guardado!");  
+            },
+            (error) => {
+              console.log("Error");
+            }
+          );
+
       }
     );
 

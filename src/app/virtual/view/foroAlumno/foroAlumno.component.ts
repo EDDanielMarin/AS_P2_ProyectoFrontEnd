@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ForoService } from '../../service/foro.service';
 import { PersonasService } from '../../../universidad/service/personas.service';
 import * as moment from 'moment';
@@ -8,19 +8,26 @@ import * as moment from 'moment';
   styleUrls: ['./foroAlumno.component.css']
 })
 export class ForoAlumnoComponent implements OnInit {
+  
+  @Input() foroComponent:any={};
+
 
   constructor(private servicio:ForoService, private servicioPersona:PersonasService) { }
-  curso=3;
+  curso:any;
+  codigo:any;
   foros:any=[];
   anuncioSeleccionado:any;
   cols: any[];
   usuario:any;
   private foro:any={};
   ngOnInit() {
+    this.curso=this.foroComponent['curso'];
+    this.codigo=this.foroComponent['codigo'];
     this.cols = [
       { field: 'codigo', header: 'Codigo' },
       { field: 'foro', header: 'Número de foro' },
       { field: 'estudiante', header: 'Nombre' },
+      { field: 'curso', header: 'Curso' },
       { field: 'participacion', header: 'Participacion' },
       { field: 'fecha', header: 'Fecha de comentario' },
       
@@ -31,7 +38,7 @@ export class ForoAlumnoComponent implements OnInit {
     
   }
   getParticipaciones(){
-    this.servicio.obtenerForosAlumno(this.curso).subscribe(
+    this.servicio.obtenerForosAlumno(this.codigo).subscribe(
       (resp:any)=>{
           this.foros=resp;
           for(var i=0;i<this.foros.length;i++)
@@ -79,11 +86,12 @@ export class ForoAlumnoComponent implements OnInit {
 
     }else{
       console.log(this.foro.fechaInicio);
+      this.foro.foro=this.codigo;
       this.foro.curso=this.curso;
       this.foro.fecha=new Date();
       
       this.foro.alumno=this.usuario.cod_persona;
-      this.foro.foro=this.foros[0].foro;
+      //this.foro.foro=this.foros[0].foro;
 
       this.servicio.guardarForoAlumno(this.foro).subscribe(
         (resp:any)=>{

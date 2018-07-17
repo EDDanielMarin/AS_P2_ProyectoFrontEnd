@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { RegistroService } from '../../service/registro.service';
 import { PersonasService } from '../../service/personas.service';
+import {Md5} from "md5-typescript";
+
 
 @Component({
   selector: 'app-registro',
@@ -12,6 +14,10 @@ export class RegistroComponent implements OnInit {
 
   roles: SelectItem[];
   rolSeleccionado: any;
+
+  claveMD5: ""; 
+  auxpssw: boolean = true;
+
   isActivo: boolean;
   crud: boolean = false;
   persona =
@@ -82,6 +88,7 @@ export class RegistroComponent implements OnInit {
   }
 
   onRowSelect(e) {
+    this.auxpssw=false;
     console.log(e.data);
     this.persona['_id'] = e.data._id;
 
@@ -109,6 +116,7 @@ export class RegistroComponent implements OnInit {
     )
   }
   nuevo() {
+    this.auxpssw=true;
     this.persona = {
       CEDULA: "",
       NOMBRE: "",
@@ -144,6 +152,8 @@ export class RegistroComponent implements OnInit {
         this.data.correo = this.persona.CORREO;
         this.data.nombre = this.persona.NOMBRE + " " + this.persona.APELLIDO;
         this.data.cod_persona = this.persona.CEDULA;
+        //console.log(Md5.init(this.claveMD5));
+        this.data.clave=Md5.init(this.claveMD5);
         this.servicioPersona.guardar(this.persona).subscribe(
           (resp: any) => {
             console.log("Guardado persona")
@@ -151,7 +161,7 @@ export class RegistroComponent implements OnInit {
               (resp1: any) => {
 
                 console.log("guardado usuario");
-
+                this.claveMD5="";
 
               },
               (error) => {

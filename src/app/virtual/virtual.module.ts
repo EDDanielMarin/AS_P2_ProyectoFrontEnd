@@ -11,6 +11,7 @@ import { DataTableModule } from 'primeng/primeng';
 import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +20,8 @@ import { ButtonModule } from 'primeng/button';
     DataTableModule,
     TableModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    DialogModule,
   ],
   declarations: [ForoComponent, AnuncioComponent, TareaComponent, WikiComponent, ForoAlumnoComponent]
 })

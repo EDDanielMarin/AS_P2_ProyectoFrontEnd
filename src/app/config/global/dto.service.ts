@@ -3,18 +3,21 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angul
 import { Observable, throwError, of } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { urlUser } from '../url';
+import {Message} from 'primeng/primeng';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DtoService {
+  msgs: Message[] = [];
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
     }
   )
   };
-  constructor(private _http:HttpClient) { }
+  constructor(private _http:HttpClient,private alertService: AlertService) { }
 
   ejecutaPost(url,data):Observable<any>
   {
@@ -87,5 +90,29 @@ export class DtoService {
     return throwError(resp);
     
   };
+  /**Fija mensaje de respuesta resultado de ejecucion de una peticion al core. */
+  public manejoError(resp: any) {
+    if (resp !== null && resp.headers !== undefined) {
+      //sessionStorage.setItem('jwt', resp.headers['_headers'].get('x-auth-token'));
+    }
+    let mensaje = 'ERROR DE CONEXIÓN CON EL SERVIDOR';
+    if (resp.message !== undefined && resp.message !== null) {
+      mensaje = resp.message;
+    }
+    this.msgs = [];
+    this.msgs.push({severity: 'error', summary: mensaje, detail: ''});
+    this.alertService.mostrarMensaje(this.msgs);
+  }
+
+  /**Fija mensaje de respuesta resultado de ejecucion de una peticion al core. */
+  public mostrarMensaje(msgs: Message[], persistirmsg = false, acumular = false) {
+    if (!acumular) {
+      this.msgs = msgs;
+    } else {
+      this.msgs = this.msgs.concat(msgs);
+    }
+    // this.msgs = msgs;
+    this.alertService.mostrarMensaje(this.msgs, persistirmsg);
+  }
 
 }

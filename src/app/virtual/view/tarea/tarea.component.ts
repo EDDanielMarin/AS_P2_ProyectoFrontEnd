@@ -16,6 +16,8 @@ export class TareaComponent implements OnInit {
   cols: any[];
   usuario: any;
   private tarea: any = {};
+  private entregas: boolean = false;
+  private enviarTarea:any={};
   ngOnInit() {
     this.cols = [
       { field: 'codigo', header: 'Codigo' },
@@ -40,10 +42,17 @@ export class TareaComponent implements OnInit {
     );
   }
   selectUsuario() {
-    if (this.usuario.perfil == "EST")
+    if (this.usuario.perfil == "DOC")
       return true;
     else
       return false;
+  }
+  seleccionarTarea(){
+    location.href="/#/virtual/entregaTarea";
+  }
+  verEntregas(reg:any){
+    this.enviarTarea=reg;
+    this.entregas=true;
   }
   guardarTarea() {
     console.log(this.tarea);

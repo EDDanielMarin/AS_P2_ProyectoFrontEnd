@@ -1,7 +1,7 @@
 
 const menu = [
     {
-        rol: "Admin",
+        rol: "ADM",
         model: [
 
 
@@ -41,21 +41,32 @@ const menu = [
 
                 ]
             },
+            
             {
-                label: 'Evaluacion Docente', icon: 'fa fa-fw fa-cog',
+                label: 'Notificaciones', icon: 'fa fa-fw fa-cog',
                 items: [
-                    { label: 'Cuestionario', icon: 'fa fa-fw fa-bars', routerLink: ['/cuestionario'] },
-                    { label: 'CRUD', icon: 'fa fa-fw fa-bars', routerLink: ['/temas'] }
+                    { label: 'Plantillas', icon: 'fa fa-fw fa-bars', routerLink: ['/plantillas'] },
 
                 ]
             },
-           
 
         ]
     },
     {
         rol: "DOC",
-        model: [{ label: 'Docente', icon: 'fa fa-fw fa-home', routerLink: ['/'] }]
+        model: [{ label: 'Docente', icon: 'fa fa-fw fa-home', routerLink: ['/'] },
+        {
+            label: 'Aula Virtual', icon: 'fa fa-fw fa-cog',
+            items: [
+                { label: 'Foros', icon: 'fa fa-fw fa-bars', routerLink: ['/virtual/foro'] },
+                { label: 'Wikis', icon: 'fa fa-fw fa-bars', routerLink: ['/virtual/wiki'] },
+                { label: 'Anuncios', icon: 'fa fa-fw fa-bars', routerLink: ['/virtual/anuncio'] },
+                { label: 'Tareas', icon: 'fa fa-fw fa-bars', routerLink: ['/virtual/tarea'] }
+
+            ]
+        },
+        
+    ]
     },
     {
         rol: "EST",
@@ -68,6 +79,15 @@ const menu = [
                     { label: 'Matricularse', icon: 'fa fa-fw fa-bars', routerLink: ['/cliente'] }
                 ]
             },
+
+            {
+                label: 'Notificaciones', icon: 'fa fa-fw fa-cog',
+                items: [
+                    { label: 'Plantillas', icon: 'fa fa-fw fa-bars',  routerLink: ['/plantillas'] },
+                    { label: 'Notificaciones',  icon: 'fa fa-fw fa-bars',  routerLink: ['/notificaciones'] }
+                    
+                ]
+            },
             {
                 label: 'Aula Virtual', icon: 'fa fa-fw fa-cog',
                 items: [
@@ -77,7 +97,15 @@ const menu = [
                     { label: 'Tareas', icon: 'fa fa-fw fa-bars', routerLink: ['/virtual/tarea'] }
 
                 ]
-            }
+            },
+            {
+                label: 'Evaluacion Docente', icon: 'fa fa-fw fa-cog',
+                items: [
+                    { label: 'Cuestionario', icon: 'fa fa-fw fa-bars', routerLink: ['/cuestionario'] },
+                    { label: 'CRUD', icon: 'fa fa-fw fa-bars', routerLink: ['/temas'] }
+
+                ]
+            },
 
         ]
     }

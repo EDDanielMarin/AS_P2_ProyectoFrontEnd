@@ -86,14 +86,14 @@ export class LoginComponent implements OnInit {
         }
          else {
           this.msgs.push({ severity: 'error', summary: 'Error ', detail: "Datos incorrectos" });
-        // this.dto.mostrarMensaje(this.msgs);
+           this.servicio.mensaje(this.msgs);
          }
       },
       (error: any) => {
         console.log(error.estado);
         console.log(error.codigo);
         this.msgs.push({ severity: 'error', summary: 'Error ', detail: error.estado });
-        //this.dto.mostrarMensaje(this.msgs);
+        this.servicio.mensaje(this.msgs);
 
         /*
               REGISTRO DE ACCESO DENEGADO

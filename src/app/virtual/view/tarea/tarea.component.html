@@ -67,49 +67,8 @@
     </ng-template>
   </p-table>
 </div>
-<div class="card card-w-title">
-    <h1>Tareas</h1>
-    <p-table [columns]="cols" [value]="tareas" selectionMode="single" dataKey="codigo" [style]="{'margin-bottom':'20px'}" [(selection)]="tareaSeleccionado"
-      [responsive]="true" [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="both">
-      <ng-template pTemplate="caption">
-        Tareas
-      </ng-template>
-      <ng-template pTemplate="header" let-columns>
-        <tr>
-          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-            {{col.header}}
-            <p-sortIcon [field]="col.field"></p-sortIcon>
-          </th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr [pSelectableRow]="rowData">
-          <td>
-            {{rowData.codigo}}
-          </td>
-          <td>
-            {{rowData.curso }}
-          </td>
-          <td>
-            {{rowData.tema}}
-          </td>
-          <td>
-            {{rowData.descripcion }}
-          </td>
-          <td>
-            {{rowData.fechaInicio}}
-          </td>
-          <td>
-            {{rowData.fechaFin}}
-          </td>
-          <div *ngIf="selectUsuario()">
-            <td>
-              <button pButton icon="fa-edit" (click)="editarTarea(rowData)"></button>
-              &nbsp;&nbsp;
-              <button pButton icon="fa-trash" (click)="eliminarTarea(rowData)"></button>
-            </td>
-          </div>
-        </tr>
-      </ng-template>
-    </p-table>
+<p-dialog header="Entregas" [(visible)]="entregas" [responsive]="true" showEffect="fade" [modal]="true" [width]="1000">
+  <div *ngIf="entregas">
+    <app-entregaTarea  [tareaComponent]=enviarTarea></app-entregaTarea>
   </div>
+</p-dialog>

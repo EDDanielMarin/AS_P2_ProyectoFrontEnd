@@ -32,6 +32,10 @@ export class LoginService {
       return of(b.find(x=> x.rol==rol));
     
    }
+   public mensaje(as)
+   {
+      this.dto.mostrarMensaje(as);
+   }
 
    
 }

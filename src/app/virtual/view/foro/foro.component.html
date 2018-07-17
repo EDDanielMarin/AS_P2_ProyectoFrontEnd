@@ -28,6 +28,7 @@
 </div> 
 <div class="card card-w-title">
   <h1>Foros</h1>
+  
   <p-table [columns]="cols" [value]="foros" selectionMode="single" dataKey="codigo" [style]="{'margin-bottom':'20px'}" [(selection)]="anuncioSeleccionado"
       [responsive]="true" [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="both">
       <ng-template pTemplate="caption">
@@ -42,9 +43,10 @@
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-rowData let-columns="columns">
-          <tr [pSelectableRow]="rowData" (click)="seleccionarForo()">
-              <td>
-                  {{rowData.codigo}}
+          <tr [pSelectableRow]="rowData" >
+                          
+              <td (click)="verParticipaciones(rowData)">
+                {{rowData.codigo}}
               </td>
               <td>
                   {{rowData.curso }}
@@ -72,5 +74,11 @@
       </ng-template>
   </p-table>
 </div>
-
+<p-dialog header="Participaciones" [(visible)]="participaciones" [responsive]="true" showEffect="fade" [modal]="true" [width]="1000">
+    <div *ngIf="participaciones">
+      <app-foroAlumno  [foroComponent]=enviarForo></app-foroAlumno>
+    </div>
+</p-dialog>
+  
+  
 

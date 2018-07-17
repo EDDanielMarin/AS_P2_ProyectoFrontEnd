@@ -18,6 +18,8 @@ export class ForoComponent implements OnInit {
     cols: any[];
     usuario:any;
     private foro:any={};
+    private participaciones: boolean = false;
+    private enviarForo:any={};
     ngOnInit() {
       this.cols = [
         { field: 'codigo', header: 'Codigo' },
@@ -43,14 +45,17 @@ export class ForoComponent implements OnInit {
       );
     }
     selectUsuario(){
-      if(this.usuario.perfil=="EST")
+      if(this.usuario.perfil=="DOC")
         return true;
       else
         return false;
     }
     seleccionarForo(){
       location.href="/#/virtual/foroAlumno";
-
+    }
+    verParticipaciones(reg:any){
+      this.enviarForo=reg;
+      this.participaciones=true;
     }
     guardarForo(){
       this.foro.fechaInicio=new Date(this.foro.fechaInicio);

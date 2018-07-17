@@ -56,6 +56,7 @@ export class SilabusComponent implements OnInit {
         console.log(this.periodos)
       }
     );
+  
     this.cargarSilabus();
     this.colsTemas = [
       { field: 'NOMBRE', header: 'NombreTema' },
@@ -66,8 +67,8 @@ export class SilabusComponent implements OnInit {
     this.cols = [
       { field: 'codigo_asignatura', header: 'Asignatura' },
       { field: 'codigo_periodo', header: 'Periodo' },
-      { field: 'descripcion', header: 'Dirección' },
-      { field: 'fecha_elaboracion', header: 'Elaboracion' }
+      { field: 'descripcion', header: 'Descripcion' },
+      { field: 'fecha_elaboracion', header: 'Fecha de Elaboracion' }
 
     ];
 
@@ -104,7 +105,7 @@ export class SilabusComponent implements OnInit {
   editarRegistro() {
     this.periodoSeleccionado = this.periodos.find(x => x.codigo == this.data.codigo_periodo);
     this.asignaturaSeleccionada = this.asignaturas.find(x => x.codigo == this.data.codigo_asignatura)
-
+    
     this.crud = true;
   }
   editarTema()
@@ -117,6 +118,12 @@ export class SilabusComponent implements OnInit {
     this.crudTema=true;
   }
   nuevoRegistro() {
+    this.data = {
+      codigo_asignatura: '',
+      codigo_periodo: '',
+      descripcion: '',
+      fecha_elaboracion: new Date()
+    };
     this.crud = true;
   }
   eliminarRegistro() {
@@ -180,6 +187,7 @@ export class SilabusComponent implements OnInit {
 
   }
   guardarRegistro() {
+    
     if (this.periodoSeleccionado && this.asignaturaSeleccionada) {
       this.data.codigo_asignatura = this.asignaturaSeleccionada.codigo;
       this.data.codigo_periodo = this.periodoSeleccionado.codigo;
@@ -193,6 +201,7 @@ export class SilabusComponent implements OnInit {
         );
       }
       else {
+       
         this.data.fecha_elaboracion = new Date();
         this.servicio.guardar(this.data, 'syllabus').subscribe(
           (resp: any) => {

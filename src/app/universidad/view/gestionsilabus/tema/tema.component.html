@@ -26,7 +26,7 @@
   <p-tabView>
       <p-tabPanel [header]="item.NOMBRE" *ngFor="let item of temas; let i = index" [selected]="i == 0" orientation="left"  (onChange)="handleChange($event)" > 
           <div class="ui-g form-group">
-             <button pButton type="button" label="Temas" style="margin-bottom:10px" class="ui-button-raised" (click)="verSubtemas(item)"></button>
+             <button pButton type="button" label="SubTemas" style="margin-bottom:10px" class="ui-button-raised" (click)="verSubtemas(item)"></button>
               <p-table [columns]="colsub" [value]="subTemas" selectionMode="single" dataKey="_id" [style]="{'margin-bottom':'20px'}" [(selection)]="data"
                 [responsive]="true" (onRowSelect)="editarRegistro($event)" [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="top">
                 <ng-template pTemplate="header" let-columns>
@@ -78,7 +78,7 @@
   
   <p-dialog header="Tareas" [(visible)]="temaVis" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
       <div class="card card-w-title" *ngIf="!crudTarea">
-        <h1>Temas</h1>
+        <h1>Tareas</h1>
         <div class="ui-g form-group">
     
           <p-table [columns]="colTarea" [value]="tareas" selectionMode="single" dataKey="_id" [style]="{'margin-bottom':'20px'}" [(selection)]="dataTarea"

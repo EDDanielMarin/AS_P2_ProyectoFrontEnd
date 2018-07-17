@@ -41,7 +41,7 @@ export class TemaComponent implements OnInit {
     this.cols = [
       { field: 'codigo_asignatura', header: 'Asignatura' },
       { field: 'codigo_periodo', header: 'Periodo' },
-      { field: 'descripcion', header: 'Dirección' },
+      { field: 'descripcion', header: 'Descripcion' },
       { field: 'fecha_elaboracion', header: 'Elaboracion' }
 
     ];
@@ -189,6 +189,10 @@ export class TemaComponent implements OnInit {
     this.servicio.obtener(e._id,"subtema").subscribe(
       (resp: any) => {
         this.subTemas = resp;
+      },
+      err=>
+      {
+        
       }
     )
   }

@@ -6,6 +6,7 @@ export var urlUser=
     {modulo:"periodo",url:"http://35.237.113.210:80/UniversidadPeriodoLectivo-war/periodoLectivo/"},
     {modulo:"aula",url:"http://35.197.102.72/aula-virtual-web/webresources/"},
     {modulo:"persona",url:"http://35.229.42.61:3000/personas/"},
-    {modulo:"silabus",url:"http://23.96.6.168:3000/"}
+    {modulo:"silabus",url:"http://23.96.6.168:3000/"},
+    {modulo:"calificacionDocente",url:"http://35.185.40.88/evaluacion_docente-Rest/rest/"}
     
 ]

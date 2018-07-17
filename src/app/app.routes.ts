@@ -24,6 +24,7 @@ import { TemaComponent } from './universidad/view/gestionsilabus/tema/tema.compo
 import { NrcComponent } from './universidad/view/periodoLectivo/nrc/nrc.component';
 import { MatriculaComponent } from './universidad/view/periodoLectivo/matricula/matricula.component';
 import { CursoComponent } from './universidad/view/periodoLectivo/curso/curso.component';
+import { PreguntaComponent } from './universidad/view/evaluacionDocente/pregunta/pregunta.component';
 
 export const routes: Routes = [
     { path: '', component: DashboardDemoComponent  },
@@ -52,7 +53,8 @@ export const routes: Routes = [
     { path: 'silabus', component: SilabusComponent },
     { path: 'temas', component: TemaComponent },
     { path: 'nrc', component: NrcComponent },
-    { path: 'clases', component: CursoComponent }
+    { path: 'clases', component: CursoComponent },
+    { path: 'cuestionario', component: PreguntaComponent }
 
 
 ];

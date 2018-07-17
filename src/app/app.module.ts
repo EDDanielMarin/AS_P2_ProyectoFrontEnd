@@ -111,6 +111,7 @@ import { SeguimientoComponent } from './universidad/view/gestionsilabus/seguimie
 import { NrcComponent } from './universidad/view/periodoLectivo/nrc/nrc.component';
 import { MatriculaComponent } from './universidad/view/periodoLectivo/matricula/matricula.component';
 import { CursoComponent } from './universidad/view/periodoLectivo/curso/curso.component';
+import { PreguntaComponent } from './universidad/view/evaluacionDocente/pregunta/pregunta.component';
 
 
 @NgModule({
@@ -222,6 +223,7 @@ import { CursoComponent } from './universidad/view/periodoLectivo/curso/curso.co
         NrcComponent,
         MatriculaComponent,
         CursoComponent,
+        PreguntaComponent,
         /*ForoComponent,
         TareaComponent,
         WikiComponent,

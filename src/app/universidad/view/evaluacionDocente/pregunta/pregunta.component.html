@@ -1,0 +1,30 @@
+<p-dataView [value]="preguntas">
+    <p-header>List of Cars</p-header>
+    <p-footer>Choose from the list.</p-footer>
+    <ng-template let-pregunta pTemplate="listItem">
+        <div>
+            {{pregunta.enunciado}}
+        </div>
+    </ng-template>
+    <ng-template let-car pTemplate="gridItem">
+        <div class="ui-g-6 ui-md-6">
+            {{pregunta.enunciado}}
+        </div>
+        <div class="ui-g-6 ui-md-6">
+            <p-rating [(ngModel)]="val"></p-rating>
+        </div>
+    </ng-template>
+</p-dataView>
+
+<p-dataView [value]="preguntas">
+    <ng-template let-car pTemplate="listItem">
+        <div>
+            {{car.codPregunta}}
+        </div>
+    </ng-template>
+    <ng-template let-car pTemplate="gridItem">
+        <div class="ui-g-12 ui-md-3">
+            {{car.enunciado}}
+        </div>
+    </ng-template>
+</p-dataView>

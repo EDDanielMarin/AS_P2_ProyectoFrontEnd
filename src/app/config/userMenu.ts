@@ -44,9 +44,17 @@ const  menu = [
                 items: [
                     { label: 'Syllabus', icon: 'fa fa-fw fa-bars',  routerLink: ['/silabus'] },
                     { label: 'Temas',  icon: 'fa fa-fw fa-bars',  routerLink: ['/temas'] }
+                    
                 ]
             },
-            
+            {
+                label: 'Evaluacion Docente', icon: 'fa fa-fw fa-cog',
+                items: [
+                    { label: 'Cuestionario', icon: 'fa fa-fw fa-bars',  routerLink: ['/cuestionario'] },
+                    { label: 'CRUD',  icon: 'fa fa-fw fa-bars',  routerLink: ['/temas'] }
+                    
+                ]
+            },
             {
                 label: 'Aula Virtual', icon: 'fa fa-fw fa-cog',
                 items: [

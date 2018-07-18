@@ -51,7 +51,7 @@ export class MatriculaComponent implements OnInit {
     this.servicio.guardarMaticula(this.data).subscribe(
       (resp:any)=>
       {
-        console.log(resp);
+        this.submitEvent.emit(false);
       }
     )
 

@@ -40,7 +40,7 @@ export class TareaComponent implements OnInit {
     );
   }
   selectUsuario() {
-    if (this.usuario.perfil == "EST")
+    if (this.usuario.perfil == "DOC")
       return true;
     else
       return false;

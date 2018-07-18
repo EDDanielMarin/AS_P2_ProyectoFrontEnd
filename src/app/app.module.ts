@@ -113,6 +113,7 @@ import { MatriculaComponent } from './universidad/view/periodoLectivo/matricula/
 import { CursoComponent } from './universidad/view/periodoLectivo/curso/curso.component';
 import { PreguntaComponent } from './universidad/view/evaluacionDocente/pregunta/pregunta.component';
 import { PlantillasComponent } from './universidad/view/notificaciones/plantillas/plantillas.component';
+import { MessageService } from '../../node_modules/primeng/components/common/messageservice';
 
 
 @NgModule({
@@ -235,7 +236,7 @@ import { PlantillasComponent } from './universidad/view/notificaciones/plantilla
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        CarService, CountryService, EventService, NodeService, BreadcrumbService
+        CarService, CountryService, EventService, NodeService, BreadcrumbService,MessageService
     ],
     bootstrap: [AppComponent]
 })

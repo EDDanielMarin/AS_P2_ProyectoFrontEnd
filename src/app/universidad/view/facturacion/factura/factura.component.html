@@ -1,46 +1,9 @@
-<p>
-  factura works!
-</p>
-
-<div class="ui-g ui-fluid">
-  <div class="ui-g-12 ui-lg-12">
-    <!-- Left Side -->
-    <div class="card card-w-title">
-      <h1>Cliente</h1>
-      <div class="ui-g form-group">
-      
-        <div class="ui-g-12 ui-md-6">
-            <p-autoComplete [(ngModel)]="cliente" [suggestions]="clientesFiltrados" (completeMethod)="filtrarCliente($event)" field="num_documento"
-                placeholder="CI/RUC" [minLength]="1"></p-autoComplete>
-        </div>
-
-        <div class="ui-g-12 ui-md-6">
-          <input type="text" [(ngModel)]="cliente.razon_social" pInputText placeholder="Razon Social" required>
-        </div>
-
-        <div class="ui-g-12 ui-md-6">
-          <input type="text" [(ngModel)]="cliente.direccion" pInputText placeholder="Direccion" required>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-          <input type="email" [(ngModel)]="cliente.correo" pInputText placeholder="Correo" required>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-          <input type="text" [(ngModel)]="cliente.telefono" pInputText placeholder="Telefono" required>
-        </div>
-        <div class="ui-g-6 ui-md-4">
-          <button pButton type="button" label="Nuevo Cliente" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarCliente()"></button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="card card-w-title">
+<div class="card card-w-title">
     <h1>Detalle</h1>
-    <p-table [columns]="cols" [value]="data.detalles" selectionMode="single" dataKey="nrc" [style]="{'margin-bottom':'20px'}"
-      [(selection)]="clienteSeleccionado" [responsive]="true">
+    <p-table [columns]="cols" [value]="facturas" selectionMode="single" dataKey="numeroFactura" [style]="{'margin-bottom':'20px'}"
+      [(selection)]="facturaSeleccionada" [responsive]="true">
       <ng-template pTemplate="caption">
-        Materias
+        Facturas
       </ng-template>
       <ng-template pTemplate="header" let-columns>
         <tr>
@@ -62,19 +25,3 @@
       </ng-template>
     </p-table>
   </div>
-
-  <div class="ui-g-12 ui-lg-12">
-    <!-- Left Side -->
-    <div class="card card-w-title">
-        <div class="ui-g form-group">
-        <div class="ui-g-4 ui-md-4">
-            <input type="text" [(ngModel)]="data.total" pInputText placeholder="Total" required>
-          </div>
-          <div  class="ui-g-4 ui-md-4"></div>
-          <div class="ui-g-4 ui-md-4">
-            <button pButton type="button" label="Guardar" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarFactura()"></button>
-          </div>
-        </div>
-    </div>
-  </div>
-</div>

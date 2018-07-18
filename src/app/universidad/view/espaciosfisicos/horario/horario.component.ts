@@ -4,6 +4,7 @@ import { UbicacionService } from '../../../service/ubicacion.service';
 import { PeriodoService } from '../../../service/periodo.service';
 import { PersonasService } from '../../../service/personas.service';
 import { FranjaService } from '../../../service/franja.service';
+import { NotificacionService } from '../../../service/notificacion.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class HorarioComponent implements OnInit {
     private servicioHorario: HorarioService,
     private servicioUbicacion: UbicacionService,
     private servicioPeriodo: PeriodoService,
-    private servicioFranja: FranjaService
+    private servicioFranja: FranjaService,
+    private notificacionService: NotificacionService
   ) { }
 
   data = {
@@ -37,7 +39,7 @@ export class HorarioComponent implements OnInit {
   display: boolean = false;
 
   diag: boolean = false;
-  
+
 
   private aulas: any[];
   private campus: any[];
@@ -61,7 +63,7 @@ export class HorarioComponent implements OnInit {
   ngOnInit() {
     //setTimeout(this.servicioPeriodo.obtenerURL(), 10);
     setTimeout(this.servicioPersona.obtenerURL(), this.servicioPeriodo.obtenerURL(),
-      this.servicioUbicacion.obtenerURL(),
+      this.servicioUbicacion.obtenerURL(),this.notificacionService.obtenerURL(),
       this.servicioFranja.obtenerURL(), this.servicioHorario.obtenerURL(), 10);
 
     this.servicioPeriodo.obtenerPeriodos().subscribe(
@@ -159,6 +161,12 @@ export class HorarioComponent implements OnInit {
       this.servicioPeriodo.asignarDocente({ codNrc: this.nrcSeleccionado.codNrc, codPersona: this.docente.CEDULA }).subscribe(
         ((resp: any) => {
           console.log(resp)
+
+          this.notificacionService.enviarNotificacion({ cod_plantilla: "Asignar Docente", mail_alumno: this.docente.CORREO, asunto: "Asignacion Docente" }).subscribe(
+            (resp1: any) => {
+              console.log(resp1);
+            }
+          );
         })
       );
     }
@@ -228,21 +236,18 @@ export class HorarioComponent implements OnInit {
   onRowUnselect(event) {
     //  this.msgs = [{severity:'info', summary:'Car Unselected', detail:'Vin: ' + event.data.vin}];
   }
-  confirmacionGenera($event){
-    
-    this.diag=$event;
+  confirmacionGenera($event) {
+
+    this.diag = $event;
     this.obtenerNRC($event);
-    
+
   }
-  cancelarGenera()
-  {
-    this.diag=false;
+  cancelarGenera() {
+    this.diag = false;
   }
-  generaDialog()
-  {
-    if(this.periodoSeleccionado.codigo)
-    {
-      this.diag=true;
+  generaDialog() {
+    if (this.periodoSeleccionado.codigo) {
+      this.diag = true;
     }
   }
 }

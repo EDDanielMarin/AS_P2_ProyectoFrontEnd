@@ -18,14 +18,17 @@ export class FacturaComponent implements OnInit {
     total: 0
   }
   private cliente: any = {};
+  private estudiante: any = {};
   private clientes: [any];
   private cols: any[];
+  private facturas: any[];
   private clientesFiltrados: any[];
   ngOnInit() {
+    this.estudiante = JSON.parse(sessionStorage.getItem("usuario"));
     this.cols = [
-      { field: 'nrc', header: 'NRC' },
-      { field: 'asignatura', header: 'Asignatura' },
-      { field: 'precio', header: 'Precio' }
+      { field: 'numeroFactura', header: 'Numero' },
+      { field: 'fechaDeEmision', header: 'Emision' },
+      { field: 'total', header: 'Total' }
     ];
     this.data.detalles = [
       { nrc: "N-105", asignatura: "Programacion Avanzada", precio: 55.20 },
@@ -42,6 +45,17 @@ export class FacturaComponent implements OnInit {
       (resp:any)=>
       {
         this.data.numeroFactura=++resp.numerofactura;
+      }
+    );
+  }
+
+
+  obtenerFactura()
+  {
+    this.facturaServicio.obtenerFactura(this.estudiante.cod_persona).subscribe(
+      (resp:any)=>
+      {
+        this.facturas=resp;
       }
     );
   }

@@ -90,6 +90,8 @@ export class DtoService {
     return throwError(resp);
     
   };
+
+  
   /**Fija mensaje de respuesta resultado de ejecucion de una peticion al core. */
   public manejoError(resp: any) {
     if (resp !== null && resp.headers !== undefined) {
@@ -101,7 +103,7 @@ export class DtoService {
     }
     this.msgs = [];
     this.msgs.push({severity: 'error', summary: mensaje, detail: ''});
-    this.alertService.mostrarMensaje(this.msgs);
+    //this.alertService.mostrarMensaje(this.msgs);
   }
 
   /**Fija mensaje de respuesta resultado de ejecucion de una peticion al core. */
@@ -112,7 +114,7 @@ export class DtoService {
       this.msgs = this.msgs.concat(msgs);
     }
     // this.msgs = msgs;
-    this.alertService.mostrarMensaje(this.msgs, persistirmsg);
+   // this.alertService.mostrarMensaje(this.msgs, persistirmsg);
   }
 
 }

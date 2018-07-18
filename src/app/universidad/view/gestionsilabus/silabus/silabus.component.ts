@@ -76,6 +76,12 @@ export class SilabusComponent implements OnInit {
   nuevoTema()
   {
     this.crudTema=true;
+    this.dataTema = {
+      COD_SILABO: '',
+      NOMBRE: '',
+      FECHA_INICIO: '',
+      FECHA_FIN: ''
+    };
   }
   verTemas(event) {
   

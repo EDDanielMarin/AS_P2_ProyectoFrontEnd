@@ -114,6 +114,7 @@ import { CursoComponent } from './universidad/view/periodoLectivo/curso/curso.co
 import { PreguntaComponent } from './universidad/view/evaluacionDocente/pregunta/pregunta.component';
 import { PlantillasComponent } from './universidad/view/notificaciones/plantillas/plantillas.component';
 import { MessageService } from '../../node_modules/primeng/components/common/messageservice';
+import { ReportePreguntaComponent } from './universidad/view/evaluacionDocente/reporte-pregunta/reporte-pregunta.component';
 
 
 @NgModule({
@@ -227,6 +228,7 @@ import { MessageService } from '../../node_modules/primeng/components/common/mes
         CursoComponent,
         PreguntaComponent,
         PlantillasComponent,
+        ReportePreguntaComponent,
         /*ForoComponent,
         TareaComponent,
         WikiComponent,

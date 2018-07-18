@@ -22,7 +22,7 @@ export class CursoComponent implements OnInit {
   private diag:boolean=false;
   dataFactura = {
     numeroFactura: 0,
-    fecha: Date,
+    fecha: new Date(),
     idCliente: '',
     detalles: [],
     total: 0
@@ -74,7 +74,12 @@ export class CursoComponent implements OnInit {
     this.facturaServicio.obtenerNumeroFactura().subscribe(
       (resp:any)=>
       {
-        this.dataFactura.numeroFactura=++resp.numerofactura;
+        
+        this.dataFactura.numeroFactura=++resp.numerofactura
+        this.dataFactura.idCliente=this.estudiante.cod_persona
+        this.dataFactura.fecha=new Date();
+      
+
        
       }
     );
@@ -84,7 +89,7 @@ export class CursoComponent implements OnInit {
     this.notificacionService.enviarNotificacion({cod_plantilla:"Confirmacion Matricula",mail_alumno:this.estudiante.correo,asunto:"Matriculacion"}).subscribe(
       (resp:any)=>
       {
-        console.log(resp);
+       // console.log(resp);
       }
     );
 

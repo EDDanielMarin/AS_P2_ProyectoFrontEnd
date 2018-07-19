@@ -46,6 +46,7 @@ export class PreguntaComponent implements OnInit {
     console.log(this.preguntas1);
     this.msgs = [];
     this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'Respuestas enviadas' });
+    
   }
 
 

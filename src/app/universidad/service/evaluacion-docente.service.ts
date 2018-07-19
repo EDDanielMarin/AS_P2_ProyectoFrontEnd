@@ -19,6 +19,11 @@ export class EvaluacionDocenteService {
   {
     return this.dto.ejecutaGet(this.url.concat("pregunta/",param))
   }
+
+  obtenerCalificacionesCuestionario()
+  {
+    return this.dto.ejecutaGet(this.url.concat("respuestacuestionario/"))
+  }
   //guardarRespuestaPregunta(){
   //  return this.dto.ejecutaPost
   //}

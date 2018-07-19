@@ -56,6 +56,7 @@ const menu = [
         label: 'Evaluacion Docente', icon: 'fa fa-fw fa-cog',
         items: [
             { label: 'Cuestionario', icon: 'fa fa-fw fa-bars', routerLink: ['/cuestionario'] },
+            { label: 'Reporte Calificaciones', icon: 'fa fa-fw fa-bars', routerLink: ['/reportePregunta'] }
            
 
         ]
@@ -77,7 +78,8 @@ const menu = [
             label: 'Evaluacion Docente', icon: 'fa fa-fw fa-cog',
             items: [
                 { label: 'Cuestionario', icon: 'fa fa-fw fa-bars', routerLink: ['/cuestionario'] },
-               
+                { label: 'Reporte Calificaciones', icon: 'fa fa-fw fa-bars', routerLink: ['/reportePregunta'] }
+
 
             ]
         }

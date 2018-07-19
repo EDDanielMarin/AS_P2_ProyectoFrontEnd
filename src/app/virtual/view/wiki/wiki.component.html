@@ -1,3 +1,74 @@
-<p>
-  wiki works!
-</p>
+<div *ngIf="selectUsuario()">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-lg-12">
+      <!-- Left Side -->
+      <div class="card card-w-title">
+        <h1>Publicar wiki</h1>
+        <div class="ui-g form-group">
+  
+          <div class="ui-g-12 ui-md-6">
+            <input type="text" [(ngModel)]="wiki.tema" pInputText placeholder="Tema" required>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <textarea rows="4" cols="50" [(ngModel)]="wiki.descripcion" placeholder="Ingrese la descripción del wiki"  required>  </textarea>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <input type="date" [(ngModel)]="wiki.fechaInicio" pInputText placeholder="Fecha de inicio" required>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <input type="date" [(ngModel)]="wiki.fechaFin" pInputText placeholder="Fecha final" required>
+          </div>
+          <div class="ui-g-6 ui-md-4">
+            <button pButton type="button" label="Publicar wiki" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarwiki()"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+<div class="card card-w-title">
+  <h1>wikis</h1>
+  
+  <p-table [columns]="cols" [value]="wikis" selectionMode="single" dataKey="codigo" [style]="{'margin-bottom':'20px'}" [(selection)]="anuncioSeleccionado"
+      [responsive]="true" [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="both">
+      <ng-template pTemplate="caption">
+          wikis
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+          <tr>
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                  {{col.header}}
+                  <p-sortIcon [field]="col.field"></p-sortIcon>
+              </th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData" >
+                          
+              <td>
+                {{rowData.codigo}}
+              </td>
+              <td>
+                  {{rowData.curso }}
+              </td>
+              <td>
+                  {{rowData.tema}}
+              </td>
+              <td>  
+                  {{rowData.fecha }}
+              </td>
+            <div *ngIf="selectUsuario()">
+              <td>
+                <button pButton icon="fa-edit" (click)="editarwiki(rowData)"></button>
+                &nbsp;&nbsp;
+                <button pButton icon="fa-trash" (click)="eliminarwiki(rowData)"></button>
+              </td>
+            </div>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
+
+  
+  
+

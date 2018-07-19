@@ -26,6 +26,8 @@ import { MatriculaComponent } from './universidad/view/periodoLectivo/matricula/
 import { CursoComponent } from './universidad/view/periodoLectivo/curso/curso.component';
 import { PreguntaComponent } from './universidad/view/evaluacionDocente/pregunta/pregunta.component';
 import { PlantillasComponent } from './universidad/view/notificaciones/plantillas/plantillas.component';
+import { ReportePreguntaComponent } from './universidad/view/evaluacionDocente/reporte-pregunta/reporte-pregunta.component';
+import { ReporteAccesosComponent } from './universidad/view/RegistroAccesos/reporte-accesos/reporte-accesos.component';
 
 export const routes: Routes = [
     { path: '', component: DashboardDemoComponent  },
@@ -56,7 +58,9 @@ export const routes: Routes = [
     { path: 'nrc', component: NrcComponent },
     { path: 'clases', component: CursoComponent },
     { path: 'cuestionario', component: PreguntaComponent },
-    { path: 'plantillas', component: PlantillasComponent }
+    { path: 'reportePregunta', component: ReportePreguntaComponent },
+    { path: 'plantillas', component: PlantillasComponent },
+    { path: 'RegistroAccesos', component: ReporteAccesosComponent }
 
 
 

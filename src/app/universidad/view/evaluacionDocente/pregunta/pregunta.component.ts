@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EvaluacionDocenteService } from '../../../service/evaluacion-docente.service';
+import { Message } from 'primeng/primeng';
+
 
 @Component({
   selector: 'app-pregunta',
@@ -13,6 +15,9 @@ export class PreguntaComponent implements OnInit {
   usuario:any; 
   cuestionario:any;
   preguntas:any[];
+  preguntas1:any[]=[];
+  msgs: Message[] = [];
+
   ngOnInit() {
     setTimeout(this.servicio.obtenerURL(),10);
     this.usuario=JSON.parse(sessionStorage.getItem('usuario'));
@@ -25,8 +30,26 @@ export class PreguntaComponent implements OnInit {
       {
         this.preguntas=resp;
         console.log(this.preguntas)
+        this.preguntas.forEach(element => {
+      
+          this.preguntas1.push({id:element.codPregunta,enunciado:element.enunciado,valor:0});
+        });
       }
-    )
+    ) 
+  }
+
+  guardarValorPregunta(event){
+    console.log(event);
+  }
+
+  guardarCuestionario(){
+    console.log(this.preguntas1);
+    this.msgs = [];
+    this.msgs.push({ severity: 'success', summary: 'Enviado', detail: 'Respuestas enviadas' });
+
+    for(var i=0;i<this.preguntas1.length;i++)
+      this.msgs.push({ severity: 'info', summary: 'Pregunta '+this.preguntas1[i].id, detail: "Valor: "+this.preguntas1[i].valor });
+    
   }
 
 

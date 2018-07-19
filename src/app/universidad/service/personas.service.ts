@@ -23,7 +23,7 @@ export class PersonasService {
   obtenerPersonaCedula(cedula)
   {
     // return this.dto.ejecutaGet(this.url.concat(cedula));
-    return this.dto.ejecutaGet("http://35.229.42.61:3000/personas/"+cedula);
+    return this.dto.ejecutaGet("http://35.229.42.61:3000/personas/cedula/"+cedula);
   }
 
   guardar(data)

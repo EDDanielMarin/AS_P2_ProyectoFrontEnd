@@ -38,7 +38,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr [pSelectableRow]="rowData">
-        <td>
+        <td (click)="verEntregas(rowData)">
           {{rowData.codigo}}
         </td>
         <td>

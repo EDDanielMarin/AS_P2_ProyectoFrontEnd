@@ -1,66 +1,101 @@
-<div *ngIf="selectUsuario()">
+<div *ngIf="!selectUsuario()">
   <div class="ui-g ui-fluid">
     <div class="ui-g-12 ui-lg-12">
       <!-- Left Side -->
       <div class="card card-w-title">
-        <h1>Participar en el foro</h1>
+        <h1>Entregar la tarea</h1>
         <div class="ui-g form-group">
           <div class="ui-g-12 ui-md-6">
-            <textarea rows="4" cols="50" [(ngModel)]="tarea.calificacion" placeholder="Ingrese la calificacion de la tarea"  required>  </textarea>
+            <label> TEXTO: </label>
+            <br>
+            <textarea rows="4" cols="50" [(ngModel)]="tarea.texto" placeholder="Ingrese texto" required>  </textarea>
+            <br>
+            <br>
+            <label> ARCHIVO: </label>
+            <p-fileUpload name="demo[]" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*" maxFileSize="1000000">
+              <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                  <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                </ul>
+              </ng-template>
+            </p-fileUpload>
+            <br>
           </div>
           <div class="ui-g-6 ui-md-4">
-            <button pButton type="button" label="calificar" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarTarea()"></button>
+            <button pButton type="button" label="Enviar" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarEntrega()"></button>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div> 
+</div>
+<div *ngIf="selectUsuario()">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-lg-12">
+      <!-- Left Side -->
+      <div class="card card-w-title">
+        <h1>Entregar la tarea</h1>
+        <div class="ui-g form-group">
+          <div class="ui-g-12 ui-md-6">
+            <label> Observacion: </label>
+            <br>
+            <textarea rows="4" cols="50" [(ngModel)]="tarea.observacion" placeholder="Ingrese texto" required>  </textarea>
+            <br>
+            <br>
+            <label> Calificacion: </label>
+            <input type="text" [(ngModel)]="tarea.calificacion" pInputText placeholder="calificacion" required>
+            <br>
+          </div>
+          <div class="ui-g-6 ui-md-4">
+            <button pButton type="button" label="Enviar" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarEntrega()"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="card card-w-title">
-  <h1>Participaciones</h1>
-  <p-table [columns]="cols" [value]="foros" selectionMode="single" dataKey="codigo" [style]="{'margin-bottom':'20px'}" [(selection)]="anuncioSeleccionado"
-      [responsive]="true" [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="both">
-      <ng-template pTemplate="caption">
-          Foros
-      </ng-template>
-      <ng-template pTemplate="header" let-columns>
-          <tr>
-              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                  {{col.header}}
-                  <p-sortIcon [field]="col.field"></p-sortIcon>
-              </th>
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-rowData let-columns="columns">
-          <tr [pSelectableRow]="rowData" (click)="seleccionarTarea()">
-              <td>
-                  {{rowData.codigo}}
-              </td>
-              <td>
-                  {{rowData.tarea}}
-              </td>
-              <td>
-                  {{rowData.nombrePersona}}
-              </td>
-              <td>
-                  {{rowData.curso}}
-              </td>
-              <td>  
-                  {{rowData.texto}}
-              </td>
-              <td>
-                {{rowData.fechaEnvio}}
-              </td>
-            <div *ngIf="selectUsuario()">
-              <td>
-                <button pButton icon="fa-edit" (click)="editarEntregaTarea(rowData)"></button>
-                &nbsp;&nbsp;
-                <button pButton icon="fa-trash" (click)="eliminarEntregaTarea(rowData)"></button>
-              </td>
-            </div>
-          </tr>
-      </ng-template>
+  <h1>Entregas</h1>
+  <p-table [columns]="cols" [value]="tareas" selectionMode="single" dataKey="codigo" [style]="{'margin-bottom':'10px'}" [(selection)]="anuncioSeleccionado"
+    [responsive]="true" [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="both">
+    <ng-template pTemplate="caption">
+      Tareas Entregadas
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+          {{col.header}}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData" (click)="seleccionarTarea()">
+        <td>
+          {{rowData.nombrePersona}}
+        </td>
+        <td>
+          {{rowData.texto}}
+        </td>
+        <td>
+          {{rowData.archivo}}
+        </td>
+        <td style="height:auto">
+          {{rowData.fechaEnvio}}
+        </td>
+        <td>
+          {{rowData.calificacion}}
+        </td>
+        <td>
+          {{rowData.observacion}}
+        </td>
+
+        <div *ngIf="selectUsuario()">
+          <td>
+            <button pButton icon="fa-edit" (click)="editarEntregaTarea(rowData)"></button>
+          </td>
+        </div>
+      </tr>
+    </ng-template>
   </p-table>
 </div>
-
-

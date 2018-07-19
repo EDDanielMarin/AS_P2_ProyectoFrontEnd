@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   usu: any = "";
   pass: any = "";
   public usuario: any = {};
+  estadoResp: any = "";
 
   ipCliente: "";
   data = {
@@ -66,8 +67,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('usuario', JSON.stringify(resp));
           this.cargarMenu(resp.perfil);
           this.isLogin = true;
-
-
+          //alert("Acceso Consedido!");
 
 
 
@@ -104,13 +104,14 @@ export class LoginComponent implements OnInit {
           /*
               REGISTRO DE ACCESO CONCEDIDO
           */
+         console.log("a guardar OK!");
           this.data = {
             tipoAcceso: "Seguridades-Login",
             codigoUsuario: resp.cod_usuario,
             perfil: resp.perfil,
             ip: this.ipCliente,
             funcionalidad: "login",
-            resultado: "200 Ok"
+            resultado: "200"
           }
           
           //console.log(JSON.stringify(this.data));
@@ -137,17 +138,27 @@ export class LoginComponent implements OnInit {
 
 
         //this.servicioAlerta.clear();
+        if(error.codigo=="404")
+          this.estadoResp="No existe usuario!";
+        if(error.codigo=="403")
+          this.estadoResp="Clave Incorrecta!";
+        if(error.codigo=="401")
+          this.estadoResp="Usuario Bloqueado!";
+
+          alert(this.estadoResp);
+
 
         /*
               REGISTRO DE ACCESO DENEGADO
           */
+         console.log("a guardar ERR!");
         this.data = {
           tipoAcceso: "Seguridades-Login",
           codigoUsuario: this.usu,
           perfil: "",
           ip: this.ipCliente,
           funcionalidad: "login",
-          resultado: "403 Forbidden"
+          resultado: error.codigo
         }
         this.servicioRegistroAcceso.guardarAcceso(this.data).subscribe(
           (resp1: any) => {

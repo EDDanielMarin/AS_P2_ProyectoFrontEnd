@@ -13,6 +13,7 @@ import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { FileUploadModule } from 'primeng/fileupload';
 @NgModule({
   imports: [
     CommonModule,
@@ -23,6 +24,7 @@ import { DialogModule } from 'primeng/dialog';
     FormsModule,
     ButtonModule,
     DialogModule,
+    FileUploadModule,
   ],
   declarations: [ForoComponent, AnuncioComponent, TareaComponent, WikiComponent, ForoAlumnoComponent,EntregaTareaComponent]
 })

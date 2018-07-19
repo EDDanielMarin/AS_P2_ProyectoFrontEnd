@@ -21,4 +21,8 @@ export class AccesoService {
   {
     return this.dto.ejecutaPut(this.url.concat("SegRegistroAcceso/nuevo"),data);
   }
+  obtenerAccesos()
+  {
+    return this.dto.ejecutaGet(this.url.concat("SegRegistroAcceso/buscar/todos"));
+  }
 }

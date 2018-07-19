@@ -9,8 +9,8 @@ const menu = [
             {
                 label: 'Usuarios', icon: 'fa fa-fw fa-cog',
                 items: [
-                    { label: 'Crear', icon: 'fa fa-fw fa-bars', routerLink: ['/registro'] }
-
+                    { label: 'Crear', icon: 'fa fa-fw fa-bars', routerLink: ['/registro'] },
+                    { label: 'Registro Accesos', icon: 'fa fa-fw fa-bars', routerLink: ['/RegistroAccesos'] }
                 ]
             },
 

@@ -30,9 +30,20 @@ export class ReportePreguntaComponent implements OnInit {
         this.cuestionarios=resp;
         console.log(this.cuestionarios)
         this.cuestionarios.forEach(element => {
-          var nombres = this.getNombres(element.evaRespuestaCuestionarioPK.codPersona);
-          console.log(nombres);
-          this.cuestionarios1.push({codCuestionario:element.evaRespuestaCuestionarioPK.codCuestionario, codEvaluacion:element.evaRespuestaCuestionarioPK.codEvaluacion, codNrc:element.evaRespuestaCuestionarioPK.codNrc, persona: nombres, fecha:element.fecha, calificacion: element.calificacionPromedio});
+          this.servicioPersona.obtenerPersonaCedula(element.evaRespuestaCuestionarioPK.codPersona).subscribe(
+            (resp1:any)=>{
+                var nombres = resp1[0].NOMBRE+" "+resp1[0].APELLIDO
+                //console.log(resp1[0].NOMBRE+" "+resp1[0].APELLIDO);
+                console.log(nombres);
+                this.cuestionarios1.push({codCuestionario:element.evaRespuestaCuestionarioPK.codCuestionario, codEvaluacion:element.evaRespuestaCuestionarioPK.codEvaluacion, codNrc:element.evaRespuestaCuestionarioPK.codNrc, persona: nombres, fecha:element.fecha, calificacion: element.calificacionPromedio});
+            },
+            (error)=>{
+              
+                    }
+            );
+          //var nombres = this.getNombres(element.evaRespuestaCuestionarioPK.codPersona);
+          //console.log(nombres);
+          
         });
 
       }
@@ -44,7 +55,7 @@ export class ReportePreguntaComponent implements OnInit {
       this.servicioPersona.obtenerPersonaCedula(cedula).subscribe(
       (resp1:any)=>{
           var nombres = resp1[0].NOMBRE+" "+resp1[0].APELLIDO
-          console.log(resp1[0].NOMBRE+" "+resp1[0].APELLIDO);
+          //console.log(resp1[0].NOMBRE+" "+resp1[0].APELLIDO);
           console.log(nombres);
           return nombres;
       },

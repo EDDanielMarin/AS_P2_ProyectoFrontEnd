@@ -45,7 +45,10 @@ export class PreguntaComponent implements OnInit {
   guardarCuestionario(){
     console.log(this.preguntas1);
     this.msgs = [];
-    this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'Respuestas enviadas' });
+    this.msgs.push({ severity: 'success', summary: 'Enviado', detail: 'Respuestas enviadas' });
+
+    for(var i=0;i<this.preguntas1.length;i++)
+      this.msgs.push({ severity: 'info', summary: 'Pregunta '+this.preguntas1[i].id, detail: "Valor: "+this.preguntas1[i].valor });
     
   }
 

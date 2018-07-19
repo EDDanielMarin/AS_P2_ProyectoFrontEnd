@@ -1,11 +1,11 @@
-<p-growl [value]="msgs" sticky="sticky"></p-growl>
+<p-growl [value]="msgs" [sticky]="sticky" [life]="8000"></p-growl>
 <p-panel header="Cuestionario: {{cuestionario}}">
     <p-table [value]="preguntas1" autoLayout="true">
         <ng-template pTemplate="header">
             <tr>
                 <th>Id</th>
                 <th>Enunciado</th>
-                <th>Valor</th>
+                <th style="width:150px;">Valor</th>
                 
             </tr>
         </ng-template>

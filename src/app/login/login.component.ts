@@ -7,6 +7,7 @@ import { AccesoService } from './service/accesos.service';
 import { GetIpCliente } from './service/client-ip.service';
 import { Md5 } from "md5-typescript";
 import { AlertService } from '../config/global/alert.service';
+import { NotificacionService } from '../universidad/service/notificacion.service';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { AlertService } from '../config/global/alert.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 
 export class LoginComponent implements OnInit {
 
@@ -38,11 +40,13 @@ export class LoginComponent implements OnInit {
 
   msg: Message[] = [];
   modelMenu: any[] = [];
-  constructor(private servicio: LoginService, private servicioRegistroAcceso: AccesoService, private servicioIpCliente: GetIpCliente, private servicioAlerta: AlertService) { }
+  notificaciones: any[] = [];
+  
+  constructor(private servicio: LoginService, private servicioRegistroAcceso: AccesoService, private servicioIpCliente: GetIpCliente, private servicioAlerta: AlertService, private notificacionService: NotificacionService) { }
 
   ngOnInit() {
 
-    setTimeout(this.servicioRegistroAcceso.obtenerURL(), 10);
+    setTimeout(this.servicioRegistroAcceso.obtenerURL(),this.notificacionService.obtenerURL(), 10);
 
     this.servicioIpCliente.getIpAddress().subscribe(
       (resp: any) => {
@@ -65,6 +69,38 @@ export class LoginComponent implements OnInit {
 
 
 
+
+
+
+          this.notificacionService.enviarNotificacionSMS(
+            {
+              cod_plantilla: "Login",
+              mail_alumno: "593983023577",
+              asunto: "Login",
+              cod_alumno:resp.cod_persona,
+              datos: [
+                {
+                  variable: "nombre",
+                  valor: resp.nombre
+                },
+                {
+                  variable: "fecha",
+                  valor: new Date()
+                }
+
+              ]
+            }
+
+          ).subscribe(
+            (resp_: any) => {
+
+
+                  this.obtenerNotificaciones(resp)
+
+            }
+          );
+
+
           /*
               REGISTRO DE ACCESO CONCEDIDO
           */
@@ -76,6 +112,7 @@ export class LoginComponent implements OnInit {
             funcionalidad: "login",
             resultado: "200 Ok"
           }
+          
           //console.log(JSON.stringify(this.data));
           this.servicioRegistroAcceso.guardarAcceso(this.data).subscribe(
             (resp1: any) => {
@@ -97,6 +134,8 @@ export class LoginComponent implements OnInit {
         console.log(error.estado);
         console.log(error.codigo);
         this.servicioAlerta.addMultiple(this.msg);
+
+
         //this.servicioAlerta.clear();
 
         /*
@@ -138,6 +177,13 @@ export class LoginComponent implements OnInit {
     );
 
 
+  }
+  obtenerNotificaciones(resp)
+  {
+    console.log(resp)
+    this.notificacionService.obtenerURL();
+    this.notificacionService.obtenerNotificaciones(resp.cod_persona).subscribe(asd=>this.notificaciones=(asd))
+    
   }
   logout() {
     sessionStorage.removeItem('usuario');

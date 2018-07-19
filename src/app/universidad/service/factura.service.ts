@@ -23,6 +23,15 @@ export class FacturaService {
 
   obtenerFactura(param)
   {
-    return this.dto.ejecutaGet("http://40.121.33.183:3000/facturas/"+param);
+    return this.dto.ejecutaGet("http://40.121.33.183:3000/facturas/buscar/"+param);
+  }
+  
+  actualizarFactura(data)
+  {
+    return this.dto.ejecutaPost("http://40.121.33.183:3000/facturas",data);
+  }
+  obtenerFacturas()
+  {
+    return this.dto.ejecutaGet("http://40.121.33.183:3000/facturas");
   }
 }

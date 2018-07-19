@@ -21,6 +21,11 @@ export class NotificacionService {
   enviarNotificacion(data) {
     return this.dto.ejecutaPost(this.url.concat("notificaciones"), data);
   }
+
+  enviarNotificacionSMS(data) {
+    return this.dto.ejecutaPost(this.url.concat("notificaciones/sms"), data);
+  }
+
   obtenerPlantilla() {
     return this.dto.ejecutaGet(this.url.concat("plantillas"));
   }
@@ -36,5 +41,9 @@ export class NotificacionService {
   eliminarPlantilla(param) {
     return this.dto.ejecutaDeleteId(this.url.concat("plantillas/", param))
 
+  }
+  obtenerNotificaciones(param)
+  {
+   return this.dto.ejecutaGet(this.url.concat("notificaciones/receptor/",param))
   }
 }

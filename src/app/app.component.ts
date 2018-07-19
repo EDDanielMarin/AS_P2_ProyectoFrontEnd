@@ -18,6 +18,9 @@ export class AppComponent implements OnInit {
             this.login.modelMenu=JSON.parse(mnud);
             this.login.usuario=JSON.parse(usd);
             this.login.isLogin=true;
+            this.login.obtenerNotificaciones(this.login.usuario)
+            //this.notificacionService.obtenerNotificaciones(resp.cod_persona).subscribe(asd=>this.notificaciones=(asd))
+
         }
     }
     @ViewChild(LoginComponent) login: LoginComponent;

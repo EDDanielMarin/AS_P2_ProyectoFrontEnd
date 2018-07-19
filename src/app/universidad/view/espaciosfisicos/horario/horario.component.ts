@@ -63,7 +63,7 @@ export class HorarioComponent implements OnInit {
   ngOnInit() {
     //setTimeout(this.servicioPeriodo.obtenerURL(), 10);
     setTimeout(this.servicioPersona.obtenerURL(), this.servicioPeriodo.obtenerURL(),
-      this.servicioUbicacion.obtenerURL(),this.notificacionService.obtenerURL(),
+      this.servicioUbicacion.obtenerURL(), this.notificacionService.obtenerURL(),
       this.servicioFranja.obtenerURL(), this.servicioHorario.obtenerURL(), 10);
 
     this.servicioPeriodo.obtenerPeriodos().subscribe(
@@ -162,7 +162,31 @@ export class HorarioComponent implements OnInit {
         ((resp: any) => {
           console.log(resp)
 
-          this.notificacionService.enviarNotificacion({ cod_plantilla: "Asignar Docente", mail_alumno: this.docente.CORREO, asunto: "Asignacion Docente" }).subscribe(
+          this.notificacionService.enviarNotificacion(
+            {
+              cod_plantilla: "Asignacion Docente",
+              mail_alumno: this.docente.CORREO,
+              asunto: "Asignacion Docente",
+              cod_alumno: this.docente.CEDULA,
+              datos: [
+                {
+                  variable: "nombre",
+                  valor: this.docente.NOMBRE + " " + this.docente.APELLIDO
+                },
+                {
+                  variable: "nrc",
+                  valor: this.nrcSeleccionado.codNrc
+                },
+                {
+                  variable: "periodo",
+                  valor: this.periodoSeleccionado.codigo
+                }
+
+
+              ]
+            }
+
+          ).subscribe(
             (resp1: any) => {
               console.log(resp1);
             }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TareaService } from '../../service/Tarea.service';
+import { TareaService } from '../../service/tarea.service';
 import { PersonasService } from '../../../universidad/service/personas.service';
 import * as moment from 'moment';
 @Component({

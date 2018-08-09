@@ -29,7 +29,7 @@
         "jquery": "3.2.1",
         "md5-typescript": "^1.0.5",
         "moment": "2.18.1",
-        "primeng": "6.0.0-alpha.2",
+        "primeng": "^6.0.0-alpha.2",
         "prismjs": "1.6.0",
         "quill": "1.1.8",
         "rxjs": "6.2.0",

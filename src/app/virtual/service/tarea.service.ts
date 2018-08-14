@@ -46,7 +46,9 @@ export class TareaService {
 
   subirArchivo(data : any)
   {
-    return this.dto.ejecutaPost("http://35.197.102.72/AulaVirtual_Upload-Download/rest/upload",data);
+    var formData = new FormData();
+    formData.append('file', JSON.stringify(data));
+    return this.dto.ejecutaPostMulti("http://35.197.102.72/AulaVirtual_Upload-Download/rest/upload",formData);
   }
   bajarArchivo(data)
   {

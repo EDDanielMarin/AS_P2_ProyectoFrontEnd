@@ -12,13 +12,13 @@
             <br>
             <br>
             <label> ARCHIVO: </label>
-            <p-fileUpload name="demo[]" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*" maxFileSize="1000000">
-              <ng-template pTemplate="content">
-                <ul *ngIf="uploadedFiles.length">
-                  <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                </ul>
-              </ng-template>
-            </p-fileUpload>
+
+            <!--<input type="file" name="file" id="file" class="buttonPropio buttonPropio-1" (change)="onUpload($event)">
+            <label for="file"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file&hellip;</span></label>
+            <input style="border:none" [(ngModel)]="nombreArchivo">-->
+            <p-fileUpload url="http://35.197.102.72/AulaVirtual_Upload-Download/rest/upload" multiple="multiple" (change)="onChange($event)"></p-fileUpload>
+            <!--<p-fileUpload mode="basic" name="demo[]" url="http://35.197.102.72/AulaVirtual_Upload-Download/rest/upload" accept="image/*" maxFileSize="1000000" (change)="onChange($event)" auto="true"></p-fileUpload>-->
+
             <br>
           </div>
           <div class="ui-g-6 ui-md-4">
@@ -70,18 +70,18 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr [pSelectableRow]="rowData" (click)="seleccionarTarea()">
+      <tr [pSelectableRow]="rowData"> <!--(click)="seleccionarTarea()"-->
         <td>
           {{rowData.nombrePersona}}
         </td>
         <td>
           {{rowData.texto}}
         </td>
-        <td>
-          {{rowData.archivo}}
+        <td (click)="descarga(rowData)">
+            <b>{{DESCARGAR}} {{rowData.archivo}}</b>
         </td>
         <td style="height:auto">
-          {{rowData.fechaEnvio}}
+          {{(rowData.fechaEnvio.split("T"))[0]}}, {{((rowData.fechaEnvio.split("T"))[1].split(":"))[0]}}:{{((rowData.fechaEnvio.split("T"))[1].split(":"))[1]}}
         </td>
         <td>
           {{rowData.calificacion}}
@@ -99,3 +99,76 @@
     </ng-template>
   </p-table>
 </div>
+<style>
+  .buttonPropio {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .buttonPropio+label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+  }
+
+  .no-js .buttonPropio+label {
+    display: none;
+  }
+
+  .buttonPropio:focus+label,
+  .buttonPropio.has-focus+label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+
+  .buttonPropio+label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    /* 4px */
+    margin-right: 0.25em;
+    /* 4px */
+  }
+
+
+  /* style 1 */
+
+  .buttonPropio-1+label {
+    color: #f1e5e6;
+    background-color: #d3394c;
+  }
+
+  .buttonPropio-1:focus+label,
+  .buttonPropio-1.has-focus+label,
+  .buttonPropio-1+label:hover {
+    background-color: #722040;
+  }
+
+  /*
+  .buttonPropio{
+  margin: 0;
+  color: #ffffff;
+  background-color: #4B6CB7;
+  border: 1px solid #4B6CB7;
+  font-size: 13px;
+  -moz-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+
+  }*/
+</style>

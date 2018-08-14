@@ -117,7 +117,6 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { ReportePreguntaComponent } from './universidad/view/evaluacionDocente/reporte-pregunta/reporte-pregunta.component';
 import { ReporteAccesosComponent } from './universidad/view/RegistroAccesos/reporte-accesos/reporte-accesos.component';
 
-
 @NgModule({
     imports: [
         BrowserModule,

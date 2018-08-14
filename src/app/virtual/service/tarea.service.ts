@@ -43,4 +43,13 @@ export class TareaService {
   {
     return this.dto.ejecutaDelete2("http://35.197.102.72/aula-virtual-web/webresources/EntregaTarea/"+data);
   }
+
+  subirArchivo(data : any)
+  {
+    return this.dto.ejecutaPost("http://35.197.102.72/AulaVirtual_Upload-Download/rest/upload",data);
+  }
+  bajarArchivo(data)
+  {
+    return this.dto.ejecutaGetOct("http://35.197.102.72/AulaVirtual_Upload-Download/rest/Download/"+data);
+  }
 }

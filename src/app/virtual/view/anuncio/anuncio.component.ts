@@ -29,24 +29,44 @@ export class AnuncioComponent implements OnInit {
       
   ];
     this.usuario=JSON.parse(sessionStorage.getItem('usuario'));
-    var codigo_persona={
-      "codPeriodo":"201801",
-      "codPersona":"L00357199"
-    };
-    this.servicioPeriodo.obtenerNrcPorDocente(codigo_persona).subscribe(
-      (resp:any)=>{           
-        this.nrcs=resp;  
-        console.log(resp);
-      },
-      (error)=>{
+    
+    if(this.usuario.perfil=="DOC")
+    {
+      var codigo_persona={
+        "codPeriodo":"201801",
+        "codPersona":"L00357199"
+      };  
+      this.servicioPeriodo.obtenerNrcPorDocente(codigo_persona).subscribe(
+        (resp:any)=>{           
+          this.nrcs=resp;  
+          console.log(resp);
+        },
+        (error)=>{
 
+        }
+
+      );
+    }else{
+      var codigo_persona2={
+        "codPeriodo":"201801",
+        "codPersona":"0503910903"
+      };
+      this.servicioPeriodo.obtenerNrcAlumno(codigo_persona2).subscribe(
+        (resp:any)=>{           
+          this.nrcs=resp[0].detalleMatricula;  
+          console.log(resp);
+          console.log(this.nrcs);
+        },
+        (error)=>{
+
+        }
+
+      );
       }
-
-    );
-
+      console.log(this.nrcs);   
   }
   buscarCurso(){
-    alert(this.curso);
+    //alert(this.curso);
     this.selectCurso=true;
     this.servicio.obtenerAnunciosCurso(this.curso).subscribe(
       (resp:any)=>{
@@ -80,9 +100,10 @@ export class AnuncioComponent implements OnInit {
       )
 
     }else{
-      alert(this.curso);
+      //alert(this.curso);
       this.anuncio.fecha=new Date();
       this.anuncio.curso=this.curso;
+      console.log(this.anuncio);
       this.servicio.guardarAnuncio(this.anuncio).subscribe(
         (resp:any)=>{
           console.log(resp);

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WikiService } from '../../service/wiki.service';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
-
+import { PeriodoService } from '../../../universidad/service/periodo.service';
 
 @Component({
   selector: 'app-wiki',
@@ -11,8 +11,11 @@ import { Router } from '@angular/router';
 })
 export class WikiComponent implements OnInit {
 
-  constructor(private servicio:WikiService) { }
-  curso=10;
+  constructor(private servicio:WikiService, private servicioPeriodo:PeriodoService) { }
+  curso:any;
+    selectCurso:any;
+    nrcs:any;
+  //curso=10;
   wikis:any=[];
   anuncioSeleccionado:any;
   cols: any[];
@@ -29,19 +32,57 @@ export class WikiComponent implements OnInit {
       
   ];
     this.usuario=JSON.parse(sessionStorage.getItem('usuario'));
-    this.servicio.obtenerWikiCurso(this.curso).subscribe(
-      (resp:any)=>{
-         
+    if(this.usuario.perfil=="DOC")
+    {
+      var codigo_persona={
+        "codPeriodo":"201801",
+        "codPersona":"L00357199"
+      };  
+      this.servicioPeriodo.obtenerNrcPorDocente(codigo_persona).subscribe(
+        (resp:any)=>{           
+          this.nrcs=resp;  
           console.log(resp);
-          this.wikis=resp;
-          
-      },
-      (error)=>{
+        },
+        (error)=>{
 
+        }
+
+      );
+    }else{
+      var codigo_persona2={
+        "codPeriodo":"201801",
+        "codPersona":"0503910903"
+      };
+      this.servicioPeriodo.obtenerNrcAlumno(codigo_persona2).subscribe(
+        (resp:any)=>{           
+          this.nrcs=resp[0].detalleMatricula;  
+          console.log(resp);
+          console.log(this.nrcs);
+        },
+        (error)=>{
+
+        }
+
+      );
       }
-
-    );
-  }
+      console.log(this.nrcs);
+    }
+    buscarCurso(){
+      //alert(this.curso);
+      this.selectCurso=true;
+      this.servicio.obtenerWikiCurso(this.curso).subscribe(
+        (resp:any)=>{
+           
+            console.log(resp);
+            this.wikis=resp;
+            
+        },
+        (error)=>{
+  
+        }
+  
+      );
+    }
   selectUsuario(){
     if(this.usuario.perfil=="DOC")
       return true;

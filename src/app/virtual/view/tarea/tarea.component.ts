@@ -31,21 +31,40 @@ export class TareaComponent implements OnInit {
       { field: 'fechaInicio', header: 'Fecha Inicial' },
       { field: 'fechaFin', header: 'Fecha Final' },
     ];
-    this.usuario = JSON.parse(sessionStorage.getItem('usuario'));
-    var codigo_persona={
-      "codPeriodo":"201801",
-      "codPersona":"L00357199"
-    };
-    this.servicioPeriodo.obtenerNrcPorDocente(codigo_persona).subscribe(
-      (resp:any)=>{           
-        this.nrcs=resp;  
-        console.log(resp);
-      },
-      (error)=>{
+    if(this.usuario.perfil=="DOC")
+    {
+      var codigo_persona={
+        "codPeriodo":"201801",
+        "codPersona":"L00357199"
+      };  
+      this.servicioPeriodo.obtenerNrcPorDocente(codigo_persona).subscribe(
+        (resp:any)=>{           
+          this.nrcs=resp;  
+          console.log(resp);
+        },
+        (error)=>{
 
+        }
+
+      );
+    }else{
+      var codigo_persona2={
+        "codPeriodo":"201801",
+        "codPersona":"0503910903"
+      };
+      this.servicioPeriodo.obtenerNrcAlumno(codigo_persona2).subscribe(
+        (resp:any)=>{           
+          this.nrcs=resp[0].detalleMatricula;  
+          console.log(resp);
+          console.log(this.nrcs);
+        },
+        (error)=>{
+
+        }
+
+      );
       }
-
-    );
+      console.log(this.nrcs);
 
   }
   buscarCurso(){

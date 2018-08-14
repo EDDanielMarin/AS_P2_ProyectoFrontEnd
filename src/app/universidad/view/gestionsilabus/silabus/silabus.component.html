@@ -57,8 +57,9 @@
   </div>
   <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <button type="button" pButton icon="fa fa-close" (click)="eliminarRegistro()" label="Eliminar"></button>
-      <button type="button" pButton icon="fa fa-check" (click)="guardarRegistro()" label="Guardar"></button>
+        <p-messages [value]="msgs"></p-messages>
+      <button type="button" pButton icon="fa fa-close" (click)="eliminarRegistro();showError()" label="Eliminar"></button>
+      <button type="button" pButton icon="fa fa-check" (click)="guardarRegistro();showSuccess()" label="Guardar"></button>
     </div>
   </p-footer>
 </p-dialog>
@@ -131,8 +132,9 @@
 
   <p-footer *ngIf="crudTema">
       <div class="ui-dialog-buttonpane ui-helper-clearfix">
-          <button type="button" pButton icon="fa fa-close" (click)="eliminarTema()" label="Eliminar"></button>
-          <button type="button" pButton icon="fa fa-check" (click)="guardarTema()" label="Guardar"></button>      
+          <p-messages [value]="msgs"></p-messages>
+          <button type="button" pButton icon="fa fa-close" (click)="eliminarTema();showError()" label="Eliminar"></button>
+          <button type="button" pButton icon="fa fa-check" (click)="guardarTema();showSuccess()" label="Guardar"></button>      
       </div>
     </p-footer>
 </p-dialog>

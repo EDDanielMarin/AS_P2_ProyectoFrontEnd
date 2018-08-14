@@ -20,7 +20,10 @@ export class SilabusService {
   {
     return this.dto.ejecutaGet(this.url.concat("syllabus"));
   }
-  
+  obtenerSeguimiento()
+  {
+    return this.dto.ejecutaGet(this.url.concat("seguimiento"));
+  }
   obtener(param,tabla){
     return this.dto.ejecutaGet(this.url.concat(tabla,"/",param));
   }

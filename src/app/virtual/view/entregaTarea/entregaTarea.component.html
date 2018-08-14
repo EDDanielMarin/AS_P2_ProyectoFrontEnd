@@ -11,13 +11,12 @@
             <textarea rows="4" cols="50" [(ngModel)]="tarea.texto" placeholder="Ingrese texto" required>  </textarea>
             <br>
             <br>
-            <label> ARCHIVO: </label>
 
-            <!--<input type="file" name="file" id="file" class="buttonPropio buttonPropio-1" (change)="onUpload($event)">
-            <label for="file"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file&hellip;</span></label>
-            <input style="border:none" [(ngModel)]="nombreArchivo">-->
-            <p-fileUpload url="http://35.197.102.72/AulaVirtual_Upload-Download/rest/upload" multiple="multiple" (change)="onChange($event)"></p-fileUpload>
-            <!--<p-fileUpload mode="basic" name="demo[]" url="http://35.197.102.72/AulaVirtual_Upload-Download/rest/upload" accept="image/*" maxFileSize="1000000" (change)="onChange($event)" auto="true"></p-fileUpload>-->
+            <input type="file" name="file" id="file" class="buttonPropio buttonPropio-1" (change)="onUpload($event)">
+            <label for="file"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Adjuntar Archivo&hellip;</span></label>
+            <br><br>
+            <label> Archivo: </label>
+            <input style="border:none" [(ngModel)]="nombreArchivo" readonly>
 
             <br>
           </div>
@@ -111,9 +110,9 @@
 
   .buttonPropio+label {
     max-width: 80%;
-    font-size: 1.25rem;
+    font-size: 0.70rem;
     /* 20px */
-    font-weight: 700;
+    font-weight: 400;
     text-overflow: ellipsis;
     white-space: nowrap;
     cursor: pointer;
@@ -148,14 +147,14 @@
   /* style 1 */
 
   .buttonPropio-1+label {
-    color: #f1e5e6;
-    background-color: #d3394c;
+    color: #e5e6f1;
+    background-color: #4B6CB7;
   }
 
   .buttonPropio-1:focus+label,
   .buttonPropio-1.has-focus+label,
   .buttonPropio-1+label:hover {
-    background-color: #722040;
+    background-color: #202872;
   }
 
   /*

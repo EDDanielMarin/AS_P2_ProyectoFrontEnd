@@ -66,8 +66,9 @@
       </div>
       <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-          <button type="button" pButton icon="fa fa-close" (click)="eliminarRegistro()" label="Eliminar"></button>
-          <button type="button" pButton icon="fa fa-check" (click)="guardarRegistro()" label="Guardar"></button>
+            <p-messages [value]="msgs"></p-messages>
+          <button type="button" pButton icon="fa fa-close" (click)="eliminarRegistro();showError()" label="Eliminar"></button>
+          <button type="button" pButton icon="fa fa-check" (click)="guardarRegistro();showSuccess()" label="Guardar"></button>
         </div>
       </p-footer>
     </p-dialog>
@@ -76,7 +77,7 @@
 
 
   
-  <p-dialog header="Tareas" [(visible)]="temaVis" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
+  <p-dialog header="Tareas" [(visible)]="tareaVis" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
       <div class="card card-w-title" *ngIf="!crudTarea">
         <h1>Tareas</h1>
         <div class="ui-g form-group">
@@ -129,8 +130,9 @@
     
       <p-footer *ngIf="crudTarea">
           <div class="ui-dialog-buttonpane ui-helper-clearfix">
-              <button type="button" pButton icon="fa fa-close" (click)="eliminarTarea()" label="Eliminar"></button>
-              <button type="button" pButton icon="fa fa-check" (click)="guardarTarea()" label="Guardar"></button>      
+              <p-messages [value]="msgs"></p-messages>
+              <button type="button" pButton icon="fa fa-close" (click)="eliminarTarea();showError()" label="Eliminar"></button>
+              <button type="button" pButton icon="fa fa-check" (click)="guardarTarea();showSuccess()" label="Guardar"></button>      
           </div>
         </p-footer>
     </p-dialog>

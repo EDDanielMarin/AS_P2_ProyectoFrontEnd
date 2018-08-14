@@ -186,6 +186,20 @@ export class RegistroComponent implements OnInit {
                 console.log("Error");
               }
             );
+          },
+          err=>
+          {
+            this.servicio.guardarUsuario(this.data).subscribe(
+              (resp1: any) => {
+
+                console.log("guardado usuario");
+                this.claveMD5="";
+
+              },
+              (error) => {
+                console.log("Error");
+              }
+            );
           }
         )
       }

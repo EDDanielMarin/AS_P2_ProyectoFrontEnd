@@ -1,4 +1,3 @@
-
 const menu = [
     {
         rol: "ADM",
@@ -35,10 +34,9 @@ const menu = [
 
             {
                 label: 'Syllabus', icon: 'fa fa-fw fa-cog',
-                items: [
+                items: [ 
                     { label: 'Syllabus', icon: 'fa fa-fw fa-bars', routerLink: ['/silabus'] },
-                    { label: 'Temas', icon: 'fa fa-fw fa-bars', routerLink: ['/temas'] }
-
+                    { label: 'Temas', icon: 'fa fa-fw fa-bars', routerLink: ['/temas'] },
                 ]
             },
             
@@ -104,6 +102,13 @@ const menu = [
                     { label: 'Plantillas', icon: 'fa fa-fw fa-bars',  routerLink: ['/plantillas'] },
                     { label: 'Notificaciones',  icon: 'fa fa-fw fa-bars',  routerLink: ['/notificaciones'] }
                     
+                ]
+            },
+            {
+                label: 'Seguimiento', icon: 'fa fa-fw fa-cog',
+                items: [ 
+                    { label: 'Syllabus', icon: 'fa fa-fw fa-bars', routerLink: ['/silabus'] },
+                    { label: 'Seguimiento', icon: 'fa fa-fw fa-bars', routerLink: ['/seguimiento'] }
                 ]
             },
             {

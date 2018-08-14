@@ -163,7 +163,7 @@ export class EntregaTareaComponent implements OnInit {
     return formattedTime;
   }
   //upload
-  onChange(event) {
+  onUpload(event) {
     console.log(event);
     this.nombreArchivo = event.srcElement.files[0].name;
     this.evento = <File>event.srcElement.files[0];
@@ -188,6 +188,5 @@ export class EntregaTareaComponent implements OnInit {
       error => console.log(error)
     );
   }
-
 
 }

@@ -2,6 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SilabusService } from '../../../service/silabus.service';
 import { PeriodoService } from '../../../service/periodo.service';
 //import { TemaComponent } from '../tema/tema.component';
+import {MessagesModule} from 'primeng/messages';
+import {MessageService} from 'primeng/components/common/messageservice';
+
+import {Message} from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-silabus',
@@ -9,15 +13,31 @@ import { PeriodoService } from '../../../service/periodo.service';
   styleUrls: ['./silabus.component.css']
 })
 export class SilabusComponent implements OnInit {
-
+  msgs: Message[] = [];
   constructor(private servicio: SilabusService, private servicioPeriodo: PeriodoService, ) { }
+
+  showModificar() {
+    this.msgs = [];
+    this.msgs.push({severity:'info', summary:'Aviso: ', detail:'Modificado  '});
+}
+ 
+  showError() {
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'Aviso: ', detail:'Eliminado  '});
+}
+showSuccess() {
+  this.msgs = [];
+  this.msgs.push({severity:'success', summary:'Aviso: ', detail:'Guardado correcto  '});
+ // this.delay(3000);
+}
   private asignaturas: any[];
   private periodos: any[];
   private silabus: any[];
   private cols: any[];
   private colsTemas: any[];
   private temas: any[];
-
+  private seguimiento: any[];
+  
   private asignaturaSeleccionada: any = {};
   private periodoSeleccionado: any = {};
   private silaboParaTema: any = {};
@@ -28,6 +48,7 @@ export class SilabusComponent implements OnInit {
     descripcion: '',
     fecha_elaboracion: new Date()
   };
+  
   private dataTema = {
     COD_SILABO: '',
     NOMBRE: '',
@@ -56,7 +77,8 @@ export class SilabusComponent implements OnInit {
         console.log(this.periodos)
       }
     );
-  
+   
+    //seg3:seguimiento[];
     this.cargarSilabus();
     this.colsTemas = [
       { field: 'NOMBRE', header: 'NombreTema' },
@@ -76,6 +98,7 @@ export class SilabusComponent implements OnInit {
   nuevoTema()
   {
     this.crudTema=true;
+    this.msgs = [];
     this.dataTema = {
       COD_SILABO: '',
       NOMBRE: '',
@@ -88,12 +111,14 @@ export class SilabusComponent implements OnInit {
     //   console.log(event);
     // this.temaComp.silabo=event;
     //localStorage.setItem("syl",event);
+    this.msgs = [];
     this.crudTema=false;
     this.silaboParaTema=event;
     this.cargarTemas(event);
 
   }
   cargarTemas(t) {
+    this.msgs = [];
     this.servicio.obtener(t._id, "tema").subscribe(
       (resp: any) => {
         this.temas = resp;
@@ -102,6 +127,7 @@ export class SilabusComponent implements OnInit {
     )
   }
   cargarSilabus() {
+    this.msgs = [];
     this.servicio.obtenerSilabus().subscribe(
       (resp: any) => {
         this.silabus = resp;
@@ -109,6 +135,7 @@ export class SilabusComponent implements OnInit {
     )
   }
   editarRegistro() {
+    this.msgs = [];
     this.periodoSeleccionado = this.periodos.find(x => x.codigo == this.data.codigo_periodo);
     this.asignaturaSeleccionada = this.asignaturas.find(x => x.codigo == this.data.codigo_asignatura)
     
@@ -116,7 +143,7 @@ export class SilabusComponent implements OnInit {
   }
   editarTema()
   {
-
+    this.msgs = [];
     //this.dataTema['_id']=e.data._id;
     this.f1=new Date(this.dataTema.FECHA_INICIO);
     this.f2=new Date(this.dataTema.FECHA_FIN);
@@ -124,6 +151,7 @@ export class SilabusComponent implements OnInit {
     this.crudTema=true;
   }
   nuevoRegistro() {
+    this.msgs = [];
     this.data = {
       codigo_asignatura: '',
       codigo_periodo: '',
@@ -133,6 +161,7 @@ export class SilabusComponent implements OnInit {
     this.crud = true;
   }
   eliminarRegistro() {
+    this.msgs = [];
     if (this.data['_id']) {
       this.servicio.eliminar(this.data['_id'], "syllabus").subscribe(
         (resp:any)=>
@@ -150,6 +179,7 @@ export class SilabusComponent implements OnInit {
   }
   guardarTema()
   {
+    this.msgs = [];
     this.dataTema.COD_SILABO=this.silaboParaTema._id;
     this.dataTema.FECHA_INICIO=this.f1.toISOString();
     this.dataTema.FECHA_FIN=this.f2.toISOString();
@@ -179,6 +209,7 @@ export class SilabusComponent implements OnInit {
   }
   eliminarTema()
   {
+    this.msgs = [];
     console.log(this.dataTema);
     if(this.dataTema['_id'])
     {
@@ -198,7 +229,8 @@ export class SilabusComponent implements OnInit {
 
   }
   guardarRegistro() {
-    
+    //this.crud=true;
+    this.msgs = [];
     if (this.periodoSeleccionado && this.asignaturaSeleccionada) {
       this.data.codigo_asignatura = this.asignaturaSeleccionada.codigo;
       this.data.codigo_periodo = this.periodoSeleccionado.codigo;

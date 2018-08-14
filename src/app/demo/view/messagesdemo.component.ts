@@ -34,7 +34,7 @@ export class MessagesDemoComponent {
 
     showError() {
         this.msgs = [];
-        this.msgs.push({ severity: 'error', summary: 'Error Message', detail: 'Validation failed' });
+        this.msgs.push({ severity: 'error', summary: 'Error Message', detail: 'No se pudo ingresar' });
     }
 
     showSuccess() {

@@ -20,6 +20,7 @@ import { UbicacionComponent } from './universidad/view/espaciosfisicos/ubicacion
 import { FacturaComponent } from './universidad/view/facturacion/factura/factura.component';
 import { ClienteComponent } from './universidad/view/facturacion/cliente/cliente.component';
 import { SilabusComponent } from './universidad/view/gestionsilabus/silabus/silabus.component';
+import { SeguimientoComponent } from './universidad/view/gestionsilabus/seguimiento/seguimiento.component';
 import { TemaComponent } from './universidad/view/gestionsilabus/tema/tema.component';
 import { NrcComponent } from './universidad/view/periodoLectivo/nrc/nrc.component';
 import { MatriculaComponent } from './universidad/view/periodoLectivo/matricula/matricula.component';
@@ -53,6 +54,7 @@ export const routes: Routes = [
     },
     { path: 'silabus', component: SilabusComponent },
     { path: 'temas', component: TemaComponent },
+    { path: 'seguimiento', component: SeguimientoComponent },
     { path: 'nrc', component: NrcComponent },
     { path: 'clases', component: CursoComponent },
     { path: 'cuestionario', component: PreguntaComponent },

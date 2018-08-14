@@ -31,6 +31,7 @@ export class TareaComponent implements OnInit {
       { field: 'fechaInicio', header: 'Fecha Inicial' },
       { field: 'fechaFin', header: 'Fecha Final' },
     ];
+    this.usuario=JSON.parse(sessionStorage.getItem('usuario'));
     if(this.usuario.perfil=="DOC")
     {
       var codigo_persona={

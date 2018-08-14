@@ -1,66 +1,61 @@
 <div *ngIf="selectUsuario()">
-  <div class="ui-g ui-fluid">
-    <div class="ui-g-12 ui-lg-12">
-      <!-- Left Side -->
-      <div class="card card-w-title">
-        <h1>Participar en el foro</h1>
-        <div class="ui-g form-group">
-          <div class="ui-g-12 ui-md-6">
-            <textarea rows="4" cols="50" [(ngModel)]="foro.texto" placeholder="Ingrese la descripción del Foro"  required>  </textarea>
-          </div>
-          <div class="ui-g-6 ui-md-4">
-            <button pButton type="button" label="Publicar Participacion" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarForo()"></button>
-          </div>
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-lg-12">
+            <!-- Left Side -->
+            <div class="card card-w-title">
+                <h1>Participar en el foro</h1>
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-md-6">
+                        <textarea rows="4" cols="50" [(ngModel)]="foro.texto" placeholder="Ingrese la descripción del Foro" required>  </textarea>
+                    </div>
+                    <div class="ui-g-6 ui-md-4">
+                        <button pButton type="button" label="Publicar Participacion" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarForo()"></button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div> 
+</div>
+
 <div class="card card-w-title">
-  <h1>Participaciones</h1>
-  <p-table [columns]="cols" [value]="foros" selectionMode="single" dataKey="codigo" [style]="{'margin-bottom':'20px'}" [(selection)]="anuncioSeleccionado"
-      [responsive]="true" [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="both">
-      <ng-template pTemplate="caption">
-          Foros
-      </ng-template>
-      <ng-template pTemplate="header" let-columns>
-          <tr>
-              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                  {{col.header}}
-                  <p-sortIcon [field]="col.field"></p-sortIcon>
-              </th>
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-rowData let-columns="columns">
-          <tr [pSelectableRow]="rowData" (click)="seleccionarForo()">
-              <td>
-                  {{rowData.codigo}}
-              </td>
-              <td>
-                  {{rowData.foro}}
-              </td>
-              <td>
-                  {{rowData.nombrePersona}}
-              </td>
-              <td>
-                  {{rowData.curso}}
-              </td>
-              <td>  
-                  {{rowData.texto}}
-              </td>
-              <td>
-                {{rowData.fecha}}
-              </td>
-            <div *ngIf="selectUsuario()">
+    <h1>Participaciones</h1>
+    <p-table [columns]="cols" [value]="foros" selectionMode="single" dataKey="codigo" [style]="{'margin-bottom':'20px'}" [(selection)]="anuncioSeleccionado"
+        [responsive]="true" [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="both">
+        <ng-template pTemplate="caption">
+            Foros
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData" (click)="seleccionarForo()">
+                <td>
+                    <tr>
+                        <td>
+                            {{rowData.nombrePersona}} - {{(rowData.fecha.split("T"))[0]}}, {{((rowData.fecha.split("T"))[1].split(":"))[0]}}:{{((rowData.fecha.split("T"))[1].split(":"))[1]}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="ui-g-12 ui-md-6">
+                                <textarea rows="8" cols="115" style="resize: none" placeholder="Ingrese la descripción del Foro" required readonly>{{rowData.texto}}</textarea>
+                            </div>
+                        </td>
+                    </tr>
+                </td>
+                <!-- <div *ngIf="selectUsuario()">
               <td>
                 <button pButton icon="fa-edit" (click)="editarForo(rowData)"></button>
                 &nbsp;&nbsp;
                 <button pButton icon="fa-trash" (click)="eliminarForo(rowData)"></button>
               </td>
-            </div>
-          </tr>
-      </ng-template>
-  </p-table>
+            </div> -->
+            </tr>
+        </ng-template>
+    </p-table>
 </div>
-
-

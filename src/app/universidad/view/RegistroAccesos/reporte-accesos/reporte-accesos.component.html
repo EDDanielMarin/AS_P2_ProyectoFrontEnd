@@ -1,0 +1,22 @@
+<p-panel header="Registro de Accesos:">
+  <p-table [value]="accesos" autoLayout="true">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Usuario</th>
+              <th>Perfil</th>
+              <th>IP de Acceso</th>
+              <th>Resultado</th>
+              <th>Fecha - Hora</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-acceso>
+          <tr>
+              <td>{{acceso.codigoUsuario}}</td>
+              <td>{{acceso.perfil}}</td>
+              <td>{{acceso.ip}}</td>
+              <td>{{acceso.resultado}}</td>
+              <td>{{acceso.fecha | date:'medium'}}</td>                          
+          </tr>
+      </ng-template>
+  </p-table>
+</p-panel>

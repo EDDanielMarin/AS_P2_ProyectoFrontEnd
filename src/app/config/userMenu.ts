@@ -8,8 +8,8 @@ const menu = [
             {
                 label: 'Usuarios', icon: 'fa fa-fw fa-cog',
                 items: [
-                    { label: 'Crear', icon: 'fa fa-fw fa-bars', routerLink: ['/registro'] }
-
+                    { label: 'Crear', icon: 'fa fa-fw fa-bars', routerLink: ['/registro'] },
+                    { label: 'Registro Accesos', icon: 'fa fa-fw fa-bars', routerLink: ['/RegistroAccesos'] }
                 ]
             },
 
@@ -51,6 +51,15 @@ const menu = [
         ]
     },
     {
+        label: 'Evaluacion Docente', icon: 'fa fa-fw fa-cog',
+        items: [
+            { label: 'Cuestionario', icon: 'fa fa-fw fa-bars', routerLink: ['/cuestionario'] },
+            { label: 'Reporte Calificaciones', icon: 'fa fa-fw fa-bars', routerLink: ['/reportePregunta'] }
+           
+
+        ]
+    },
+    {
         rol: "DOC",
         model: [{ label: 'Docente', icon: 'fa fa-fw fa-home', routerLink: ['/'] },
         {
@@ -63,6 +72,15 @@ const menu = [
 
             ]
         },
+        {
+            label: 'Evaluacion Docente', icon: 'fa fa-fw fa-cog',
+            items: [
+                { label: 'Cuestionario', icon: 'fa fa-fw fa-bars', routerLink: ['/cuestionario'] },
+                { label: 'Reporte Calificaciones', icon: 'fa fa-fw fa-bars', routerLink: ['/reportePregunta'] }
+
+
+            ]
+        }
         
     ]
     },
@@ -74,7 +92,7 @@ const menu = [
                 label: 'Matriculas', icon: 'fa fa-fw fa-cog',
                 items: [
                     { label: 'Clases', icon: 'fa fa-fw fa-bars', routerLink: ['/clases'] },
-                    { label: 'Matricularse', icon: 'fa fa-fw fa-bars', routerLink: ['/cliente'] }
+                    { label: 'Factura', icon: 'fa fa-fw fa-bars', routerLink: ['/factura'] }
                 ]
             },
 
@@ -107,7 +125,7 @@ const menu = [
                 label: 'Evaluacion Docente', icon: 'fa fa-fw fa-cog',
                 items: [
                     { label: 'Cuestionario', icon: 'fa fa-fw fa-bars', routerLink: ['/cuestionario'] },
-                    { label: 'CRUD', icon: 'fa fa-fw fa-bars', routerLink: ['/temas'] }
+                   
 
                 ]
             },

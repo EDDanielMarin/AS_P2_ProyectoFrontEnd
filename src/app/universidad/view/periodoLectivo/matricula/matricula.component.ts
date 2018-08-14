@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PeriodoService } from '../../../service/periodo.service';
+import { NotificacionService } from '../../../service/notificacion.service';
 
 @Component({
   selector: 'app-matricula',
@@ -20,13 +21,13 @@ export class MatriculaComponent implements OnInit {
     codNrc: ''
   }
 
-  constructor(private servicio: PeriodoService) { }
+  constructor(private servicio: PeriodoService, private notificacionService: NotificacionService) { }
   private cols: any[];
   private nrcsSeleccionados: any = [];
   private estudiante: any = {};
   ngOnInit() {
 
-    setTimeout(this.servicio.obtenerURL(), 10)
+    setTimeout(this.servicio.obtenerURL(), this.notificacionService.obtenerURL(),10)
     this.estudiante = JSON.parse(sessionStorage.getItem("usuario"));
     this.cols = [
       { field: 'codAsignatura', header: 'Asignatura' },
@@ -51,7 +52,40 @@ export class MatriculaComponent implements OnInit {
     this.servicio.guardarMaticula(this.data).subscribe(
       (resp:any)=>
       {
-        console.log(resp);
+        this.submitEvent.emit(false);
+        //Envio notificacion
+        this.notificacionService.enviarNotificacion(
+          {
+            cod_plantilla: "Matricula Periodo Lectivo",
+            mail_alumno: "joelito93alexander@gmail.com",
+            asunto: "Matricula Periodo Lectivo",
+            cod_alumno:this.estudiante.cod_persona,
+            datos: [
+              {
+                variable: "nombre",
+                valor: this.estudiante
+              },
+              {
+                variable: "periodo",
+                valor: this.periodo.codigo
+              },
+              {
+                variable: "docente",
+                valor: this.estudiante.cod_persona
+              }
+
+            ]
+          }
+
+        ).subscribe(
+          (resp_: any) => {
+            console.log(resp);
+
+          }
+        );
+
+
+
       }
     )
 

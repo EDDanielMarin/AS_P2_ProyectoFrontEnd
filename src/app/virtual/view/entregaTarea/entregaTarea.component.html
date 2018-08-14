@@ -1,66 +1,173 @@
-<div *ngIf="selectUsuario()">
+<div *ngIf="!selectUsuario()">
   <div class="ui-g ui-fluid">
     <div class="ui-g-12 ui-lg-12">
       <!-- Left Side -->
       <div class="card card-w-title">
-        <h1>Participar en el foro</h1>
+        <h1>Entregar la tarea</h1>
         <div class="ui-g form-group">
           <div class="ui-g-12 ui-md-6">
-            <textarea rows="4" cols="50" [(ngModel)]="tarea.calificacion" placeholder="Ingrese la calificacion de la tarea"  required>  </textarea>
+            <label> TEXTO: </label>
+            <br>
+            <textarea rows="4" cols="50" [(ngModel)]="tarea.texto" placeholder="Ingrese texto" required>  </textarea>
+            <br>
+            <br>
+
+            <input type="file" name="file" id="file" class="buttonPropio buttonPropio-1" (change)="onUpload($event)">
+            <label for="file"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Adjuntar Archivo&hellip;</span></label>
+            <br><br>
+            <label> Archivo: </label>
+            <input style="border:none" [(ngModel)]="nombreArchivo" readonly>
+
+            <br>
           </div>
           <div class="ui-g-6 ui-md-4">
-            <button pButton type="button" label="calificar" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarTarea()"></button>
+            <button pButton type="button" label="Enviar" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarEntrega()"></button>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div> 
+</div>
+<div *ngIf="selectUsuario()">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-lg-12">
+      <!-- Left Side -->
+      <div class="card card-w-title">
+        <h1>Entregar la tarea</h1>
+        <div class="ui-g form-group">
+          <div class="ui-g-12 ui-md-6">
+            <label> Observacion: </label>
+            <br>
+            <textarea rows="4" cols="50" [(ngModel)]="tarea.observacion" placeholder="Ingrese texto" required>  </textarea>
+            <br>
+            <br>
+            <label> Calificacion: </label>
+            <input type="text" [(ngModel)]="tarea.calificacion" pInputText placeholder="calificacion" required>
+            <br>
+          </div>
+          <div class="ui-g-6 ui-md-4">
+            <button pButton type="button" label="Enviar" style="margin-bottom:10px" class="ui-button-raised" (click)="guardarEntrega()"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="card card-w-title">
-  <h1>Participaciones</h1>
-  <p-table [columns]="cols" [value]="foros" selectionMode="single" dataKey="codigo" [style]="{'margin-bottom':'20px'}" [(selection)]="anuncioSeleccionado"
-      [responsive]="true" [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="both">
-      <ng-template pTemplate="caption">
-          Foros
-      </ng-template>
-      <ng-template pTemplate="header" let-columns>
-          <tr>
-              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                  {{col.header}}
-                  <p-sortIcon [field]="col.field"></p-sortIcon>
-              </th>
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-rowData let-columns="columns">
-          <tr [pSelectableRow]="rowData" (click)="seleccionarTarea()">
-              <td>
-                  {{rowData.codigo}}
-              </td>
-              <td>
-                  {{rowData.tarea}}
-              </td>
-              <td>
-                  {{rowData.nombrePersona}}
-              </td>
-              <td>
-                  {{rowData.curso}}
-              </td>
-              <td>  
-                  {{rowData.texto}}
-              </td>
-              <td>
-                {{rowData.fechaEnvio}}
-              </td>
-            <div *ngIf="selectUsuario()">
-              <td>
-                <button pButton icon="fa-edit" (click)="editarEntregaTarea(rowData)"></button>
-                &nbsp;&nbsp;
-                <button pButton icon="fa-trash" (click)="eliminarEntregaTarea(rowData)"></button>
-              </td>
-            </div>
-          </tr>
-      </ng-template>
+  <h1>Entregas</h1>
+  <p-table [columns]="cols" [value]="tareas" selectionMode="single" dataKey="codigo" [style]="{'margin-bottom':'10px'}" [(selection)]="anuncioSeleccionado"
+    [responsive]="true" [paginator]="true" [rows]="10" [responsive]="true" paginatorPosition="both">
+    <ng-template pTemplate="caption">
+      Tareas Entregadas
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+          {{col.header}}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData"> <!--(click)="seleccionarTarea()"-->
+        <td>
+          {{rowData.nombrePersona}}
+        </td>
+        <td>
+          {{rowData.texto}}
+        </td>
+        <td (click)="descarga(rowData)">
+            <b>{{DESCARGAR}} {{rowData.archivo}}</b>
+        </td>
+        <td style="height:auto">
+          {{(rowData.fechaEnvio.split("T"))[0]}}, {{((rowData.fechaEnvio.split("T"))[1].split(":"))[0]}}:{{((rowData.fechaEnvio.split("T"))[1].split(":"))[1]}}
+        </td>
+        <td>
+          {{rowData.calificacion}}
+        </td>
+        <td>
+          {{rowData.observacion}}
+        </td>
+
+        <div *ngIf="selectUsuario()">
+          <td>
+            <button pButton icon="fa-edit" (click)="editarEntregaTarea(rowData)"></button>
+          </td>
+        </div>
+      </tr>
+    </ng-template>
   </p-table>
 </div>
+<style>
+  .buttonPropio {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .buttonPropio+label {
+    max-width: 80%;
+    font-size: 0.70rem;
+    /* 20px */
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+  }
+
+  .no-js .buttonPropio+label {
+    display: none;
+  }
+
+  .buttonPropio:focus+label,
+  .buttonPropio.has-focus+label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+
+  .buttonPropio+label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    /* 4px */
+    margin-right: 0.25em;
+    /* 4px */
+  }
 
 
+  /* style 1 */
+
+  .buttonPropio-1+label {
+    color: #e5e6f1;
+    background-color: #4B6CB7;
+  }
+
+  .buttonPropio-1:focus+label,
+  .buttonPropio-1.has-focus+label,
+  .buttonPropio-1+label:hover {
+    background-color: #202872;
+  }
+
+  /*
+  .buttonPropio{
+  margin: 0;
+  color: #ffffff;
+  background-color: #4B6CB7;
+  border: 1px solid #4B6CB7;
+  font-size: 13px;
+  -moz-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+
+  }*/
+</style>

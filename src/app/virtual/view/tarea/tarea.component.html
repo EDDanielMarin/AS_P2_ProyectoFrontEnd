@@ -9,7 +9,8 @@
             <label> TEMA: </label>
             <br>
             <input type="text" [(ngModel)]="tarea.tema" pInputText placeholder="Tema" required>
-            <br><br>
+            <br>
+            <br>
             <label> DESCRIPCIÓN: </label>
             <textarea rows="4" cols="50" [(ngModel)]="tarea.descripcion" placeholder="Ingrese la descripción de la tarea" required>  </textarea>
           </div>
@@ -38,7 +39,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr [pSelectableRow]="rowData">
-        <td>
+        <td (click)="verEntregas(rowData)">
           {{rowData.codigo}}
         </td>
         <td>
@@ -51,10 +52,10 @@
           {{rowData.descripcion }}
         </td>
         <td>
-          {{rowData.fechaInicio}}
+          {{(rowData.fechaInicio.split("T"))[0]}}, {{((rowData.fechaInicio.split("T"))[1].split(":"))[0]}}:{{((rowData.fechaInicio.split("T"))[1].split(":"))[1]}}
         </td>
         <td>
-          {{rowData.fechaFin}}
+          {{(rowData.fechaFin.split("T"))[0]}}, {{((rowData.fechaFin.split("T"))[1].split(":"))[0]}}:{{((rowData.fechaFin.split("T"))[1].split(":"))[1]}}
         </td>
         <div *ngIf="selectUsuario()">
           <td>
@@ -69,6 +70,6 @@
 </div>
 <p-dialog header="Entregas" [(visible)]="entregas" [responsive]="true" showEffect="fade" [modal]="true" [width]="1000">
   <div *ngIf="entregas">
-    <app-entregaTarea  [tareaComponent]=enviarTarea></app-entregaTarea>
+    <app-entregaTarea [tareaComponent]=enviarTarea></app-entregaTarea>
   </div>
 </p-dialog>

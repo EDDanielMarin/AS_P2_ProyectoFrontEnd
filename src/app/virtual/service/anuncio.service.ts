@@ -10,6 +10,7 @@ export class AnuncioService {
   
   obtenerAnunciosCurso(curso)
   {
+    console.log("SIIIIIIII");
     return this.dto.ejecutaGet("http://35.197.102.72/aula-virtual-web/webresources/Anuncios/"+curso);
   }
   guardarAnuncio(data:any)

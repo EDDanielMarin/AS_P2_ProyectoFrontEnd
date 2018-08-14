@@ -13,17 +13,24 @@ import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { FileUploadModule } from 'primeng/fileupload';
+import { AccordionModule } from 'primeng/primeng';
+import { PanelModule } from 'primeng/primeng';
+
 @NgModule({
   imports: [
     CommonModule,
     VirtualRoutingModule,
-    CommonModule, 
+    CommonModule,
     DataTableModule,
     TableModule,
     FormsModule,
     ButtonModule,
     DialogModule,
+    FileUploadModule,
+    AccordionModule,
+    PanelModule
   ],
-  declarations: [ForoComponent, AnuncioComponent, TareaComponent, WikiComponent, ForoAlumnoComponent,EntregaTareaComponent]
+  declarations: [ForoComponent, AnuncioComponent, TareaComponent, WikiComponent, ForoAlumnoComponent, EntregaTareaComponent]
 })
 export class VirtualModule { }

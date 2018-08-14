@@ -4,7 +4,6 @@ import { RegistroService } from '../../service/registro.service';
 import { PersonasService } from '../../service/personas.service';
 import {Md5} from "md5-typescript";
 
-
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -15,7 +14,9 @@ export class RegistroComponent implements OnInit {
   roles: SelectItem[];
   rolSeleccionado: any;
 
-  claveMD5: ""; 
+  claveMD5: String; 
+  tipoENtradaPssw :String;
+  labelENtradaPssw :String;
   auxpssw: boolean = true;
 
   isActivo: boolean;
@@ -75,7 +76,8 @@ export class RegistroComponent implements OnInit {
       { label: 'Masculino', value: 'Masculino', icon: 'fa fa-male' },
       { label: 'Femenino', value: 'Femenino', icon: 'fa fa-female' }
     ];
-
+    this.tipoENtradaPssw="password";
+    this.labelENtradaPssw="Mostrar Clave";
   }
   cargar() {
     this.servicioPersona.obtenerPersonas().subscribe
@@ -143,6 +145,22 @@ export class RegistroComponent implements OnInit {
   eliminar() {
     this.crud = false;
   }
+  generarClave()  {   
+    var randomstring = Math.random().toString(36).slice(-8);
+    this.claveMD5=randomstring;
+  }
+  mostrarClave(){
+    if(this.tipoENtradaPssw=="password")
+    {
+      this.tipoENtradaPssw="text";
+      this.labelENtradaPssw="Ocultar Clave";
+    }
+    else
+    {
+      this.tipoENtradaPssw="password";
+      this.labelENtradaPssw="Mostrar Clave";
+    }    
+  }
   guardarUsuario() {
     if (this.rolSeleccionado != 0) {
       console.log(this.rolSeleccionado);
@@ -157,6 +175,20 @@ export class RegistroComponent implements OnInit {
         this.servicioPersona.guardar(this.persona).subscribe(
           (resp: any) => {
             console.log("Guardado persona")
+            this.servicio.guardarUsuario(this.data).subscribe(
+              (resp1: any) => {
+
+                console.log("guardado usuario");
+                this.claveMD5="";
+
+              },
+              (error) => {
+                console.log("Error");
+              }
+            );
+          },
+          err=>
+          {
             this.servicio.guardarUsuario(this.data).subscribe(
               (resp1: any) => {
 

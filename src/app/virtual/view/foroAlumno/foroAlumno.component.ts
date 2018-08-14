@@ -24,13 +24,7 @@ export class ForoAlumnoComponent implements OnInit {
     this.curso=this.foroComponent['curso'];
     this.codigo=this.foroComponent['codigo'];
     this.cols = [
-      { field: 'codigo', header: 'Codigo' },
-      { field: 'foro', header: 'Número de foro' },
-      { field: 'estudiante', header: 'Nombre' },
-      { field: 'curso', header: 'Curso' },
-      { field: 'participacion', header: 'Participacion' },
-      { field: 'fecha', header: 'Fecha de comentario' },
-      
+      { field: 'participacion', header: 'Participacion' }
   ];
     this.usuario=JSON.parse(sessionStorage.getItem('usuario'));
     console.log(this.usuario);

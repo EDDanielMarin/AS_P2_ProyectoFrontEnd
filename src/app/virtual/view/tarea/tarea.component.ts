@@ -80,7 +80,7 @@ export class TareaComponent implements OnInit {
   }
   editarTarea(reg: any) {
     this.tarea = reg;
-    location.reload();
+    //location.reload();
   }
   eliminarTarea(reg: any) {
     var _data = { tarea: parseInt(reg.codigo) };

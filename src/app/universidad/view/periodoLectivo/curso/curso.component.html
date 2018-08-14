@@ -37,7 +37,7 @@
   </div>
 
   <p-dialog header="Matricula Estudiante" [(visible)]="diag" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
-      <app-matricula (submitEvent)='confirmaMatricula($event)' [periodo]=periodoSeleccionado [nrcs]=nrcs ></app-matricula>
+      <app-matricula (submitEvent)='confirmacionMatricula($event)' [periodo]=periodoSeleccionado [nrcs]=nrcs ></app-matricula>
       <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
           <button type="button" pButton icon="fa fa-close" (click)="cancelarMatricula()" label="Cancelar"></button>

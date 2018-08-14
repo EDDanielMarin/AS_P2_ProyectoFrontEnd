@@ -55,7 +55,7 @@
                   {{rowData.tema}}
               </td>
               <td>  
-                  {{rowData.fecha }}
+                  {{(rowData.fecha.split("T"))[0]}}, {{((rowData.fecha.split("T"))[1].split(":"))[0]}}:{{((rowData.fecha.split("T"))[1].split(":"))[1]}}
               </td>
             <div *ngIf="selectUsuario()">
               <td>

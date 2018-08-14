@@ -4,6 +4,7 @@ import { PersonasService } from '../../../universidad/service/personas.service';
 //upload
 import { Message } from 'primeng/primeng';
 import { BreadcrumbService } from '../../../breadcrumb.service';
+import { saveAs } from 'file-saver';
 //end upload
 import * as moment from 'moment';
 @Component({
@@ -34,6 +35,8 @@ export class EntregaTareaComponent implements OnInit {
   //upload
   msgs: Message[];
   uploadedFiles: any[] = [];
+  nombreArchivo: any;
+  evento: File = null;
   //end upload
   private tarea: any = {};
   ngOnInit() {
@@ -89,8 +92,10 @@ export class EntregaTareaComponent implements OnInit {
       return false;
   }
   guardarEntrega() {
-  
-    console.log(this.tarea);
+
+    console.log("evento//")
+    console.log(this.evento);
+
     if (this.tarea.codigo) {
       this.tarea.id = undefined;
       this.servicio.actualizarEntregaTarea(this.tarea).subscribe(
@@ -103,10 +108,9 @@ export class EntregaTareaComponent implements OnInit {
     } else {
       this.tarea.calificacion = 0;
       this.tarea.observacion = "N/D";
-      console.log(this.tarea.fechaInicio);
       this.tarea.tarea = this.codigo;
       this.tarea.curso = this.curso;
-      this.tarea.archivo = "ARCHIVO"
+      this.tarea.archivo = this.evento.name;
       this.tarea.fechaEnvio = new Date();
       this.tarea.alumno = this.usuario.cod_persona;
       //this.foro.foro=this.foros[0].foro;
@@ -116,8 +120,14 @@ export class EntregaTareaComponent implements OnInit {
           console.log(resp);
         }
       );
+      this.servicio.subirArchivo(this.evento).subscribe(
+        (resp: any) => {
+          console.log(resp);
+        }
+
+      );
     }
-    location.reload();
+    //location.reload();
   }
   editarEntregaTarea(reg: any) {
     this.tarea = reg;
@@ -153,12 +163,31 @@ export class EntregaTareaComponent implements OnInit {
     return formattedTime;
   }
   //upload
-  onUpload(event) {
-    for (const file of event.files) {
-      this.uploadedFiles.push(file);
-    }
+  onChange(event) {
+    console.log(event);
+    this.nombreArchivo = event.srcElement.files[0].name;
+    this.evento = <File>event.srcElement.files[0];
+    //
 
-    this.msgs = [];
-    this.msgs.push({ severity: 'info', summary: 'Success', detail: 'Upload Completed' });
   }
+
+  descarga(data) {
+    console.log(data.archivo);
+    this.servicio.bajarArchivo(data.archivo).subscribe(
+      (res: any) => {
+        let blob = new Blob([res], {type: 'application/octet-stream'});
+        let filename = data.archivo;
+        saveAs(blob, filename);
+
+      },
+      /*data => {
+        const blob = new Blob([data], {
+          type: 'application/octet-stream'
+        }); saveAs(blob,data.archivo);
+      },*/
+      error => console.log(error)
+    );
+  }
+
+
 }

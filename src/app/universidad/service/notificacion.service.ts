@@ -46,4 +46,16 @@ export class NotificacionService {
   {
    return this.dto.ejecutaGet(this.url.concat("notificaciones/receptor/",param))
   }
+  obtenerMedios() {
+    return this.dto.ejecutaGet(this.url.concat("medios"));
+  }
+  guardarMedios(data) {
+    return this.dto.ejecutaPut(this.url.concat("medios"), data)
+  }
+  modificarMedios(data) {
+    return this.dto.ejecutaPost(this.url.concat("medios"), data)
+  }
+  eliminarMedios(param) {
+    return this.dto.ejecutaDeleteId(this.url.concat("medios/", param))
+  }
 }

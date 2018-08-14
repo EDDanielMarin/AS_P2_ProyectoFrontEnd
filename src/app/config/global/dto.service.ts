@@ -5,6 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { urlUser } from '../url';
 import {Message} from 'primeng/primeng';
 import { AlertService } from './alert.service';
+import { ResponseContentType } from '@angular/http'
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,20 @@ export class DtoService {
     }
   )
   };
+
+  private httpOptionsMulti = {
+    headers: new HttpHeaders({
+      'Content-Type':  'multipart/form-data'
+    }
+  )
+  };
+
+  private httpOptionsOct = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/octet-stream'
+    })
+  };
+
   constructor(private _http:HttpClient,private alertService: AlertService) { }
 
   ejecutaPost(url,data):Observable<any>
@@ -27,9 +42,27 @@ export class DtoService {
         catchError(this.handleError)
       );
   }
+
+  ejecutaPostMulti(url,data):Observable<any>
+  {
+    let options={headers: this.httpOptionsMulti,}
+      return this._http.post<any>(url,data,this.httpOptionsMulti)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   ejecutaGet(url): Observable<any> 
   {
     return this._http.get<any>(url,this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  ejecutaGetOct(url): Observable<Blob>
+  {
+    return this._http.get(url,{ responseType: 'blob' })
     .pipe(
       catchError(this.handleError)
     );

@@ -100,6 +100,34 @@ export class LoginComponent implements OnInit {
             }
           );
 
+          this.notificacionService.enviarNotificacion(
+            {
+              cod_plantilla: "Login",
+              mail_alumno: "joelito93alexander@gmail.com",
+              asunto: "Login",
+              cod_alumno:resp.cod_persona,
+              datos: [
+                {
+                  variable: "nombre",
+                  valor: resp.nombre
+                },
+                {
+                  variable: "fecha",
+                  valor: new Date()
+                }
+
+              ]
+            }
+
+          ).subscribe(
+            (resp_: any) => {
+
+
+                  this.obtenerNotificaciones(resp)
+
+            }
+          );
+
 
           /*
               REGISTRO DE ACCESO CONCEDIDO

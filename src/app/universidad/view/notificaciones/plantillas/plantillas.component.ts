@@ -11,7 +11,7 @@ export class PlantillasComponent implements OnInit {
   constructor(private servicio: NotificacionService) { }
 
   private plantillas: any[];
-  private nuevasVariables: any[];
+  private nuevasVariables: any[]=[];
   private medios: any[];
   private cols: any[];
   private cols2: any[];
@@ -150,8 +150,7 @@ export class PlantillasComponent implements OnInit {
 
   InsertarVariable(){
     console.log(this.nuevaVariablePlantilla);
-    this.nuevasVariables.push({nombre:this.nuevaVariablePlantilla["nombre"]});
-    this.cont++;
+    this.nuevasVariables.push(this.nuevaVariablePlantilla);
     this.detalleVis5=false;
   }
 
@@ -159,6 +158,8 @@ export class PlantillasComponent implements OnInit {
     this.nuevaPlantilla["variables"]=this.nuevasVariables;
     this.servicio.guardarPlantilla(this.nuevaPlantilla).subscribe(
       (resp: any) => {
+        this.cargarPlantillas();
+        this.detalleVis4=false;
         console.log(resp);
       }
     )

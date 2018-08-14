@@ -14,24 +14,24 @@ export class FacturaService {
     data.detalles.forEach(x=>{
       data.total+=x.precio;
     })
-    return this.dto.ejecutaPut("http://40.121.33.183:3000/facturas",data)
+    return this.dto.ejecutaPut("https://modulofactarqui.herokuapp.com/facturas",data)
   }
   obtenerNumeroFactura()
   {
-    return this.dto.ejecutaGet("http://40.121.33.183:3000/facturas/numero");
+    return this.dto.ejecutaGet("https://modulofactarqui.herokuapp.com/facturas/numero");
   }
 
   obtenerFactura(param)
   {
-    return this.dto.ejecutaGet("http://40.121.33.183:3000/facturas/buscar/"+param);
+    return this.dto.ejecutaGet("https://modulofactarqui.herokuapp.com/facturas/buscar/"+param);
   }
   
   actualizarFactura(data)
   {
-    return this.dto.ejecutaPost("http://40.121.33.183:3000/facturas",data);
+    return this.dto.ejecutaPost("https://modulofactarqui.herokuapp.com/facturas",data);
   }
   obtenerFacturas()
   {
-    return this.dto.ejecutaGet("http://40.121.33.183:3000/facturas");
+    return this.dto.ejecutaGet("https://modulofactarqui.herokuapp.com/facturas");
   }
 }

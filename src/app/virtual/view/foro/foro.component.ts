@@ -2,6 +2,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { ForoService } from '../../service/foro.service';
 import * as moment from 'moment';
 import { ForoAlumnoComponent } from '../foroAlumno/foroAlumno.component';
+import { PeriodoService } from '../../../universidad/service/periodo.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,9 +12,13 @@ import { Router } from '@angular/router';
 })
 export class ForoComponent implements OnInit {
 
-  constructor(private servicio:ForoService) { }
-    curso=10;
+  constructor(private servicio:ForoService, private servicioPeriodo:PeriodoService) { }
+    curso:any;
+    selectCurso:any;
+    nrcs:any;
     foros:any=[];
+    
+
     anuncioSeleccionado:any;
     cols: any[];
     usuario:any;
@@ -21,6 +26,9 @@ export class ForoComponent implements OnInit {
     private participaciones: boolean = false;
     private enviarForo:any={};
     ngOnInit() {
+      setTimeout(this.servicioPeriodo.obtenerURL(),10)
+      this.usuario=JSON.parse(sessionStorage.getItem('usuario'));
+      this.selectCurso=false;
       this.cols = [
         { field: 'codigo', header: 'Codigo' },
         { field: 'curso', header: 'Curso' },
@@ -29,8 +37,26 @@ export class ForoComponent implements OnInit {
         { field: 'fechaInicio', header: 'Fecha De Inicio' },
         { field: 'fechaFin', header: 'Fecha Final' },
         
-    ];
-      this.usuario=JSON.parse(sessionStorage.getItem('usuario'));
+      ];
+      var codigo_persona={
+        "codPeriodo":"201801",
+        "codPersona":"L00357199"
+      };
+      this.servicioPeriodo.obtenerNrcPorDocente(codigo_persona).subscribe(
+        (resp:any)=>{           
+          this.nrcs=resp;  
+          console.log(resp);
+        },
+        (error)=>{
+  
+        }
+  
+      );
+      console.log(this.nrcs);
+    }
+    buscarCurso(){
+      //alert(this.curso);
+      this.selectCurso=true;
       this.servicio.obtenerForosCurso(this.curso).subscribe(
         (resp:any)=>{
            

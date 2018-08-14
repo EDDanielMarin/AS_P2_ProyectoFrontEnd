@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnuncioService } from '../../service/anuncio.service';
 import { Router } from '@angular/router';
+import { PeriodoService } from '../../../universidad/service/periodo.service';
 
 @Component({
   selector: 'app-anuncio',
@@ -9,8 +10,10 @@ import { Router } from '@angular/router';
 })
 export class AnuncioComponent implements OnInit {
   
-  constructor(private servicio:AnuncioService) { }
-
+  constructor(private servicio:AnuncioService, private servicioPeriodo:PeriodoService) { }
+  curso:any;
+  selectCurso:any;
+  nrcs:any;
   anuncios:any=[];
   anuncioSeleccionado:any;
   cols: any[];
@@ -26,7 +29,26 @@ export class AnuncioComponent implements OnInit {
       
   ];
     this.usuario=JSON.parse(sessionStorage.getItem('usuario'));
-    this.servicio.obtenerAnunciosCurso(10).subscribe(
+    var codigo_persona={
+      "codPeriodo":"201801",
+      "codPersona":"L00357199"
+    };
+    this.servicioPeriodo.obtenerNrcPorDocente(codigo_persona).subscribe(
+      (resp:any)=>{           
+        this.nrcs=resp;  
+        console.log(resp);
+      },
+      (error)=>{
+
+      }
+
+    );
+
+  }
+  buscarCurso(){
+    alert(this.curso);
+    this.selectCurso=true;
+    this.servicio.obtenerAnunciosCurso(this.curso).subscribe(
       (resp:any)=>{
          
           console.log(resp);
@@ -58,8 +80,9 @@ export class AnuncioComponent implements OnInit {
       )
 
     }else{
+      alert(this.curso);
       this.anuncio.fecha=new Date();
-      this.anuncio.curso="10";
+      this.anuncio.curso=this.curso;
       this.servicio.guardarAnuncio(this.anuncio).subscribe(
         (resp:any)=>{
           console.log(resp);

@@ -1,3 +1,10 @@
+<div class="card card-w-title">
+  <select [(ngModel)]="curso">
+    <option *ngFor="let nrc of nrcs">{{nrc.codNrc}}</option>
+  </select>
+  <button pButton type="button" label="Seleccionar curso" style="margin-bottom:10px" class="ui-button-raised" (click)="buscarCurso()"></button>
+</div>
+<div *ngIf="selectCurso">
 <div *ngIf="selectUsuario()">
   <div class="ui-g ui-fluid">
     <div class="ui-g-12 ui-lg-12">
@@ -73,3 +80,4 @@
     <app-entregaTarea [tareaComponent]=enviarTarea></app-entregaTarea>
   </div>
 </p-dialog>
+</div>
